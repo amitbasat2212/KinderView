@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/login_fregment">
+    <fragment
+        android:id="@+id/login_fregment"
+        android:name="com.example.kinderview.Login_fregment"
+        android:label="fragment_login_fregment"
+        tools:layout="@layout/fragment_login_fregment" >
+        <action
+            android:id="@+id/action_login_fregment_to_home_page2"
+            app:destination="@id/home_page2" />
+    </fragment>
+    <fragment
+        android:id="@+id/home_page2"
+        android:name="com.example.kinderview.Home_page"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" />
+</navigation>
