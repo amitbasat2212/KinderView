@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/sign_in">
+    app:startDestination="@id/createPost">
     <fragment
         android:id="@+id/login_fregment"
         android:name="com.example.kinderview.Login_fregment"
@@ -37,4 +37,14 @@
         android:name="com.example.kinderview.Edit_user"
         android:label="fragment_edit_user"
         tools:layout="@layout/fragment_edit_user" />
+    <fragment
+        android:id="@+id/fragment_edit_post"
+        android:name="com.example.kinderview.fragment_edit_post"
+        android:label="fragment_edit_post"
+        tools:layout="@layout/fragment_edit_post" />
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.example.kinderview.fragment_profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

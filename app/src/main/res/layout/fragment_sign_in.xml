@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/fragment_profile_numofposts"
         android:layout_width="143dp"
         android:layout_height="45dp"
         android:fontFamily="serif"
@@ -63,7 +63,7 @@
         app:layout_constraintVertical_bias="0.383" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/fragment_profile_username"
         android:layout_width="143dp"
         android:layout_height="45dp"
         android:fontFamily="serif"
@@ -145,7 +145,7 @@
         android:hint="enter your name"
         android:inputType="textPersonName"
         android:text="Name"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
+        app:layout_constraintBaseline_toBaselineOf="@+id/fragment_profile_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent" />
@@ -158,7 +158,7 @@
         android:hint="write your  Last name"
         android:inputType="textPersonName"
         android:text="Name"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
+        app:layout_constraintBaseline_toBaselineOf="@+id/fragment_profile_numofposts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent" />
