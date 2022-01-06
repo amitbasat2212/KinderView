@@ -1,14 +1,20 @@
 package com.example.kinderview;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.kinderview.model.Model;
+import com.example.kinderview.viewModel.PostViewModel;
 
 import java.util.ArrayList;
 
@@ -18,6 +24,8 @@ public class Home_page extends Fragment {
     RecyclerView recyclerView;
     ArrayList<Model> modelArrayList = new ArrayList<>();
     Adapter adapter;
+
+    private PostViewModel viewModel;
 
     public Home_page() {
         // Required empty public constructor
@@ -37,6 +45,14 @@ public class Home_page extends Fragment {
         populateRecyclerView();
 
         return view;
+
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        viewModel = new ViewModelProvider(this).get(PostViewModel.class);
 
     }
 

@@ -4,29 +4,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/fragments_home"
-        android:checkable="true"
-        android:enabled="false"
+        android:enabled="true"
         android:icon="@drawable/home"
         android:title="Home"
-        app:actionLayout="@layout/custom_menu_item"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        />
     <item
         android:id="@+id/menu_create"
+        android:enabled="true"
         android:icon="@drawable/create"
         android:title="Create"
-        app:actionLayout="@layout/custom_menu_item2"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/menu_logout"
-        android:icon="@drawable/logout"
-        android:title="logout"
-        app:actionLayout="@layout/custom_menu_item3"
         app:showAsAction="always" />
     <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/user"
         android:title="profile"
-        app:actionLayout="@layout/custom_menu_item4"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_logout"
+        android:icon="@drawable/logout"
+        android:title="logout"
         app:showAsAction="always" />
 
 

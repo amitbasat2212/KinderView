@@ -1,6 +1,13 @@
-package com.example.kinderview;
+package com.example.kinderview.model;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
+import java.util.List;
 
 public class Model {
+
+    ModelFireBase modelFireBase = new ModelFireBase();
 
     int id,likes,comments,proPic,postPic;
     String Name,Time,Status;
@@ -14,6 +21,38 @@ public class Model {
         Name = name;
         Time = time;
         Status = status;
+    }
+
+    MutableLiveData<List<Post>> posts = new MutableLiveData<>();
+
+    public LiveData<List<Post>> getAllPosts(){
+        refreshPostsList();
+       return posts;
+    }
+
+public void refreshPostsList(){
+       modelFireBase.getAllPosts();
+
+
+    }
+
+    public interface getPostListener{
+        void onComplete(List<Post> list);
+    }
+
+    public void createPost(Post post){
+        modelFireBase.createPosts(post);
+
+    }
+
+    public void createProfile(Profile profile){
+        modelFireBase.createProfile(profile);
+
+    }
+
+    public void getProfileByUserName(String username){
+        modelFireBase.getProfileByUserName(username);
+
     }
 
     public int getId() {

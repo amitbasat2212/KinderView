@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/home_page2">
+    app:startDestination="@id/login_fregment">
     <fragment
         android:id="@+id/login_fregment"
         android:name="com.example.kinderview.Login_fregment"
@@ -47,5 +47,5 @@
         android:name="com.example.kinderview.fragment_profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
-    <action android:id="@+id/action_global_home_page" app:destination="@id/home_page2" />
+    <action android:id="@+id/action_global_home_page" app:destination="@id/home_page2" /><action android:id="@+id/action_global_fragment_profile" app:destination="@id/fragment_profile"/><action android:id="@+id/action_global_createPost" app:destination="@id/createPost"/><action android:id="@+id/action_global_login_fregment" app:destination="@id/login_fregment"/>
 </navigation>

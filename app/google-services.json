@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "500272724824",
+    "project_id": "kinderview-9d217",
+    "storage_bucket": "kinderview-9d217.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500272724824:android:748796d6586bea0e55432d",
+        "android_client_info": {
+          "package_name": "com.example.kinderview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500272724824-n4v6sp126ldmpt3jmvjihgp4q7fo6j5u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUkfIPfROnmG09Yn7S33d7sFTcwugqpQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500272724824-n4v6sp126ldmpt3jmvjihgp4q7fo6j5u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

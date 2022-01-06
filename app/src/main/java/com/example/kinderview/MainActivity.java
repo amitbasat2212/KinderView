@@ -42,14 +42,17 @@ public class MainActivity extends AppCompatActivity {
                     controller.navigate(R.id.action_global_home_page);
 
                     break;
+
                 case R.id.menu_create:
-
+                    controller.navigate(R.id.action_global_createPost);
                     break;
+
                 case R.id.menu_logout:
-
+                    controller.navigate(R.id.action_global_login_fregment);
                     break;
-                case R.id.menu_profile:
 
+                case R.id.menu_profile:
+                    controller.navigate(R.id. action_global_fragment_profile);
                     break;
             }
 
