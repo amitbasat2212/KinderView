@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.example.kinderview.model.Model;
+import com.example.kinderview.viewModel.PostViewModel;
 
 import java.util.ArrayList;
 
@@ -19,12 +21,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     Context context;
     ArrayList<Model> modelArrayList=new ArrayList<>();
     RequestManager glide;
+    PostViewModel viewModel;
 
 
-    public Adapter(Context context, ArrayList<Model> modelArrayList) {
-        this.context = context;
-        this.modelArrayList = modelArrayList;
-        glide= Glide.with(context);
+    public Adapter(PostViewModel viewModel) {
+         viewModel=viewModel;
+        //glide= Glide.with(context);
 
     }
 
@@ -39,12 +41,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final Model model=modelArrayList.get(position);
-        holder.tv_name.setText(model.getName());
-        holder.tv_time.setText(model.getTime());
-        holder.tv_likes.setText(String.valueOf(model.getLikes()));
-        holder.tv_comments.setText(model.getComments() + " comments");
-        holder.tv_status.setText(model.getStatus());
+        holder.tv_name.setText(viewModel.getData().getValue().get(position).getUsername());
+        holder.tv_time.setText(viewModel.getData().getValue().get(position).getDate());
+        holder.tv_likes.setText(viewModel.getData().getValue().get(position).getLikes());
+        holder.tv_comments.setText(viewModel.getData().getValue().get(position).getComment() + " comments");
+        holder.tv_status.setText(viewModel.getData().getValue().get(position).getStatus());
+
+        /*
         glide.load(model.getProPic()).into(holder.imgview_propic);
         if(model.getPostPic()==0){
             holder.imgview_postpic.setVisibility(View.GONE);
@@ -52,6 +55,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             holder.imgview_postpic.setVisibility(View.VISIBLE);
         }
         glide.load(model.getPostPic()).into(holder.imgview_postpic);
+
+         */
 
     }
 
@@ -73,6 +78,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             tv_likes=(TextView)itemView.findViewById(R.id.row_feed_likesnumber);
             tv_comments=(TextView)itemView.findViewById(R.id.row_feed_comments);
             tv_status=(TextView)itemView.findViewById(R.id.row_feed_statustext);
+
+
 
         }
     }
