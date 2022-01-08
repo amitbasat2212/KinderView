@@ -28,10 +28,14 @@
             app:destination="@id/home_page2" />
     </fragment>
     <fragment
-        android:id="@+id/createPost"
+        android:id="@+id/fragment_createPost"
         android:name="com.example.kinderview.CreatePost"
         android:label="fragment_create_post"
-        tools:layout="@layout/fragment_create_post" />
+        tools:layout="@layout/fragment_create_post" >
+        <action
+            android:id="@+id/action_createPost_to_home_page23"
+            app:destination="@id/home_page2" />
+    </fragment>
     <fragment
         android:id="@+id/edit_user"
         android:name="com.example.kinderview.Edit_user"
@@ -47,5 +51,5 @@
         android:name="com.example.kinderview.fragment_profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
-    <action android:id="@+id/action_global_home_page" app:destination="@id/home_page2" /><action android:id="@+id/action_global_fragment_profile" app:destination="@id/fragment_profile"/><action android:id="@+id/action_global_createPost" app:destination="@id/createPost"/><action android:id="@+id/action_global_login_fregment" app:destination="@id/login_fregment"/>
+    <action android:id="@+id/action_global_home_page" app:destination="@id/home_page2" /><action android:id="@+id/action_global_fragment_profile" app:destination="@id/fragment_profile"/><action android:id="@+id/action_global_createPost" app:destination="@id/fragment_createPost"/><action android:id="@+id/action_global_login_fregment" app:destination="@id/login_fregment"/>
 </navigation>

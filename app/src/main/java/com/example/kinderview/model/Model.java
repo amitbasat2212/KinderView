@@ -8,8 +8,6 @@ import androidx.core.os.HandlerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.kinderview.ModelFireBase;
-
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -20,6 +18,7 @@ public class Model {
     public static final Model instance = new Model();
     Executor executor = Executors.newFixedThreadPool(1);
     Handler mainThread = HandlerCompat.createAsync(Looper.getMainLooper());
+    ModelFireBase modelFirebase = new ModelFireBase();
 
     public enum PostsListLoadingState{
         loading,
@@ -31,7 +30,6 @@ public class Model {
         return postsListLoadingState;
     }
 
-    ModelFireBase modelFirebase = new ModelFireBase();
     private Model(){
         postsListLoadingState.setValue(PostsListLoadingState.loaded);
     }
@@ -78,13 +76,13 @@ public class Model {
             }
         });
     }
-
     public interface AddPostListener{
         void onComplete();
     }
 
     public void addPost(Post post, AddPostListener listener){
-        modelFirebase.addPost(post,listener);
+        modelFirebase.addPost(post, listener);
+
     }
 
     public interface GetPostById{
@@ -93,7 +91,7 @@ public class Model {
 
 
     public Post getPostById(String studentId, GetPostById listener) {
-        modelFirebase.getStudentById(studentId,listener);
+        modelFirebase.getPostById(studentId,listener);
         return null;
     }
 

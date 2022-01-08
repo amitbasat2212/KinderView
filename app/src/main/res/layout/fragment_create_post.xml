@@ -8,7 +8,7 @@
     tools:context=".CreatePost">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/fragment_create_imageView"
         android:layout_width="116dp"
         android:layout_height="82dp"
         android:src="@drawable/image2"
@@ -41,31 +41,17 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.834" />
+        app:layout_constraintVertical_bias="0.825" />
 
     <Button
-        android:id="@+id/fragment_create_deletepicture"
-        android:layout_width="84dp"
-        android:layout_height="43dp"
-        android:backgroundTint="#1F97ED"
-        android:text="Delete picture"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.678"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.835" />
-
-    <Button
-        android:id="@+id/button8"
+        android:id="@+id/fragment_create_cancel"
         android:layout_width="144dp"
         android:layout_height="43dp"
         android:backgroundTint="#1F97ED"
-        android:text="Edit"
+        android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.831"
@@ -176,5 +162,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14"
         app:layout_constraintVertical_bias="0.068" />
+
+    <ProgressBar
+        android:id="@+id/fragment_create_progressbar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="163dp"
+        android:layout_height="148dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

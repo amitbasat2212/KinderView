@@ -1,4 +1,4 @@
-package com.example.kinderview;
+package com.example.kinderview.model;
 
 import androidx.annotation.NonNull;
 
@@ -56,7 +56,7 @@ public class ModelFireBase {
                 .addOnFailureListener(e -> listener.onComplete());
     }
 
-    public void getStudentById(String postid, Model.GetPostById listener) {
+    public void getPostById(String postid, Model.GetPostById listener) {
         db.collection(Post.COLLECTION_NAME)
                 .document(postid)
                 .get()

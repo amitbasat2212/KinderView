@@ -21,25 +21,25 @@ public class Post {
     String status;
     String username;
     String date;
-    int likes;
-    int comment;
+    String likes;
+    String comment;
 
     final public static String COLLECTION_NAME = "Posts";
     Long UpdateDate=new Long(0);
 
-    public int getLikes() {
+    public String getLikes() {
         return likes;
     }
 
-    public void setLikes(int likes) {
+    public void setLikes(String likes) {
         this.likes = likes;
     }
 
-    public int getComment() {
+    public String getComment() {
         return comment;
     }
 
-    public void setComment(int comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 
@@ -53,7 +53,7 @@ public class Post {
         this.id = id;
     }
 
-    public Post(@NonNull String id, String status, String username, String date, int likes, int comment) {
+    public Post(@NonNull String id, String status, String username, String date, String likes, String comment) {
         this.id = id;
         this.status = status;
         this.username = username;
@@ -86,8 +86,8 @@ public class Post {
         String username = (String) json.get("username");
         String status = (String) json.get("status");
         String date = (String) json.get("date");
-        int likes = (int) json.get("likes");
-        int comment = (int) json.get("comment");
+        String likes = (String) json.get("likes");
+        String comment = (String) json.get("comment");
 
         Timestamp ts = (Timestamp)json.get("updateDate");
         Long updateDate = ts.getSeconds();
