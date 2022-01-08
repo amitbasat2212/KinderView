@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,7 @@ public class CreatePost extends Fragment {
         createPost.setEnabled(false);
         cancelBtn.setEnabled(false);
 
-        String id = "123";
+        String id = "123324";
         String status = text.getText().toString();
         String username ="Yossi";
         String date_post = date.getText().toString();
@@ -75,11 +76,11 @@ public class CreatePost extends Fragment {
 
 
         Post post = new Post(id, status, username, date_post, likes,comment);
-        createPostViewModel.addPost(post, ()->
+        Model.instance.addPost(post, ()->
         {
             Navigation.findNavController(view).navigate(R.id.action_createPost_to_home_page23);
         }
-);
+        );
 
     }
 }

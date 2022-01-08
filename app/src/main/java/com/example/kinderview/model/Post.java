@@ -18,11 +18,13 @@ public class Post {
     @PrimaryKey
     @NonNull
     String id="";
-    String status;
-    String username;
-    String date;
-    String likes;
-    String comment;
+
+
+         String status;
+         String username;
+         String date;
+         String likes;
+         String comment;
 
     final public static String COLLECTION_NAME = "Posts";
     Long UpdateDate=new Long(0);
@@ -73,9 +75,12 @@ public class Post {
 
     public Map<String,Object> tojson(){
         Map<String,Object> json =new HashMap<>();
+        json.put("id",id);
         json.put("username",username);
         json.put("status",status);
         json.put("date",date);
+        json.put("comment",comment);
+        json.put("likes",likes);
         json.put("updateDate", FieldValue.serverTimestamp());
         return json;
 

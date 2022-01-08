@@ -13,19 +13,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.example.kinderview.model.Model;
+import com.example.kinderview.model.Post;
 import com.example.kinderview.viewModel.PostViewModel;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     Context context;
-    ArrayList<Model> modelArrayList=new ArrayList<>();
+    List<Post> modelArrayList;
     RequestManager glide;
     PostViewModel viewModel;
 
 
-    public Adapter(PostViewModel viewModel) {
-         viewModel=viewModel;
+    public Adapter(PostViewModel viewModel1,List<Post> list) {
+         viewModel=viewModel1;
+        modelArrayList=new LinkedList<>();
+
         //glide= Glide.with(context);
 
     }

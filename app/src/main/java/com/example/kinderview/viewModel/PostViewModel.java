@@ -1,6 +1,7 @@
 package com.example.kinderview.viewModel;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.kinderview.model.Model;
@@ -18,6 +19,8 @@ public class PostViewModel extends ViewModel {
     public LiveData<List<Post>> getData() {
         return data;
     }
+
+
 
 
 
