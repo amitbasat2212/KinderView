@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("");
 
+
         NavHost navHost = (NavHost) getSupportFragmentManager().findFragmentById(R.id.Fragment_nav_host);
         controller = navHost.getNavController();
 
@@ -56,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
 
-
-        }else{
 
         }
 
