@@ -20,6 +20,7 @@ public class Model {
     Handler mainThread = HandlerCompat.createAsync(Looper.getMainLooper());
     ModelFireBase modelFirebase = new ModelFireBase();
 
+
     public enum PostsListLoadingState{
         loading,
         loaded
