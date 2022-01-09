@@ -85,6 +85,11 @@ public class Model {
 
     }
 
+    public void editPost(Post post, AddPostListener listener)
+    {
+        modelFirebase.addPost(post, listener);
+    }
+
     public interface GetPostById{
         void onComplete(Post student);
     }

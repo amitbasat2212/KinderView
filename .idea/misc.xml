@@ -18,7 +18,10 @@
         <entry key="..\:/Users/amitb/AndroidStudioProjects/KinderView/app/src/main/res/layout/row_feed.xml" value="0.536" />
         <entry key="..\:/Users/amitb/AndroidStudioProjects/KinderView/app/src/main/res/menu/kinder_view_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/amitb/AndroidStudioProjects/KinderView/app/src/main/res/menu/main_menu.xml" value="0.4" />
-        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_create_post.xml" value="0.1" />
+        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_create_post.xml" value="0.2" />
+        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_edit_post.xml" value="0.264" />
+        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_home_page.xml" value="0.22604166666666667" />
+        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/row_feed.xml" value="0.22604166666666667" />
       </map>
     </option>
   </component>

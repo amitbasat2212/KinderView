@@ -35,6 +35,7 @@ public class Home_page extends Fragment {
     PostViewModel viewModel;
     MyAdapter adapter;
     SwipeRefreshLayout swipeRefresh;
+    OnItemClickListener listener;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -58,8 +59,6 @@ public class Home_page extends Fragment {
         adapter = new MyAdapter();
         list.setAdapter(adapter);
 
-
-
         setHasOptionsMenu(true);
         viewModel.getData().observe(getViewLifecycleOwner(), list1 -> refresh());
         swipeRefresh.setRefreshing(Model.instance.getPostsListLoadingState().getValue() == Model.PostsListLoadingState.loading);
@@ -71,6 +70,24 @@ public class Home_page extends Fragment {
             }
 
         });
+
+        adapter.setListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view) {
+               String stId = viewModel.getData().getValue().get(position).getId();
+               String stUsername = viewModel.getData().getValue().get(position).getUsername();
+               String status = viewModel.getData().getValue().get(position).getStatus();
+               String likes = viewModel.getData().getValue().get(position).getLikes();
+               String date = viewModel.getData().getValue().get(position).getDate();
+
+
+                Navigation.findNavController(view).navigate(Home_pageDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes,stId));
+
+            }
+        });
+        adapter.notifyDataSetChanged();
+
+
         return view;
     }
 
@@ -81,28 +98,43 @@ public class Home_page extends Fragment {
     //////////////////////////VIEWHOLDER////////////////////////////////////
 
     class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView tv_name,tv_time,tv_likes,tv_comments,tv_status;
+        TextView tv_name,tv_time,tv_likes,tv_status;
         ImageView imgview_propic,imgview_postpic;
+        ImageView imgedit, imgdelete;
 
         public MyViewHolder(@NonNull View itemView) {
+
             super(itemView);
             imgview_propic=(ImageView)itemView.findViewById(R.id.row_feed_profile);
             imgview_postpic=(ImageView)itemView.findViewById(R.id.row_feed_postimage);
             tv_name=(TextView)itemView.findViewById(R.id.row_feed_authname);
             tv_time=(TextView)itemView.findViewById(R.id.row_feed_time);
             tv_likes=(TextView)itemView.findViewById(R.id.row_feed_likesnumber);
-            tv_comments=(TextView)itemView.findViewById(R.id.row_feed_comments);
             tv_status=(TextView)itemView.findViewById(R.id.row_feed_statustext);
+            imgedit =(ImageView)itemView.findViewById(R.id.row_feed_editpost);
+            imgdelete =(ImageView)itemView.findViewById(R.id.row_feed_deletepost);
+
+            imgedit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    listener.onItemClick(position,itemView);
+                }
+            });
 
         }
     }
 
 
-
-
     //////////////////////////MYYYYYYYY APATERRRRRRRR///////////////////////
+    interface OnItemClickListener{
+        void onItemClick(int position,View view);
+    }
     class MyAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
+        public void setListener(OnItemClickListener listener1) {
+            listener = listener1;
+        }
 
         @NonNull
         @Override
@@ -117,7 +149,6 @@ public class Home_page extends Fragment {
             holder.tv_name.setText(viewModel.getData().getValue().get(position).getUsername());
             holder.tv_time.setText(viewModel.getData().getValue().get(position).getDate());
             holder.tv_likes.setText(viewModel.getData().getValue().get(position).getLikes());
-            holder.tv_comments.setText(viewModel.getData().getValue().get(position).getComment() + " comments");
             holder.tv_status.setText(viewModel.getData().getValue().get(position).getStatus());
 
         }

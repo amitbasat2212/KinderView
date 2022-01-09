@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Post;
 import com.example.kinderview.viewModel.CreatePostViewModel;
-import com.example.kinderview.viewModel.PostViewModel;
 
 
 public class CreatePost extends Fragment {
@@ -44,8 +40,9 @@ public class CreatePost extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_create_post,container, false);
         date = view.findViewById(R.id.fragment_create_date);
-        text = view.findViewById(R.id.fragment_create_text);
-        createPost = view.findViewById(R.id.fragment_create_createbutton);
+        text = view.findViewById(R.id.fragment_create_status);
+
+        createPost = view.findViewById(R.id.fragment_create_editbutton);
         cancelBtn = view.findViewById(R.id.fragment_create_cancel);
         editPicture = view.findViewById(R.id.fragment_create_editpicture);
 
@@ -67,20 +64,20 @@ public class CreatePost extends Fragment {
         createPost.setEnabled(false);
         cancelBtn.setEnabled(false);
 
-        String id = "123324";
+        String id = "99999999999";
         String status = text.getText().toString();
         String username ="Yossi";
         String date_post = date.getText().toString();
         String likes = "0";
-        String comment = "0";
 
 
-        Post post = new Post(id, status, username, date_post, likes,comment);
-        Model.instance.addPost(post, ()->
+        Post post = new Post(id, status, username, date_post, likes);
+
+        createPostViewModel.addPost(post,()->
         {
             Navigation.findNavController(view).navigate(R.id.action_createPost_to_home_page23);
-        }
-        );
+        });
+
 
     }
 }

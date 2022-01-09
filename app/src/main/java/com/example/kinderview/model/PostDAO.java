@@ -18,6 +18,4 @@ public interface PostDAO {
         @Delete
         void delete(Post post);
 
-
-
 }

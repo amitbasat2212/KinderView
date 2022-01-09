@@ -17,7 +17,26 @@
         android:id="@+id/home_page2"
         android:name="com.example.kinderview.Home_page"
         android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_home_page2_to_fragment_edit_post"
+            app:destination="@id/fragment_edit_post" />
+        <argument
+            android:name="username"
+            app:argType="string" />
+        <argument
+            android:name="Date"
+            app:argType="string" />
+        <argument
+            android:name="status"
+            app:argType="string" />
+        <argument
+            android:name="likes"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/sign_in"
         android:name="com.example.kinderview.Sign_in"
@@ -45,7 +64,26 @@
         android:id="@+id/fragment_edit_post"
         android:name="com.example.kinderview.fragment_edit_post"
         android:label="fragment_edit_post"
-        tools:layout="@layout/fragment_edit_post" />
+        tools:layout="@layout/fragment_edit_post" >
+        <argument
+            android:name="username"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+        <argument
+            android:name="status"
+            app:argType="string" />
+        <argument
+            android:name="likes"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_edit_post_to_home_page2"
+            app:destination="@id/home_page2" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_profile"
         android:name="com.example.kinderview.fragment_profile"

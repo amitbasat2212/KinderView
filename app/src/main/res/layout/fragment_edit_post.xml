@@ -2,13 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_edit_date"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back2kinder"
     tools:context=".CreatePost">
 
     <ImageView
-        android:id="@+id/fragment_create_imageView"
+        android:id="@+id/fragment_edit_imageView"
         android:layout_width="116dp"
         android:layout_height="82dp"
         android:src="@drawable/image2"
@@ -20,11 +21,11 @@
         app:layout_constraintVertical_bias="0.715" />
 
     <Button
-        android:id="@+id/fragment_create_createbutton"
+        android:id="@+id/fragment_edit_editbutton"
         android:layout_width="144dp"
         android:layout_height="43dp"
         android:backgroundTint="#1F97ED"
-        android:text="Create"
+        android:text="Edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.157"
@@ -33,7 +34,7 @@
         app:layout_constraintVertical_bias="0.941" />
 
     <Button
-        android:id="@+id/fragment_create_editpicture"
+        android:id="@+id/fragment_edit_editpicture"
         android:layout_width="76dp"
         android:layout_height="42dp"
         android:backgroundTint="#1F97ED"
@@ -47,7 +48,7 @@
         app:layout_constraintVertical_bias="0.834" />
 
     <Button
-        android:id="@+id/fragment_create_deletepicture"
+        android:id="@+id/fragment_edit_deletepicture"
         android:layout_width="84dp"
         android:layout_height="43dp"
         android:backgroundTint="#1F97ED"
@@ -61,11 +62,11 @@
         app:layout_constraintVertical_bias="0.835" />
 
     <Button
-        android:id="@+id/fragment_create_cancel"
+        android:id="@+id/fragment_edit_cancel"
         android:layout_width="144dp"
         android:layout_height="43dp"
         android:backgroundTint="#1F97ED"
-        android:text="Edit"
+        android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.831"
@@ -74,7 +75,7 @@
         app:layout_constraintVertical_bias="0.941" />
 
     <TextView
-        android:id="@+id/fragment_create_name"
+        android:id="@+id/fragment_edit_name"
         android:layout_width="143dp"
         android:layout_height="45dp"
         android:fontFamily="serif"
@@ -150,7 +151,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/fragment_create_date"
+        android:id="@+id/fragment_edit1_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -162,7 +163,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/fragment_create_text"
+        android:id="@+id/fragment_edit_status"
         android:layout_width="320dp"
         android:layout_height="106dp"
         android:ems="10"
@@ -176,5 +177,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14"
         app:layout_constraintVertical_bias="0.068" />
+
+    <ProgressBar
+        android:id="@+id/fragment_edit_progressbar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="125dp"
+        android:layout_height="108dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

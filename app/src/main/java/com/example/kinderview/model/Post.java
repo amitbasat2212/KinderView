@@ -18,13 +18,10 @@ public class Post {
     @PrimaryKey
     @NonNull
     String id="";
-
-
          String status;
          String username;
          String date;
          String likes;
-         String comment;
 
     final public static String COLLECTION_NAME = "Posts";
     Long UpdateDate=new Long(0);
@@ -37,16 +34,6 @@ public class Post {
         this.likes = likes;
     }
 
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-
-
     public String getId() {
         return id;
     }
@@ -55,14 +42,12 @@ public class Post {
         this.id = id;
     }
 
-    public Post(@NonNull String id, String status, String username, String date, String likes, String comment) {
+    public Post(@NonNull String id, String status, String username, String date, String likes) {
         this.id = id;
         this.status = status;
         this.username = username;
         this.date = date;
         this.likes = likes;
-        this.comment = comment;
-
     }
 
     public void setUpdateDate(Long updateDate){
@@ -79,7 +64,6 @@ public class Post {
         json.put("username",username);
         json.put("status",status);
         json.put("date",date);
-        json.put("comment",comment);
         json.put("likes",likes);
         json.put("updateDate", FieldValue.serverTimestamp());
         return json;
@@ -92,12 +76,10 @@ public class Post {
         String status = (String) json.get("status");
         String date = (String) json.get("date");
         String likes = (String) json.get("likes");
-        String comment = (String) json.get("comment");
-
         Timestamp ts = (Timestamp)json.get("updateDate");
         Long updateDate = ts.getSeconds();
 
-        Post post = new Post(id,status,username,date,likes,comment);
+        Post post = new Post(id,status,username,date,likes);
         post.setUpdateDate(updateDate);
         return post;
     }
