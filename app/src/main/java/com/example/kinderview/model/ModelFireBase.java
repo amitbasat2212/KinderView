@@ -1,10 +1,14 @@
 package com.example.kinderview.model;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
 
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Post;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -12,7 +16,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +34,7 @@ public class ModelFireBase {
                 .build();
         db.setFirestoreSettings(settings);
     }
+
     public interface GetAllPostsListener{
         void onComplete(List<Post> list);
     }
@@ -70,6 +78,31 @@ public class ModelFireBase {
                             post = Post.create(task.getResult().getData());
                         }
                         listener.onComplete(post);
+                    }
+                });
+
+    }
+
+
+
+    //storge part -images
+    public void saveImagePost(Bitmap imagebitmap, String imagename, Model.SaveImagelistener listener) {
+        StorageReference storageRef = storage.getReference();
+        StorageReference imgRef = storageRef.child("users_posts/" + imagename);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        imagebitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = imgRef.putBytes(data);
+        uploadTask.addOnFailureListener(exception -> listener.onComplete(null))
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        imgRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                            Uri downloadUrl = uri;
+                            listener.onComplete(downloadUrl.toString());
+                        });
                     }
                 });
 

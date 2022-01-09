@@ -78,7 +78,7 @@
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/kids3"
-        android:visibility="gone"
+
         />
 
     <RelativeLayout

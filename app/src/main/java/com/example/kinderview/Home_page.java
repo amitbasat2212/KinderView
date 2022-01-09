@@ -28,6 +28,8 @@ import android.widget.TextView;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Post;
 import com.example.kinderview.viewModel.PostViewModel;
+import com.squareup.picasso.Picasso;
+
 
 import java.util.List;
 
@@ -36,6 +38,8 @@ public class Home_page extends Fragment {
     MyAdapter adapter;
     SwipeRefreshLayout swipeRefresh;
     OnItemClickListener listener;
+
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -122,6 +126,19 @@ public class Home_page extends Fragment {
                 }
             });
 
+
+        }
+        public void bind(Post post){
+            tv_name.setText(post.getUsername());
+            tv_time.setText(post.getDate());
+            tv_likes.setText(post.getLikes());
+            tv_status.setText(post.getStatus());
+            if (post.getUrlImagePost() != null) {
+                Picasso.get()
+                        .load(post.getUrlImagePost())
+                        .into(imgview_postpic);
+            }
+
         }
     }
 
@@ -146,10 +163,8 @@ public class Home_page extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            holder.tv_name.setText(viewModel.getData().getValue().get(position).getUsername());
-            holder.tv_time.setText(viewModel.getData().getValue().get(position).getDate());
-            holder.tv_likes.setText(viewModel.getData().getValue().get(position).getLikes());
-            holder.tv_status.setText(viewModel.getData().getValue().get(position).getStatus());
+          Post post = viewModel.getData().getValue().get(position);
+          holder.bind(post);
 
         }
 

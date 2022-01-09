@@ -1,12 +1,15 @@
 package com.example.kinderview.model;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
 
 import androidx.core.os.HandlerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -19,6 +22,15 @@ public class Model {
     Executor executor = Executors.newFixedThreadPool(1);
     Handler mainThread = HandlerCompat.createAsync(Looper.getMainLooper());
     ModelFireBase modelFirebase = new ModelFireBase();
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+
+    public interface SaveImagelistener{
+        void onComplete(String url);
+    }
+    public void saveImage(Bitmap imagebitmap,String imagename,SaveImagelistener listener) {
+        modelFirebase.saveImagePost(imagebitmap,imagename,listener);
+
+    }
 
 
     public enum PostsListLoadingState{
@@ -82,13 +94,21 @@ public class Model {
     }
 
     public void addPost(Post post, AddPostListener listener){
-        modelFirebase.addPost(post, listener);
+        modelFirebase.addPost(post, () -> {
+            refreshPostList();
+            listener.onComplete();
+        });
+
 
     }
 
     public void editPost(Post post, AddPostListener listener)
     {
-        modelFirebase.addPost(post, listener);
+        modelFirebase.addPost(post, () -> {
+            refreshPostList();
+            listener.onComplete();
+        });
+
     }
 
     public interface GetPostById{

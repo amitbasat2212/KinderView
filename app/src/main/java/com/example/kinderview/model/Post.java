@@ -18,10 +18,11 @@ public class Post {
     @PrimaryKey
     @NonNull
     String id="";
-         String status;
-         String username;
-         String date;
-         String likes;
+    String status;
+    String username;
+    String date;
+    String likes;
+    String UrlImagePost;
 
     final public static String COLLECTION_NAME = "Posts";
     Long UpdateDate=new Long(0);
@@ -64,6 +65,7 @@ public class Post {
         json.put("username",username);
         json.put("status",status);
         json.put("date",date);
+        json.put("UrlImagePost",UrlImagePost);
         json.put("likes",likes);
         json.put("updateDate", FieldValue.serverTimestamp());
         return json;
@@ -76,11 +78,13 @@ public class Post {
         String status = (String) json.get("status");
         String date = (String) json.get("date");
         String likes = (String) json.get("likes");
+        String urlImage = (String) json.get("UrlImagePost");
         Timestamp ts = (Timestamp)json.get("updateDate");
         Long updateDate = ts.getSeconds();
 
         Post post = new Post(id,status,username,date,likes);
         post.setUpdateDate(updateDate);
+        post.setUrlImagePost(urlImage);
         return post;
     }
 
@@ -110,10 +114,21 @@ public class Post {
         this.date = date;
     }
 
+    public String getUrlImagePost() {
+        return UrlImagePost;
+    }
+
+    public void setUrlImagePost(String urlImagePost) {
+        UrlImagePost = urlImagePost;
+    }
+
     public Post() {
 
     }
 
 
+    public void setImagePostUrl(String url) {
+        this.UrlImagePost=url;
 
+    }
 }

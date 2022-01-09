@@ -7,18 +7,6 @@
     android:background="@drawable/back2kinder"
     tools:context=".CreatePost">
 
-    <ImageView
-        android:id="@+id/fragment_create_imageView"
-        android:layout_width="116dp"
-        android:layout_height="82dp"
-        android:src="@drawable/image2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.715" />
-
     <Button
         android:id="@+id/fragment_create_editbutton"
         android:layout_width="144dp"
@@ -31,20 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.941" />
-
-    <Button
-        android:id="@+id/fragment_create_editpicture"
-        android:layout_width="76dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1F97ED"
-        android:text="edit picture"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.825" />
 
     <Button
         android:id="@+id/fragment_create_cancel"
@@ -172,5 +146,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/Fragment_create_gallery"
+        android:layout_width="94dp"
+        android:layout_height="71dp"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.751" />
+
+    <ImageButton
+        android:id="@+id/Fragment_create_camra"
+        android:layout_width="94dp"
+        android:layout_height="71dp"
+        android:src="@android:drawable/ic_menu_camera"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.754" />
+
+    <ImageView
+        android:id="@+id/fragment_image_post"
+        android:layout_width="118dp"
+        android:layout_height="123dp"
+        android:layout_marginBottom="128dp"
+        android:src="@drawable/image2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
