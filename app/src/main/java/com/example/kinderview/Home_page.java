@@ -83,9 +83,11 @@ public class Home_page extends Fragment {
                String status = viewModel.getData().getValue().get(position).getStatus();
                String likes = viewModel.getData().getValue().get(position).getLikes();
                String date = viewModel.getData().getValue().get(position).getDate();
-
-
-                Navigation.findNavController(view).navigate(Home_pageDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes,stId));
+               String url = viewModel.getData().getValue().get(position).getUrlImagePost();
+                if(url==null){
+                    url="0";
+                }
+                Navigation.findNavController(view).navigate(Home_pageDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes,stId,url));
 
             }
         });

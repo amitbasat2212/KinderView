@@ -5,6 +5,8 @@ import static android.app.Activity.RESULT_OK;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,16 +24,20 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Post;
 import com.example.kinderview.viewModel.CreatePostViewModel;
+
+import java.io.InputStream;
 
 import javax.xml.transform.Result;
 
 
 public class CreatePost extends Fragment {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_IMAGE_PIC = 2;
 
     EditText date, text;
     ImageView imagePost;
@@ -87,7 +93,9 @@ public class CreatePost extends Fragment {
     }
 
     public void openGallery() {
-
+        Intent photoPicerIntent = new Intent(Intent.ACTION_PICK);
+        photoPicerIntent.setType("image/*");
+        startActivityForResult(photoPicerIntent,REQUEST_IMAGE_PIC);
     }
 
     @Override
@@ -98,6 +106,18 @@ public class CreatePost extends Fragment {
                 Bundle extras = data.getExtras();
                 imageBitmap = (Bitmap) extras.get("data");
                 imagePost.setImageBitmap(imageBitmap);
+            }
+        }else if(requestCode==REQUEST_IMAGE_PIC){
+            if(resultCode==RESULT_OK){
+                try {
+                    final Uri imageUri = data.getData();
+                    final InputStream imageStream = getContext().getContentResolver().openInputStream(imageUri);
+                    imageBitmap = BitmapFactory.decodeStream(imageStream);
+                    imagePost.setImageBitmap(imageBitmap);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
