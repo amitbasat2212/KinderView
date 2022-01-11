@@ -16,6 +16,7 @@ public class PostViewModel extends ViewModel {
 
     public PostViewModel(){
         data = Model.instance.getAll();
+        data1 = new MutableLiveData<>();
     }
     public LiveData<List<Post>> getData() {
         return data;

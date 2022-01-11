@@ -70,11 +70,13 @@ public class Model {
                         for (Post post: list) {
                             if(post.isDelete()){
                                 AppLocalDb.db.PostDao().delete(post);
+                            }else {
+                                AppLocalDb.db.PostDao().insertAll(post);
+                                if (lud < post.getUpdateDate()){
+                                    lud = post.getUpdateDate();
+                                }
                             }
-                            AppLocalDb.db.PostDao().insertAll(post);
-                            if (lud < post.getUpdateDate()){
-                                lud = post.getUpdateDate();
-                            }
+
                         }
                         // update last local update date
                         MyApplication.getContext()

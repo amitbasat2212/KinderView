@@ -73,11 +73,10 @@ public class Home_page extends Fragment {
 
         });
 
+
         adapter.setListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(int position, View view) {
-
-                view.findViewById(R.id.row_feed_editpost).setOnClickListener(v -> {
+            public void onItemClick(int position, View view,int idview) {
                     String stId = viewModel.getData().getValue().get(position).getId();
                     String stUsername = viewModel.getData().getValue().get(position).getUsername();
                     String status = viewModel.getData().getValue().get(position).getStatus();
@@ -87,30 +86,14 @@ public class Home_page extends Fragment {
                     if(url==null){
                         url="0";
                     }
-                    Navigation.findNavController(view).navigate(Home_pageDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes,stId,url));
 
-                });
-
-
-
-                /*
-                  ImageView imageView = (ImageView) view;
-  assert(R.id.someImage == imageView.getId());
-  */
-
-                /*
-                switch (view.getId()) {
-                    case R.id.row_feed_deletepost:
-                        viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {
+                    if(view.findViewById(R.id.row_feed_editpost).getId()==idview) {
+                        Navigation.findNavController(view).navigate(Home_pageDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes, stId, url));
+                    }else if(view.findViewById(R.id.row_feed_deletepost).getId()==idview){
+                         viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {
                             Model.instance.refreshPostList();
                         });
-                        break;
-                    case R.id.row_feed_editpost:
-                        Navigation.findNavController(view).navigate(Home_pageDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes,stId,url));
-                        break;
-                }
-                */
-
+                    }
 
             }
         });
@@ -142,13 +125,25 @@ public class Home_page extends Fragment {
             imgedit =(ImageView)itemView.findViewById(R.id.row_feed_editpost);
             imgdelete =(ImageView)itemView.findViewById(R.id.row_feed_deletepost);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            imgedit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    listener.onItemClick(position,itemView);
+                    int viewid = v.getId();
+                    listener.onItemClick(position,itemView,viewid);
                 }
             });
+
+
+            imgdelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int viewid = v.getId();
+                    int position = getAdapterPosition();
+                    listener.onItemClick(position,itemView,viewid);
+                }
+            });
+
 
 
         }
@@ -169,7 +164,7 @@ public class Home_page extends Fragment {
 
     //////////////////////////MYYYYYYYY APATERRRRRRRR///////////////////////
     interface OnItemClickListener{
-        void onItemClick(int position,View view);
+        void onItemClick(int position,View view,int idview);
     }
     class MyAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
