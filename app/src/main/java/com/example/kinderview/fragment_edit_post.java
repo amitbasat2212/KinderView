@@ -45,7 +45,7 @@ public class fragment_edit_post extends Fragment {
     EditText edit_date, edit_status;
     ProgressBar progressBar;
     EditViewModel editViewModel;
-    Button editButton, cancelButton;
+    Button editButton, cancelButton, deletepic;
     ImageButton camrabtn,gallerybtn;
     String id, status,username,date_post,likes,urlImage;
     ImageView postImage;
@@ -72,7 +72,7 @@ public class fragment_edit_post extends Fragment {
         camrabtn = view.findViewById(R.id.fragment_edit_camra);
         postImage=view.findViewById(R.id.fragment_edit_imageView);
         gallerybtn= view.findViewById(R.id.fragment_edit_gallery);
-
+        deletepic = view.findViewById(R.id.fragment_edit_deletepicture);
 
         progressBar = view.findViewById(R.id.fragment_edit_progressbar);
         progressBar.setVisibility(View.GONE);
@@ -82,7 +82,7 @@ public class fragment_edit_post extends Fragment {
          username = fragment_edit_postArgs.fromBundle(getArguments()).getUsername();
          date_post = fragment_edit_postArgs.fromBundle(getArguments()).getDate();
          likes = fragment_edit_postArgs.fromBundle(getArguments()).getLikes();
-        urlImage = fragment_edit_postArgs.fromBundle(getArguments()).getUrlpostedit();
+         urlImage = fragment_edit_postArgs.fromBundle(getArguments()).getUrlpostedit();
 
 
         edit_username.setText(username);
@@ -92,10 +92,18 @@ public class fragment_edit_post extends Fragment {
             Picasso.get().load(urlImage).into(postImage);
         }
 
+
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 edit();
+            }
+        });
+
+        deletepic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete();
             }
         });
 
@@ -154,7 +162,6 @@ public class fragment_edit_post extends Fragment {
 
         editButton.setEnabled(false);
         cancelButton.setEnabled(false);
-
         String id1 =id;
         String status1 = edit_status.getText().toString();
         String username1 = username;
@@ -179,9 +186,29 @@ public class fragment_edit_post extends Fragment {
             });
         }
 
+    }
 
+    private void delete() {
+        progressBar.setVisibility(View.VISIBLE);
+        editButton.setEnabled(false);
+        cancelButton.setEnabled(false);
+        deletepic.setEnabled(false);
 
+        Post post = new Post(id, status, username, date_post, likes);
+        post.setUrlImagePost(urlImage);
+
+        if(imageBitmap!=null) {
+            editViewModel.deletePic(post, id + ".jpg", () ->
+            {
+                Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page2);
+            });
+        }
+        else
+        {
+            Toast.makeText(getContext(), "No picture exist", Toast.LENGTH_LONG).show();
+
+        }
 
     }
 
-}
+    }

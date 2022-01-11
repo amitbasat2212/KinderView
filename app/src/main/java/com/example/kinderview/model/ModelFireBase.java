@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Post;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
@@ -29,6 +30,7 @@ public class ModelFireBase {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     private String UniqueID;
+    StorageReference storageRef = storage.getReference();
 
     public ModelFireBase(){
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
@@ -36,6 +38,7 @@ public class ModelFireBase {
                 .build();
         db.setFirestoreSettings(settings);
     }
+
 
     public interface GetAllPostsListener{
         void onComplete(List<Post> list);
@@ -100,7 +103,6 @@ public class ModelFireBase {
 
     //storge part -images
     public void saveImagePost(Bitmap imagebitmap, String imagename, Model.SaveImagelistener listener) {
-        StorageReference storageRef = storage.getReference();
         StorageReference imgRef = storageRef.child("users_posts/" + imagename);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -118,6 +120,21 @@ public class ModelFireBase {
                         });
                     }
                 });
+    }
+
+    public void deleteImagePost(String urlImagePost, String picName, Model.AddPostListener listener) {
+        StorageReference desertRef = storageRef.child("users_posts/" + picName);
+
+        desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                listener.onComplete();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+            }
+        });
 
     }
 

@@ -24,6 +24,10 @@ public class Model {
     ModelFireBase modelFirebase = new ModelFireBase();
     FirebaseStorage storage = FirebaseStorage.getInstance();
 
+    public void deletePic(Post value, String picName, AddPostListener listener) {
+        modelFirebase.deleteImagePost(value.UrlImagePost, picName, listener);
+    }
+
     public interface SaveImagelistener{
         void onComplete(String url);
     }

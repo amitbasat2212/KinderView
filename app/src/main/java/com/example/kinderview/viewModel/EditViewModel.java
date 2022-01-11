@@ -9,9 +9,11 @@ import com.example.kinderview.model.Post;
 public class EditViewModel extends ViewModel {
 
     MutableLiveData<Post> data;
+    MutableLiveData<Post> data1;
 
     public EditViewModel(){
         data = new MutableLiveData<>();
+        data1 = new MutableLiveData<>();
     }
     public MutableLiveData<Post> editPost(Post post, Model.AddPostListener listener) {
 
@@ -20,4 +22,9 @@ public class EditViewModel extends ViewModel {
         return data;
     }
 
+    public MutableLiveData<Post> deletePic(Post post, String picName, Model.AddPostListener listener) {
+        data1.setValue(post);
+        Model.instance.deletePic(data1.getValue(), picName ,listener);
+        return data1;
+    }
 }
