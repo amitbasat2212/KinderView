@@ -12,6 +12,7 @@ import java.util.List;
 public class PostViewModel extends ViewModel {
 
     LiveData<List<Post>> data;
+    MutableLiveData<Post> data1;
 
     public PostViewModel(){
         data = Model.instance.getAll();
@@ -20,9 +21,11 @@ public class PostViewModel extends ViewModel {
         return data;
     }
 
-
-
-
+    public MutableLiveData<Post> deletePost(Post post, Model.AddPostListener listener) {
+        data1.setValue(post);
+        Model.instance.deletePost(data1.getValue(),listener);
+        return data1;
+    }
 
 
 }

@@ -67,7 +67,10 @@ public class Model {
                     @Override
                     public void run() {
                         Long lud = new Long(0);
-                       for (Post post: list) {
+                        for (Post post: list) {
+                            if(post.isDelete()){
+                                AppLocalDb.db.PostDao().delete(post);
+                            }
                             AppLocalDb.db.PostDao().insertAll(post);
                             if (lud < post.getUpdateDate()){
                                 lud = post.getUpdateDate();
@@ -105,6 +108,15 @@ public class Model {
     public void editPost(Post post, AddPostListener listener)
     {
         modelFirebase.addPost(post, () -> {
+            refreshPostList();
+            listener.onComplete();
+        });
+
+    }
+
+    public void deletePost(Post post, AddPostListener listener)
+    {
+        modelFirebase.deletePost(post, () -> {
             refreshPostList();
             listener.onComplete();
         });

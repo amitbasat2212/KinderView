@@ -39,8 +39,6 @@ public class Home_page extends Fragment {
     SwipeRefreshLayout swipeRefresh;
     OnItemClickListener listener;
 
-
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -78,21 +76,45 @@ public class Home_page extends Fragment {
         adapter.setListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
-               String stId = viewModel.getData().getValue().get(position).getId();
-               String stUsername = viewModel.getData().getValue().get(position).getUsername();
-               String status = viewModel.getData().getValue().get(position).getStatus();
-               String likes = viewModel.getData().getValue().get(position).getLikes();
-               String date = viewModel.getData().getValue().get(position).getDate();
-               String url = viewModel.getData().getValue().get(position).getUrlImagePost();
-                if(url==null){
-                    url="0";
+
+                view.findViewById(R.id.row_feed_editpost).setOnClickListener(v -> {
+                    String stId = viewModel.getData().getValue().get(position).getId();
+                    String stUsername = viewModel.getData().getValue().get(position).getUsername();
+                    String status = viewModel.getData().getValue().get(position).getStatus();
+                    String likes = viewModel.getData().getValue().get(position).getLikes();
+                    String date = viewModel.getData().getValue().get(position).getDate();
+                    String url = viewModel.getData().getValue().get(position).getUrlImagePost();
+                    if(url==null){
+                        url="0";
+                    }
+                    Navigation.findNavController(view).navigate(Home_pageDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes,stId,url));
+
+                });
+
+
+
+                /*
+                  ImageView imageView = (ImageView) view;
+  assert(R.id.someImage == imageView.getId());
+  */
+
+                /*
+                switch (view.getId()) {
+                    case R.id.row_feed_deletepost:
+                        viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {
+                            Model.instance.refreshPostList();
+                        });
+                        break;
+                    case R.id.row_feed_editpost:
+                        Navigation.findNavController(view).navigate(Home_pageDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes,stId,url));
+                        break;
                 }
-                Navigation.findNavController(view).navigate(Home_pageDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes,stId,url));
+                */
+
 
             }
         });
         adapter.notifyDataSetChanged();
-
 
         return view;
     }
@@ -120,7 +142,7 @@ public class Home_page extends Fragment {
             imgedit =(ImageView)itemView.findViewById(R.id.row_feed_editpost);
             imgdelete =(ImageView)itemView.findViewById(R.id.row_feed_deletepost);
 
-            imgedit.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
@@ -165,8 +187,8 @@ public class Home_page extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-          Post post = viewModel.getData().getValue().get(position);
-          holder.bind(post);
+            Post post = viewModel.getData().getValue().get(position);
+            holder.bind(post);
 
         }
 

@@ -66,6 +66,16 @@ public class ModelFireBase {
                 .addOnFailureListener(e -> listener.onComplete());
     }
 
+    public void deletePost(Post post, Model.AddPostListener listener) {
+        post.setDelete(true);
+        Map<String, Object> json = post.tojson();
+        db.collection(post.COLLECTION_NAME)
+                .document(post.getId())
+                .set(json)
+                .addOnSuccessListener(unused -> listener.onComplete())
+                .addOnFailureListener(e -> listener.onComplete());
+    }
+
     public void getPostById(String postid, Model.GetPostById listener) {
         db.collection(Post.COLLECTION_NAME)
                 .document(postid)

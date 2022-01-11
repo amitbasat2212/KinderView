@@ -23,6 +23,8 @@ public class Post {
     String date;
     String likes;
     String UrlImagePost;
+    boolean delete=false;
+    String delete1;
 
     final public static String COLLECTION_NAME = "Posts";
     Long UpdateDate=new Long(0);
@@ -43,12 +45,22 @@ public class Post {
         this.id = id;
     }
 
+
+
     public Post(@NonNull String id, String status, String username, String date, String likes) {
         this.id = id;
         this.status = status;
         this.username = username;
         this.date = date;
         this.likes = likes;
+    }
+
+    public boolean isDelete() {
+        return delete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
     }
 
     public void setUpdateDate(Long updateDate){
@@ -67,7 +79,9 @@ public class Post {
         json.put("date",date);
         json.put("UrlImagePost",UrlImagePost);
         json.put("likes",likes);
+        json.put("delete",delete);
         json.put("updateDate", FieldValue.serverTimestamp());
+
         return json;
 
     }
@@ -79,7 +93,8 @@ public class Post {
         String date = (String) json.get("date");
         String likes = (String) json.get("likes");
         String urlImage = (String) json.get("UrlImagePost");
-        Timestamp ts = (Timestamp)json.get("updateDate");
+        Boolean delete = (boolean) json.get("delete");
+        Timestamp ts = (Timestamp)json.get("updateDate")    ;
         Long updateDate = ts.getSeconds();
 
         Post post = new Post(id,status,username,date,likes);
