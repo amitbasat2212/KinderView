@@ -98,6 +98,7 @@ public class Post {
         Long updateDate = ts.getSeconds();
 
         Post post = new Post(id,status,username,date,likes);
+        post.setDelete(delete);
         post.setUpdateDate(updateDate);
         post.setUrlImagePost(urlImage);
         return post;

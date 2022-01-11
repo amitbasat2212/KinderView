@@ -89,10 +89,12 @@ public class Home_page extends Fragment {
 
                     if(view.findViewById(R.id.row_feed_editpost).getId()==idview) {
                         Navigation.findNavController(view).navigate(Home_pageDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes, stId, url));
-                    }else if(view.findViewById(R.id.row_feed_deletepost).getId()==idview){
+                    }else
+                        if(view.findViewById(R.id.row_feed_deletepost).getId()==idview){
                          viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {
-                            Model.instance.refreshPostList();
-                        });
+                             Model.instance.refreshPostList();
+
+                         });
                     }
 
             }

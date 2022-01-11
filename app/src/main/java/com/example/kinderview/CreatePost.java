@@ -31,6 +31,7 @@ import com.example.kinderview.model.Post;
 import com.example.kinderview.viewModel.CreatePostViewModel;
 
 import java.io.InputStream;
+import java.util.UUID;
 
 import javax.xml.transform.Result;
 
@@ -122,12 +123,14 @@ public class CreatePost extends Fragment {
         }
     }
 
+    UUID uniqueKey = UUID.randomUUID();
+
     private void save() {
         progressBar.setVisibility(View.VISIBLE);
         createPost.setEnabled(false);
         cancelBtn.setEnabled(false);
 
-        String id = "99999999999";
+        String id = String.valueOf(uniqueKey);
         String status = text.getText().toString();
 
         // TODO: 1/9/2022 to take from the login the user name

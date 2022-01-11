@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
@@ -27,6 +28,7 @@ import java.util.Map;
 public class ModelFireBase {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
+    private String UniqueID;
 
     public ModelFireBase(){
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
@@ -64,6 +66,7 @@ public class ModelFireBase {
                 .set(json)
                 .addOnSuccessListener(unused -> listener.onComplete())
                 .addOnFailureListener(e -> listener.onComplete());
+
     }
 
     public void deletePost(Post post, Model.AddPostListener listener) {
