@@ -25,7 +25,14 @@ public class Model {
     FirebaseStorage storage = FirebaseStorage.getInstance();
 
     public void deletePic(Post value, String picName, AddPostListener listener) {
-        modelFirebase.deleteImagePost(value.UrlImagePost, picName, listener);
+
+        modelFirebase.deleteImagePost(value.UrlImagePost, picName, new AddPostListener() {
+            @Override
+            public void onComplete() {
+                refreshPostList();
+                listener.onComplete();
+            }
+        });
     }
 
     public interface SaveImagelistener{
@@ -73,7 +80,7 @@ public class Model {
                         Long lud = new Long(0);
                         for (Post post: list) {
                             if(post.isDelete()){
-                                AppLocalDb.db.PostDao().delete(post);
+                                  AppLocalDb.db.PostDao().delete(post);
                             }else {
                                 AppLocalDb.db.PostDao().insertAll(post);
                                 if (lud < post.getUpdateDate()){

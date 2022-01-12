@@ -133,6 +133,7 @@ public class ModelFireBase {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
+                listener.onComplete();
             }
         });
 

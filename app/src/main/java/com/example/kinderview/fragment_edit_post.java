@@ -197,11 +197,14 @@ public class fragment_edit_post extends Fragment {
         Post post = new Post(id, status, username, date_post, likes);
         post.setUrlImagePost(urlImage);
 
-        if(imageBitmap!=null) {
-            editViewModel.deletePic(post, id + ".jpg", () ->
-            {
-                Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page2);
+        if(post.getUrlImagePost()!="0") {
+            editViewModel.deletePic(post, id + ".jpg", () -> {
+               urlImage="0";
+               Navigation.findNavController(view).navigate(fragment_edit_postDirections.actionGlobalFragmentEditPost(username, date_post, status, likes, id, urlImage));
+
+
             });
+
         }
         else
         {

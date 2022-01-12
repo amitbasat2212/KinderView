@@ -94,6 +94,7 @@ public class Home_page extends Fragment {
                          viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {
                              Model.instance.refreshPostList();
 
+
                          });
                     }
 
