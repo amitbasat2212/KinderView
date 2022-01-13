@@ -10,7 +10,7 @@
         android:label="fragment_home_page"
         tools:layout="@layout/fragment_home_page" >
         <action
-            android:id="@+id/action_home_page2_to_fragment_edit_post"
+            android:id="@+id/actionHomePage2ToFragmentEditPost"
             app:destination="@id/fragment_edit_post" />
         <argument
             android:name="username"

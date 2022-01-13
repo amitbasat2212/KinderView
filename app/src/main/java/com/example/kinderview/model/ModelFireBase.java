@@ -1,5 +1,8 @@
 package com.example.kinderview.model;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
@@ -7,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.kinderview.feed.MainActivity;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Post;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +34,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executor;
 
 public class ModelFireBase {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -144,6 +149,8 @@ public class ModelFireBase {
 
     }
 
+
+
     //Authenticantion:
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
@@ -153,19 +160,50 @@ public class ModelFireBase {
         return (currentUser != null);
     }
 
-    public void signUp(String email, String password){
+
+    public interface sighup{
+        void onComplete(String email);
+    }
+    public interface sighout{
+        void onComplete();
+    }
+
+
+    public void sighout(sighout listner){
+        FirebaseAuth.getInstance().signOut();
+        listner.onComplete();
+    }
+
+
+    public void signUp(String email, String password,sighup listener){
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful())
-                    {
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("TAG", "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                            listener.onComplete(user.getEmail());
 
-                    }
-                    else{
-
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("TAG", "createUserWithEmail:failure", task.getException());
+                           // updateUI(null);
+                        }
                     }
                 });
     }
 
+    public void updateUI(FirebaseUser account) {
+        if(account != null){
+            Log.d("TAG", "not right");
+
+        }else {
+            Log.d("TAG", "right");
+        }
+    }
 
 
 }

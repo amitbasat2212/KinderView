@@ -35,6 +35,8 @@ public class Model {
         });
     }
 
+
+
     public interface SaveImagelistener{
         void onComplete(String url);
     }
@@ -150,5 +152,18 @@ public class Model {
     public Boolean isSignIn (){
         return modelFirebase.isSignIn();
     }
+
+    public void sighin(String email,String password,ModelFireBase.sighup sighup) {
+
+        modelFirebase.signUp(email,password,sighup);
+
+    }
+    public void sighout(ModelFireBase.sighout sighout) {
+
+        modelFirebase.sighout(sighout);
+
+    }
+
+
 
 }
