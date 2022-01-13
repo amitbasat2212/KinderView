@@ -1,6 +1,7 @@
 package com.example.kinderview.Users;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kinderview.R;
+import com.example.kinderview.feed.MainActivity;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.ModelFireBase;
 
@@ -36,7 +38,6 @@ public class fragment_sign_in extends Fragment {
         name = view.findViewById(R.id.signin_name);
         phone = view.findViewById(R.id.signin_phone);
         address = view.findViewById(R.id.signin_address);
-
 
 
         btnlogin = view.findViewById(R.id.signin_login_btn);
@@ -65,11 +66,13 @@ public class fragment_sign_in extends Fragment {
             Toast.makeText(getContext(), "You can write only 6 char in password", Toast.LENGTH_SHORT).show();
         }
 
+        Intent intent = new Intent(getContext(), MainActivity.class);
 
          Model.instance.sighin(email1, password1, new ModelFireBase.sighup() {
              @Override
              public void onComplete(String email) {
-                 Navigation.findNavController(view).navigate(R.id.action_fragment_sign_in_to_nav_graph);
+                 startActivity(intent);
+                // Navigation.findNavController(view).navigate(R.id.action_fragment_sign_in_to_nav_graph);
              }
          });
 

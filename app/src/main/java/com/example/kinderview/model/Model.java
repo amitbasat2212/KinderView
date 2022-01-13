@@ -164,6 +164,8 @@ public class Model {
 
     }
 
-
+    public void Login (String email, String password, ModelFireBase.sighup listener){
+        modelFirebase.Login(email,password,listener);
+    }
 
 }
