@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavHost;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -29,12 +31,20 @@ public class fragment_login extends Fragment {
         Button loginbutton = view.findViewById(R.id.login_login_btn);
         Button signinbutton = view.findViewById(R.id.login_signup_btn3);
 
+
         loginbutton.setOnClickListener(v -> {
             toFeedActivity();
         });
+
+        signinbutton.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(R.id.action_fragment_login_to_fragment_sign_in);
+        });
+
         // Inflate the layout for this fragment
         return view;
     }
+
+
 
     private void toFeedActivity() {
         Intent intent = new Intent(getContext(), MainActivity.class);

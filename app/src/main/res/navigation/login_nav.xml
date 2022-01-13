@@ -9,7 +9,11 @@
         android:id="@+id/fragment_login"
         android:name="com.example.kinderview.Users.fragment_login"
         android:label="fragment_login_fregment"
-        tools:layout="@layout/fragment_login_fregment" />
+        tools:layout="@layout/fragment_login_fregment" >
+        <action
+            android:id="@+id/action_fragment_login_to_fragment_sign_in"
+            app:destination="@id/fragment_sign_in" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_sign_in"
         android:name="com.example.kinderview.Users.fragment_sign_in"

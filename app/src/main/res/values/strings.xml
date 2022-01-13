@@ -7,5 +7,9 @@
     <string name="login">login</string>
     <string name="signup">signup</string>
     <string name="Welcome_to_KinderView">Welcome_to_KinderView</string>
+    <string name="email">email</string>
+    <string name="name">name</string>
+    <string name="phone">phone</string>
+    <string name="address">address</string>
 
 </resources>
