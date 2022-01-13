@@ -173,6 +173,7 @@ public class ModelFireBase {
                         // If sign in fails, display a message to the user.
                         Log.w("TAG", "signInWithEmail:failure", task.getException());
                         updateUI(null);
+                        listener.onComplete(null);
 
                     }
                 });
@@ -208,6 +209,7 @@ public class ModelFireBase {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("TAG", "createUserWithEmail:failure", task.getException());
+                            listener.onComplete(null);
                            // updateUI(null);
                         }
                     }

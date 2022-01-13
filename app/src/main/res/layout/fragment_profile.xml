@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back2kinder"
-    tools:context=".Users.fragment_sign_in">
+    tools:context=".Users.fragment_sign_up">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/profile_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/image2"
@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.047" />
 
     <TextView
-        android:id="@+id/fragment_profile_numofposts"
+        android:id="@+id/fragment_profile_email"
         android:layout_width="143dp"
         android:layout_height="45dp"
         android:fontFamily="serif"
@@ -28,12 +28,13 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.265" />
+        app:layout_constraintVertical_bias="0.44" />
 
     <TextView
-        android:id="@+id/fragment_profile_username"
+        android:id="@+id/fragment_profile_Adress"
         android:layout_width="143dp"
         android:layout_height="45dp"
         android:fontFamily="serif"
@@ -41,19 +42,62 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.186" />
+        app:layout_constraintVertical_bias="0.326" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="411dp"
-        android:layout_height="455dp"
+    <TextView
+        android:id="@+id/fragment_profile_phone"
+        android:layout_width="143dp"
+        android:layout_height="45dp"
+        android:fontFamily="serif"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.891"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.847" />
+        app:layout_constraintVertical_bias="0.44" />
+
+    <TextView
+        android:id="@+id/fragment_profile_name"
+        android:layout_width="143dp"
+        android:layout_height="45dp"
+        android:fontFamily="serif"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.562" />
+
+    <CheckBox
+        android:id="@+id/fragment_profile_eductor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eductor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.392"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.565" />
+
+    <CheckBox
+        android:id="@+id/fragment_profile_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.565" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

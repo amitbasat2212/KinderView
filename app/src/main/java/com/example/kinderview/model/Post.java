@@ -19,12 +19,12 @@ public class Post {
     @NonNull
     String id="";
     String status;
-    String username;
+    String email;
     String date;
     String likes;
     String UrlImagePost;
     boolean delete=false;
-    String delete1;
+
 
     final public static String COLLECTION_NAME = "Posts";
     Long UpdateDate=new Long(0);
@@ -47,10 +47,10 @@ public class Post {
 
 
 
-    public Post(@NonNull String id, String status, String username, String date, String likes) {
+    public Post(@NonNull String id, String status, String email, String date, String likes) {
         this.id = id;
         this.status = status;
-        this.username = username;
+        this.email = email;
         this.date = date;
         this.likes = likes;
     }
@@ -74,7 +74,7 @@ public class Post {
     public Map<String,Object> tojson(){
         Map<String,Object> json =new HashMap<>();
         json.put("id",id);
-        json.put("username",username);
+        json.put("email",email);
         json.put("status",status);
         json.put("date",date);
         json.put("UrlImagePost",UrlImagePost);
@@ -88,7 +88,7 @@ public class Post {
 
     public static Post create(Map<String, Object> json) {
         String id = (String) json.get("id");
-        String username = (String) json.get("username");
+        String username = (String) json.get("email");
         String status = (String) json.get("status");
         String date = (String) json.get("date");
         String likes = (String) json.get("likes");
@@ -115,11 +115,11 @@ public class Post {
     }
 
     public String getUsername() {
-        return username;
+        return email;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.email = username;
     }
 
     public String getDate() {

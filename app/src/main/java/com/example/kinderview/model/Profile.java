@@ -11,25 +11,24 @@ public class Profile {
 
     @PrimaryKey
     @NonNull
-    String username;
+    String email;
     String name;
-    String lastname;
     String address;
     String password;
-    Boolean isEducator;
-    Boolean isParent;
-    int phone;
+    Boolean isEducator=false;
+    Boolean isParent=false;
+    String phone;
 
     public Profile() {
 
     }
 
 
-    public Profile(String name, String lastname, String address, String username, String password, Boolean isEducator, Boolean isParent, int phone) {
+    public Profile(String name, String address, String email, String password, Boolean isEducator, Boolean isParent, String phone) {
         this.name = name;
-        this.lastname = lastname;
+
         this.address = address;
-        this.username = username;
+        this.email = email;
         this.password = password;
         this.isEducator = isEducator;
         this.isParent = isParent;
@@ -44,13 +43,7 @@ public class Profile {
         this.name = name;
     }
 
-    public String getLastname() {
-        return lastname;
-    }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
 
     public String getAddress() {
         return address;
@@ -61,11 +54,11 @@ public class Profile {
     }
 
     public String getUsername() {
-        return username;
+        return email;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.email = username;
     }
 
     public String getPassword() {
@@ -76,11 +69,11 @@ public class Profile {
         this.password = password;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back2kinder"
-    tools:context=".Users.fragment_sign_in">
+    tools:context=".Users.fragment_sign_up">
 
     <Button
         android:id="@+id/button3"
@@ -45,7 +45,7 @@
         app:layout_constraintVertical_bias="0.135" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/profile_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/image2"

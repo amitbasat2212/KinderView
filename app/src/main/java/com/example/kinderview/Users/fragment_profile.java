@@ -7,60 +7,56 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.Checkable;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.kinderview.R;
+import com.example.kinderview.model.Model;
+import com.example.kinderview.model.Profile;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link fragment_profile#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.w3c.dom.Text;
+
+
 public class fragment_profile extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+   View view;
+   ImageView profile_image;
+   TextView numberOfPosts,nameProfile,EmailProfile,PhoneProfile,AdressProfile;
+   CheckBox eductor,parent;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public fragment_profile() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment fragment_profile.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static fragment_profile newInstance(String param1, String param2) {
-        fragment_profile fragment = new fragment_profile();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        view=inflater.inflate(R.layout.fragment_profile, container, false);
+
+        profile_image=view.findViewById(R.id.profile_image);
+        nameProfile=view.findViewById(R.id.fragment_profile_name);
+        PhoneProfile=view.findViewById(R.id.fragment_profile_phone);
+        EmailProfile=view.findViewById(R.id.fragment_profile_email);
+        AdressProfile=view.findViewById(R.id.fragment_profile_Adress);
+        eductor = view.findViewById(R.id.fragment_profile_eductor);
+        parent=view.findViewById(R.id.fragment_profile_parent);
+
+        String name1 = getArguments().getString("name");
+        String email1 = getArguments().getString("email");
+        String address1 = getArguments().getString("address");
+        String phone1 = getArguments().getString("phone");
+        boolean eductor1 = getArguments().getBoolean("educator");
+        boolean parent1 = getArguments().getBoolean("parent");
+
+        nameProfile.setText(name1);
+        PhoneProfile.setText(phone1);
+        AdressProfile.setText(address1);
+        EmailProfile.setText(email1);
+        eductor.setChecked(eductor1);
+        parent.setChecked(parent1);
+
+
+
+
+        return view;
     }
 }

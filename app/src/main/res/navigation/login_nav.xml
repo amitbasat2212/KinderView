@@ -11,20 +11,16 @@
         android:label="fragment_login_fregment"
         tools:layout="@layout/fragment_login_fregment" >
         <action
-            android:id="@+id/action_fragment_login_to_fragment_sign_in"
-            app:destination="@id/fragment_sign_in" />
-        <action
             android:id="@+id/action_fragment_login_to_nav_graph"
             app:destination="@id/nav_graph" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragment_sign_in"
-        android:name="com.example.kinderview.Users.fragment_sign_in"
-        android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" >
         <action
-            android:id="@+id/action_fragment_sign_in_to_nav_graph"
-            app:destination="@id/nav_graph" />
+            android:id="@+id/action_fragment_login_to_fragment_sign_up"
+            app:destination="@id/fragment_sign_up" />
     </fragment>
     <include app:graph="@navigation/nav_graph" />
+    <fragment
+        android:id="@+id/fragment_sign_up"
+        android:name="com.example.kinderview.Users.fragment_sign_up"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>

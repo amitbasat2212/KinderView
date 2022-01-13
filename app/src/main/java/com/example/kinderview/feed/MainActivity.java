@@ -2,6 +2,7 @@ package com.example.kinderview.feed;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.NavHost;
 
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 
 import com.example.kinderview.R;
 import com.example.kinderview.Users.LoginActivity;
+import com.example.kinderview.Users.fragment_profile;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.ModelFireBase;
 
@@ -66,7 +68,26 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.menu_profile:
-                    controller.navigate(R.id. action_global_fragment_profile);
+
+                    String Email = getIntent().getStringExtra("email");
+                    String name = getIntent().getStringExtra("name");
+                    String Adress = getIntent().getStringExtra("address");
+                    String phone = getIntent().getStringExtra("phone");
+                    boolean eductor = getIntent().getExtras().getBoolean("educator");
+                    boolean parent = getIntent().getExtras().getBoolean("parent");
+                    fragment_profile f = new fragment_profile();
+                    Bundle args = new Bundle();
+                    args.putString("email", Email);
+                    args.putString("name", name);
+                    args.putString("address", Adress);
+                    args.putString("phone", phone);
+                    args.putBoolean("educator", eductor);
+                    args.putBoolean("parent", parent);
+                    f.setArguments(args);
+                    getSupportFragmentManager().beginTransaction()
+                            .add(android.R.id.content, f).commit();
+
+
                     break;
             }
 
