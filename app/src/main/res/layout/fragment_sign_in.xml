@@ -43,10 +43,10 @@
             android:paddingTop="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_email_et"
+                android:id="@+id/signin_email_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,7 +58,7 @@
             android:paddingTop="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_password_et"
+                android:id="@+id/signin_password_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -74,7 +74,7 @@
             android:paddingTop="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_name"
+                android:id="@+id/signin_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -89,10 +89,10 @@
             android:paddingTop="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_phone"
+                android:id="@+id/signin_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
+                android:inputType="text"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,7 +104,7 @@
             android:paddingTop="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_address"
+                android:id="@+id/signin_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -139,7 +139,7 @@
         app:layout_constraintVertical_bias="0.818" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/login_login_btn"
+        android:id="@+id/signin_login_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"

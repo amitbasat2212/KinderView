@@ -2,6 +2,8 @@ package com.example.kinderview.model;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -12,6 +14,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -149,5 +152,20 @@ public class ModelFireBase {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         return (currentUser != null);
     }
+
+    public void signUp(String email, String password){
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful())
+                    {
+
+                    }
+                    else{
+
+                    }
+                });
+    }
+
+
 
 }
