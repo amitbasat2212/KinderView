@@ -1,4 +1,4 @@
-package com.example.kinderview;
+package com.example.kinderview.feed;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import androidx.navigation.NavHost;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.kinderview.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.menu_logout:
-                    controller.navigate(R.id.action_global_login_fregment);
+                    controller.navigate(R.id.fragment_login);
                     break;
 
                 case R.id.menu_profile:

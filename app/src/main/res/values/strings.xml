@@ -2,5 +2,10 @@
     <string name="app_name">KinderView</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="UserName">UserName</string>
+    <string name="password">password</string>
+    <string name="login">login</string>
+    <string name="signup">signup</string>
+    <string name="Welcome_to_KinderView">Welcome_to_KinderView</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.example.kinderview;
+package com.example.kinderview.feed;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -27,6 +27,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Post;
 import com.example.kinderview.viewModel.CreatePostViewModel;
@@ -77,12 +78,12 @@ public class fragment_edit_post extends Fragment {
         progressBar = view.findViewById(R.id.fragment_edit_progressbar);
         progressBar.setVisibility(View.GONE);
 
-         id = fragment_edit_postArgs.fromBundle(getArguments()).getId();
-         status = fragment_edit_postArgs.fromBundle(getArguments()).getStatus();
-         username = fragment_edit_postArgs.fromBundle(getArguments()).getUsername();
-         date_post = fragment_edit_postArgs.fromBundle(getArguments()).getDate();
-         likes = fragment_edit_postArgs.fromBundle(getArguments()).getLikes();
-         urlImage = fragment_edit_postArgs.fromBundle(getArguments()).getUrlpostedit();
+        id = fragment_edit_postArgs.fromBundle(getArguments()).getId();
+        status = fragment_edit_postArgs.fromBundle(getArguments()).getStatus();
+        username = fragment_edit_postArgs.fromBundle(getArguments()).getUsername();
+        date_post = fragment_edit_postArgs.fromBundle(getArguments()).getDate();
+        likes = fragment_edit_postArgs.fromBundle(getArguments()).getLikes();
+        urlImage = fragment_edit_postArgs.fromBundle(getArguments()).getUrlpostedit();
 
 
         edit_username.setText(username);
@@ -176,12 +177,15 @@ public class fragment_edit_post extends Fragment {
                 editViewModel.editPost(post,()->
                 {
                     Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page2);
+
                 });
             });
 
         }else{
+            post.setImagePostUrl(urlImage);
             editViewModel.editPost(post,()->
             {
+
                 Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page2);
             });
         }
@@ -199,8 +203,8 @@ public class fragment_edit_post extends Fragment {
 
         if(post.getUrlImagePost()!="0") {
             editViewModel.deletePic(post, id + ".jpg", () -> {
-               urlImage="0";
-               Navigation.findNavController(view).navigate(fragment_edit_postDirections.actionGlobalFragmentEditPost(username, date_post, status, likes, id, urlImage));
+                urlImage="0";
+                Navigation.findNavController(view).navigate(fragment_edit_postDirections.actionGlobalFragmentEditPost(username, date_post, status, likes, id, urlImage));
 
 
             });
@@ -214,4 +218,4 @@ public class fragment_edit_post extends Fragment {
 
     }
 
-    }
+}

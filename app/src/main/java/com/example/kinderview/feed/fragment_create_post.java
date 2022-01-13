@@ -1,4 +1,4 @@
-package com.example.kinderview;
+package com.example.kinderview.feed;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Post;
 import com.example.kinderview.viewModel.CreatePostViewModel;
@@ -36,7 +37,7 @@ import java.util.UUID;
 import javax.xml.transform.Result;
 
 
-public class CreatePost extends Fragment {
+public class fragment_create_post extends Fragment {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_IMAGE_PIC = 2;
 

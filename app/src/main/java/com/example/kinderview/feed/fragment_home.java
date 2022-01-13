@@ -1,4 +1,4 @@
-package com.example.kinderview;
+package com.example.kinderview.feed;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Post;
 import com.example.kinderview.viewModel.PostViewModel;
@@ -33,7 +34,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class Home_page extends Fragment {
+public class fragment_home extends Fragment {
     PostViewModel viewModel;
     MyAdapter adapter;
     SwipeRefreshLayout swipeRefresh;
@@ -88,7 +89,7 @@ public class Home_page extends Fragment {
                     }
 
                     if(view.findViewById(R.id.row_feed_editpost).getId()==idview) {
-                        Navigation.findNavController(view).navigate(Home_pageDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes, stId, url));
+                        Navigation.findNavController(view).navigate(fragment_homeDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes, stId, url));
                     }else
                         if(view.findViewById(R.id.row_feed_deletepost).getId()==idview){
                          viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {

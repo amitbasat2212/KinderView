@@ -1,4 +1,4 @@
-package com.example.kinderview;
+package com.example.kinderview.Users;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.kinderview.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Edit_user#newInstance} factory method to
+ * Use the {@link fragment_edit_user#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Edit_user extends Fragment {
+public class fragment_edit_user extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class Edit_user extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Edit_user() {
+    public fragment_edit_user() {
         // Required empty public constructor
     }
 
@@ -37,8 +39,8 @@ public class Edit_user extends Fragment {
      * @return A new instance of fragment Edit_user.
      */
     // TODO: Rename and change types and number of parameters
-    public static Edit_user newInstance(String param1, String param2) {
-        Edit_user fragment = new Edit_user();
+    public static fragment_edit_user newInstance(String param1, String param2) {
+        fragment_edit_user fragment = new fragment_edit_user();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

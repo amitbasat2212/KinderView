@@ -4,23 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintHeight_percent="0.25"
-    app:layout_constraintWidth_percent="0.25"
-    tools:context=".feed.MainActivity">
+    android:background="@drawable/kinderviewback"
+    android:textDirection="firstStrong"
+    tools:context=".IntroActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/Fragment_nav_host"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-
-        app:defaultNavHost="true"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="268dp"
+        android:layout_height="95dp"
+        android:elegantTextHeight="false"
+        android:fontFamily="sans-serif-medium"
+        android:text="Welcome!"
+        android:textAlignment="center"
+        android:textColor="#2E3C8A"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.733"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:navGraph="@navigation/nav_graph" />
+        app:layout_constraintVertical_bias="0.482" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
