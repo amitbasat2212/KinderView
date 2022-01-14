@@ -73,9 +73,9 @@ public class fragment_create_post extends Fragment {
         galleryBtn = view.findViewById(R.id.Fragment_create_gallery);
         imagePost = view.findViewById(R.id.fragment_image_post);
         name = view.findViewById(R.id.fragment_create_name);
-        String name1 = getArguments().getString("name");
 
-        name.setText(name1);
+
+
 
         progressBar = view.findViewById(R.id.fragment_create_progressbar);
         progressBar.setVisibility(View.GONE);

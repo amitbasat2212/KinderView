@@ -55,14 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.menu_create:
 
                     // Model.instance.getUserName(email);
+                    controller.navigate(R.id.action_global_createPost);
 
-                    String name1 = getIntent().getStringExtra("name");
-                    fragment_create_post f1 = new fragment_create_post();
-                    Bundle args1 = new Bundle();
-                    args1.putString("name", name1);
-                    f1.setArguments(args1);
-                    getSupportFragmentManager().beginTransaction()
-                            .add(android.R.id.content, f1).commit();
                     break;
 
                 case R.id.menu_logout:
@@ -77,26 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.menu_profile:
-
-                    String Email = getIntent().getStringExtra("email");
-                    String name = getIntent().getStringExtra("name");
-                    String Adress = getIntent().getStringExtra("address");
-                    String phone = getIntent().getStringExtra("phone");
-                    boolean eductor = getIntent().getExtras().getBoolean("educator");
-                    boolean parent = getIntent().getExtras().getBoolean("parent");
-                    fragment_profile f = new fragment_profile();
-                    Bundle args = new Bundle();
-                    args.putString("email", Email);
-                    args.putString("name", name);
-                    args.putString("address", Adress);
-                    args.putString("phone", phone);
-                    args.putBoolean("educator", eductor);
-                    args.putBoolean("parent", parent);
-                    f.setArguments(args);
-                    getSupportFragmentManager().beginTransaction()
-                            .add(android.R.id.content, f).commit();
-
-
+                    controller.navigate(R.id.action_global_fragment_profile);
                     break;
             }
 

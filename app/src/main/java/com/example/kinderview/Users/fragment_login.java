@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.kinderview.R;
 import com.example.kinderview.feed.MainActivity;
 import com.example.kinderview.model.Model;
+import com.example.kinderview.model.ModelFireBase;
 
 
 public class fragment_login extends Fragment {
@@ -61,12 +62,13 @@ public class fragment_login extends Fragment {
         String password1 = password.getText().toString();
         String email1 = email.getText().toString();
 
+
         if (!(password1.isEmpty() || email1.isEmpty() ))
         {
             progressBar.setVisibility(View.VISIBLE);
             loginbutton.setEnabled(false);
             signinbutton.setEnabled(false);
-            Model.instance.Login(email1, password1, email -> {
+            Model.instance.Login(email1,password1, email -> {
                 if (email != null) {
                     toFeedActivity();
                 } else {

@@ -187,6 +187,10 @@ public class ModelFireBase {
         void onComplete();
     }
 
+    public interface getProfileByEMail{
+        void onComplete();
+    }
+
 
     public void sighout(sighout listner){
         FirebaseAuth.getInstance().signOut();

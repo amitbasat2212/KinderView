@@ -18,6 +18,26 @@ public class Profile {
     Boolean isEducator=false;
     Boolean isParent=false;
     String phone;
+    boolean coonect;
+
+    @NonNull
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(@NonNull String email) {
+        this.email = email;
+    }
+
+    public boolean isCoonect() {
+        return coonect;
+    }
+
+    public void setCoonect(boolean coonect) {
+        this.coonect = coonect;
+    }
+
+
 
     public Profile() {
 
@@ -26,7 +46,6 @@ public class Profile {
 
     public Profile(String name, String address, String email, String password, Boolean isEducator, Boolean isParent, String phone) {
         this.name = name;
-
         this.address = address;
         this.email = email;
         this.password = password;
@@ -53,13 +72,6 @@ public class Profile {
         this.address = address;
     }
 
-    public String getUsername() {
-        return email;
-    }
-
-    public void setUsername(String username) {
-        this.email = username;
-    }
 
     public String getPassword() {
         return password;

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.example.kinderview.R;
 import com.example.kinderview.feed.MainActivity;
 import com.example.kinderview.model.Model;
+import com.example.kinderview.model.Profile;
 
 public class fragment_sign_up extends Fragment {
 
@@ -52,6 +54,12 @@ public class fragment_sign_up extends Fragment {
         return view;
     }
 
+    private void toFeedActivity() {
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
     private void perforAuth() {
         String password1 = password.getText().toString();
         String email1 = email.getText().toString();
@@ -63,6 +71,8 @@ public class fragment_sign_up extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         btnlogin.setEnabled(false);
 
+        Profile profile=new Profile(name1,address1,email1,password1,educator1,parent1,phone1);
+
         if(!email1.matches(emailPattern))
         {
             Toast.makeText(getContext(), "Email is not correct", Toast.LENGTH_SHORT).show();
@@ -71,16 +81,9 @@ public class fragment_sign_up extends Fragment {
             Toast.makeText(getContext(), "You can write only 6 char in password", Toast.LENGTH_SHORT).show();
         }
 
-        Intent intent = new Intent(getContext(), MainActivity.class);
 
-         Model.instance.sighin(email1, password1, email -> {
-             intent.putExtra("email",email1);
-             intent.putExtra("phone",phone1);
-             intent.putExtra("address",address1);
-             intent.putExtra("name",name1);
-             intent.putExtra("parent", parent1);
-             intent.putExtra("educator", educator1);
-             startActivity(intent);
+         Model.instance.sighin(profile, email -> {
+            toFeedActivity();
          });
 
 

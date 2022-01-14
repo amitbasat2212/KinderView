@@ -11,7 +11,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.storage.FirebaseStorage;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -23,6 +25,7 @@ public class Model {
     public Handler mainThread = HandlerCompat.createAsync(Looper.getMainLooper());
     ModelFireBase modelFirebase = new ModelFireBase();
     FirebaseStorage storage = FirebaseStorage.getInstance();
+    Profile profile1=new Profile("0","0","0","0",false,false,"0");
 
     public void deletePic(Post value, String picName, AddPostListener listener) {
 
@@ -34,6 +37,7 @@ public class Model {
             }
         });
     }
+
 
 
 
@@ -131,6 +135,7 @@ public class Model {
 
     public void deletePost(Post post, AddPostListener listener)
     {
+
         modelFirebase.deletePost(post, () -> {
             refreshPostList();
             listener.onComplete();
@@ -153,19 +158,71 @@ public class Model {
         return modelFirebase.isSignIn();
     }
 
-    public void sighin(String email,String password,ModelFireBase.sighup sighup) {
+    public void sighin(Profile profile,ModelFireBase.sighup sighup) {
+        modelFirebase.signUp(profile.email, profile.password, new ModelFireBase.sighup() {
+            @Override
+            public void onComplete(String email) {
+                executor.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        profile1 = profile;
+                        profile.setCoonect(true);
+                        AppLocalDb.db.profileDAO().insertAll(profile);
+                        sighup.onComplete(email);
+                    }
+                });
 
-        modelFirebase.signUp(email,password,sighup);
+            }
+        });
+
+
 
     }
     public void sighout(ModelFireBase.sighout sighout) {
+        profile1.setCoonect(false);
+        modelFirebase.sighout(new ModelFireBase.sighout() {
+            @Override
+            public void onComplete() {
+                executor.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        AppLocalDb.db.profileDAO().insertAll(profile1);
+                        sighout.onComplete();
+                    }
+                });
+            }
+        });
 
-        modelFirebase.sighout(sighout);
 
     }
 
-    public void Login (String email, String password, ModelFireBase.sighup listener){
-        modelFirebase.Login(email,password,listener);
+    public void Login (String email,String password, ModelFireBase.sighup listener){
+
+        modelFirebase.Login(email, password, new ModelFireBase.sighup() {
+            @Override
+            public void onComplete(String email) {
+                executor.execute(() -> {
+                    profile1 = getprofilebyEmail(email);
+                    profile1.setCoonect(true);
+                    AppLocalDb.db.profileDAO().insertAll(profile1);
+                    listener.onComplete(email);
+                });
+            }
+        });
+
+
+    }
+
+    public Profile getprofilebyEmail(String email) {
+       List<Profile> profiles=AppLocalDb.db.profileDAO().loadprofilewithemail(email);
+       return profiles.get(0);
+
+
+    }
+
+    public Profile getUserConnect() {
+
+        return profile1;
     }
 
 }

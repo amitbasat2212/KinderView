@@ -40,12 +40,14 @@ public class fragment_profile extends Fragment {
         eductor = view.findViewById(R.id.fragment_profile_eductor);
         parent=view.findViewById(R.id.fragment_profile_parent);
 
-        String name1 = getArguments().getString("name");
-        String email1 = getArguments().getString("email");
-        String address1 = getArguments().getString("address");
-        String phone1 = getArguments().getString("phone");
-        boolean eductor1 = getArguments().getBoolean("educator");
-        boolean parent1 = getArguments().getBoolean("parent");
+        Profile profile = Model.instance.getUserConnect();
+
+        String name1 =profile.getName();
+        String email1 = profile.getEmail();
+        String address1 = profile.getAddress();
+        String phone1 = profile.getPhone();
+        boolean eductor1 = profile.getEducator();
+        boolean parent1 = profile.getParent();
 
         nameProfile.setText(name1);
         PhoneProfile.setText(phone1);

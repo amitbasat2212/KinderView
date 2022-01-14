@@ -14,6 +14,9 @@ public interface ProfileDAO {
 
         @Query("select * from Profile")
         List<Profile> getAll();
+        @Query("SELECT * FROM profile WHERE email > :email1")
+        public List<Profile> loadprofilewithemail(String email1);
+
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         void insertAll(Profile... profiles);
         @Delete
