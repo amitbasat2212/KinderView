@@ -41,6 +41,7 @@ public class ModelFireBase {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     private String UniqueID;
     StorageReference storageRef = storage.getReference();
+    FirebaseUser currentUser;
 
     public ModelFireBase(){
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
@@ -156,8 +157,13 @@ public class ModelFireBase {
 
     public Boolean isSignIn () {
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser = mAuth.getCurrentUser();
+
         return (currentUser != null);
+    }
+    public void connected () {
+        currentUser = mAuth.getCurrentUser();
+
     }
 
     public void Login (String email, String password, sighup listener){
@@ -182,6 +188,10 @@ public class ModelFireBase {
 
     public interface sighup{
         void onComplete(String email);
+    }
+
+    public interface connect{
+        void onComplete(Profile profile);
     }
     public interface sighout{
         void onComplete();

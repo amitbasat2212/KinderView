@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import androidx.core.os.HandlerCompat;
 import androidx.lifecycle.LiveData;
@@ -11,9 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.storage.FirebaseStorage;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -220,9 +219,20 @@ public class Model {
 
     }
 
-    public Profile getUserConnect() {
+    Profile profiles;
+    public void getUserConnect(ModelFireBase.connect connect) {
+        modelFirebase.connected();
+            executor.execute(() -> {
+                profiles=getprofilebyEmail(modelFirebase.currentUser.getEmail());
+                connect.onComplete(profiles);
+            });
 
-        return profile1;
+
+
+
+
+
+
     }
 
 }

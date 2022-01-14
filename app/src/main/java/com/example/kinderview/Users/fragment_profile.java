@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
+import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Profile;
 
 import org.w3c.dom.Text;
@@ -40,21 +41,18 @@ public class fragment_profile extends Fragment {
         eductor = view.findViewById(R.id.fragment_profile_eductor);
         parent=view.findViewById(R.id.fragment_profile_parent);
 
-        Profile profile = Model.instance.getUserConnect();
 
-        String name1 =profile.getName();
-        String email1 = profile.getEmail();
-        String address1 = profile.getAddress();
-        String phone1 = profile.getPhone();
-        boolean eductor1 = profile.getEducator();
-        boolean parent1 = profile.getParent();
-
-        nameProfile.setText(name1);
-        PhoneProfile.setText(phone1);
-        AdressProfile.setText(address1);
-        EmailProfile.setText(email1);
-        eductor.setChecked(eductor1);
-        parent.setChecked(parent1);
+      Model.instance.getUserConnect(new ModelFireBase.connect() {
+            @Override
+            public void onComplete(Profile profile) {
+                nameProfile.setText(profile.getName());
+                PhoneProfile.setText(profile.getPhone());
+                AdressProfile.setText(profile.getAddress());
+                EmailProfile.setText(profile.getEmail());
+                eductor.setChecked(profile.getEducator());
+                parent.setChecked(profile.getParent());
+            }
+        });
 
 
         return view;

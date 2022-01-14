@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.kinderview.model.MyApplication;
 
-@Database(entities = {Post.class,Profile.class}, version = 20)
+@Database(entities = {Post.class,Profile.class}, version = 23)
 abstract class AppLocalDbRepository extends RoomDatabase {
     public abstract PostDAO PostDao();
     public abstract ProfileDAO profileDAO();
