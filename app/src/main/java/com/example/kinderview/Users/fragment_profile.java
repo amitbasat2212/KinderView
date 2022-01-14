@@ -55,8 +55,6 @@ public class fragment_profile extends Fragment {
         parent.setChecked(parent1);
 
 
-
-
         return view;
     }
 }

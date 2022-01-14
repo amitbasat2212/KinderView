@@ -58,21 +58,27 @@ public class fragment_login extends Fragment {
     //TODO: Connect to the view authentication
     public void Login()
     {
-        progressBar.setVisibility(View.VISIBLE);
-        loginbutton.setEnabled(false);
-        signinbutton.setEnabled(false);
-
         String password1 = password.getText().toString();
         String email1 = email.getText().toString();
 
-        Model.instance.Login(email1, password1, email -> {
-            if (email != null){
-                toFeedActivity();
-            }
-            else {
-                Toast.makeText(getContext(), "User not Existed", Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (!(password1.isEmpty() || email1.isEmpty() ))
+        {
+            progressBar.setVisibility(View.VISIBLE);
+            loginbutton.setEnabled(false);
+            signinbutton.setEnabled(false);
+            Model.instance.Login(email1, password1, email -> {
+                if (email != null) {
+                    toFeedActivity();
+                } else {
+                    Toast.makeText(getContext(), "User not Existed", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(getContext(), "Password or email is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
     }
 

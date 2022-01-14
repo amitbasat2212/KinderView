@@ -53,7 +53,16 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.menu_create:
-                    controller.navigate(R.id.action_global_createPost);
+
+                    // Model.instance.getUserName(email);
+
+                    String name1 = getIntent().getStringExtra("name");
+                    fragment_create_post f1 = new fragment_create_post();
+                    Bundle args1 = new Bundle();
+                    args1.putString("name", name1);
+                    f1.setArguments(args1);
+                    getSupportFragmentManager().beginTransaction()
+                            .add(android.R.id.content, f1).commit();
                     break;
 
                 case R.id.menu_logout:

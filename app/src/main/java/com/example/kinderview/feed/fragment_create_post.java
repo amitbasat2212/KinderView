@@ -24,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kinderview.R;
@@ -50,7 +51,7 @@ public class fragment_create_post extends Fragment {
     ImageButton camBtn;
     ImageButton galleryBtn;
     Bitmap imageBitmap;
-
+    TextView name;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -71,7 +72,10 @@ public class fragment_create_post extends Fragment {
         camBtn = view.findViewById(R.id.Fragment_create_camra);
         galleryBtn = view.findViewById(R.id.Fragment_create_gallery);
         imagePost = view.findViewById(R.id.fragment_image_post);
+        name = view.findViewById(R.id.fragment_create_name);
+        String name1 = getArguments().getString("name");
 
+        name.setText(name1);
 
         progressBar = view.findViewById(R.id.fragment_create_progressbar);
         progressBar.setVisibility(View.GONE);
@@ -133,9 +137,7 @@ public class fragment_create_post extends Fragment {
 
         String id = String.valueOf(uniqueKey);
         String status = text.getText().toString();
-
-        // TODO: 1/9/2022 to take from the login the user name
-        String username ="Yossi";
+        String username = name.getText().toString();
         String date_post = date.getText().toString();
         String likes = "0";
 
