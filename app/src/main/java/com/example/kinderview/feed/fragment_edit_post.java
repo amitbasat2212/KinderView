@@ -186,7 +186,6 @@ public class fragment_edit_post extends Fragment {
             post.setImagePostUrl(urlImage);
             editViewModel.editPost(post,()->
             {
-
                 Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page2);
             });
         }
@@ -206,8 +205,6 @@ public class fragment_edit_post extends Fragment {
             editViewModel.deletePic(post, id + ".jpg", () -> {
                 urlImage="0";
                 Navigation.findNavController(view).navigate(fragment_edit_postDirections.actionGlobalFragmentEditPost(username, date_post, status, likes, id, urlImage));
-
-
             });
 
         }
