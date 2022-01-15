@@ -206,8 +206,6 @@ public class Model {
                 });
             }
         });
-
-
     }
 
     public Profile getprofilebyEmail(String email) {

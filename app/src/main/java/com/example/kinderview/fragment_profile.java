@@ -4,16 +4,19 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Checkable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.kinderview.R;
+import com.example.kinderview.feed.fragment_homeDirections;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Profile;
@@ -28,7 +31,7 @@ public class fragment_profile extends Fragment {
     ImageView profile_image;
     TextView nameProfile,EmailProfile,PhoneProfile,AdressProfile;
     CheckBox eductor,parent;
-
+    Button edit;
 
 
     @Override
@@ -44,6 +47,7 @@ public class fragment_profile extends Fragment {
         eductor = view.findViewById(R.id.fragment_profile_eductor);
         parent=view.findViewById(R.id.fragment_profile_parent);
         profile_image = view.findViewById(R.id.fragment_profile_image);
+        edit = view.findViewById(R.id.fragment_profile_edituser);
 
 
         Model.instance.getUserConnect(new ModelFireBase.connect() {
@@ -59,6 +63,15 @@ public class fragment_profile extends Fragment {
                 Model.instance.mainThread.post(new Runnable() {
                     @Override
                     public void run() {
+
+                        edit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Navigation.findNavController(view).navigate(fragment_profileDirections.actionFragmentProfileToEditUser(profile.getName(),profile.getParent(),
+                                        profile.getEducator(), profile.getPhone(),profile.getAddress(),profile.getEmail(),profile.getPassword()));
+                            }
+                        });
+
                         if (profile.getUrlImage() != null) {
                             Picasso.get().load(profile.getUrlImage()).into(profile_image);
                         }
