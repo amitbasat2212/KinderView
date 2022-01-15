@@ -23,11 +23,20 @@ public class Post {
     String date;
     String likes;
     String UrlImagePost;
+    String ProfilePic;
     boolean delete=false;
-
-
     final public static String COLLECTION_NAME = "Posts";
     Long UpdateDate=new Long(0);
+
+    public String getProfilePic() {
+        return ProfilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        ProfilePic = profilePic;
+    }
+
+
 
     public String getLikes() {
         return likes;
@@ -80,6 +89,7 @@ public class Post {
         json.put("UrlImagePost",UrlImagePost);
         json.put("likes",likes);
         json.put("delete",delete);
+        json.put("profil",ProfilePic);
         json.put("updateDate", FieldValue.serverTimestamp());
 
         return json;
@@ -93,6 +103,7 @@ public class Post {
         String date = (String) json.get("date");
         String likes = (String) json.get("likes");
         String urlImage = (String) json.get("UrlImagePost");
+        String urlImagepro = (String) json.get("profil");
         Boolean delete = (boolean) json.get("delete");
         Timestamp ts = (Timestamp)json.get("updateDate")    ;
         Long updateDate = ts.getSeconds();
@@ -100,6 +111,7 @@ public class Post {
         Post post = new Post(id,status,username,date,likes);
         post.setDelete(delete);
         post.setUpdateDate(updateDate);
+        post.setProfilePic(urlImagepro);
         post.setUrlImagePost(urlImage);
         return post;
     }

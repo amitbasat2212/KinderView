@@ -26,7 +26,7 @@ public class fragment_profile extends Fragment {
 
     View view;
     ImageView profile_image;
-    TextView numberOfPosts,nameProfile,EmailProfile,PhoneProfile,AdressProfile;
+    TextView nameProfile,EmailProfile,PhoneProfile,AdressProfile;
     CheckBox eductor,parent;
 
 

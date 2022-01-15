@@ -33,6 +33,7 @@ import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Post;
 import com.example.kinderview.model.Profile;
 import com.example.kinderview.viewModel.CreatePostViewModel;
+import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.util.UUID;
@@ -46,7 +47,7 @@ public class fragment_create_post extends Fragment {
 
     EditText date, text;
 
-    ImageView imagePost;
+    ImageView imagePost,imageProfil;
     Button createPost, cancelBtn;
     ProgressBar progressBar;
     View view;
@@ -75,15 +76,21 @@ public class fragment_create_post extends Fragment {
         camBtn = view.findViewById(R.id.Fragment_create_camra);
         galleryBtn = view.findViewById(R.id.Fragment_create_gallery);
         imagePost = view.findViewById(R.id.fragment_image_post);
+        imageProfil =view.findViewById(R.id.fragment_create_profile);
         name = view.findViewById(R.id.fragment_create_name);
-
-
 
         Model.instance.getUserConnect(new ModelFireBase.connect() {
             @Override
             public void onComplete(Profile profile) {
-                name.setText(profile.getEmail());
-
+                Model.instance.mainThread.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        name.setText(profile.getEmail());
+                        if (profile.getUrlImage() != null) {
+                            Picasso.get().load(profile.getUrlImage()).into(imageProfil);
+                        }
+                    }
+                });
 
             }
         });
@@ -155,6 +162,7 @@ public class fragment_create_post extends Fragment {
 
 
         Post post = new Post(id, status, username, date_post, likes);
+        post.setProfilePic(imageProfil.toString());
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, id + ".jpg", url -> {
                post.setImagePostUrl(url);

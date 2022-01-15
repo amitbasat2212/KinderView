@@ -162,6 +162,10 @@ public class fragment_home extends Fragment {
             tv_time.setText(post.getDate());
             tv_likes.setText(post.getLikes());
             tv_status.setText(post.getStatus());
+            if (post.getProfilePic()!= null) {
+                Picasso.get().load(post.getProfilePic()).into(imgview_propic);
+            }
+
             imgdelete.setVisibility(View.GONE);
             imgedit.setVisibility(View.GONE);
             Editview.setVisibility(View.GONE);
