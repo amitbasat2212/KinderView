@@ -179,6 +179,7 @@
                     tools:srcCompat="@drawable/editpost" />
 
                 <TextView
+                    android:id="@+id/rowfweed_edit_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -211,6 +212,7 @@
                     tools:srcCompat="@drawable/deletepost" />
 
                 <TextView
+                    android:id="@+id/rowfweed_delete_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"

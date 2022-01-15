@@ -27,7 +27,9 @@ import android.widget.TextView;
 
 import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
+import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Post;
+import com.example.kinderview.model.Profile;
 import com.example.kinderview.viewModel.PostViewModel;
 import com.squareup.picasso.Picasso;
 
@@ -79,7 +81,7 @@ public class fragment_home extends Fragment {
             @Override
             public void onItemClick(int position, View view,int idview) {
                     String stId = viewModel.getData().getValue().get(position).getId();
-                    String stUsername = viewModel.getData().getValue().get(position).getUsername();
+                    String stUsername = viewModel.getData().getValue().get(position).getEmail();
                     String status = viewModel.getData().getValue().get(position).getStatus();
                     String likes = viewModel.getData().getValue().get(position).getLikes();
                     String date = viewModel.getData().getValue().get(position).getDate();
@@ -113,7 +115,7 @@ public class fragment_home extends Fragment {
     //////////////////////////VIEWHOLDER////////////////////////////////////
 
     class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView tv_name,tv_time,tv_likes,tv_status;
+        TextView tv_name,tv_time,tv_likes,tv_status,Editview,Deleteview;
         ImageView imgview_propic,imgview_postpic;
         ImageView imgedit, imgdelete;
 
@@ -128,6 +130,10 @@ public class fragment_home extends Fragment {
             tv_status=(TextView)itemView.findViewById(R.id.row_feed_statustext);
             imgedit =(ImageView)itemView.findViewById(R.id.row_feed_editpost);
             imgdelete =(ImageView)itemView.findViewById(R.id.row_feed_deletepost);
+
+            Editview = itemView.findViewById(R.id.rowfweed_edit_view);
+            Deleteview = itemView.findViewById(R.id.rowfweed_delete_view);
+
 
             imgedit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -152,10 +158,25 @@ public class fragment_home extends Fragment {
 
         }
         public void bind(Post post){
-            tv_name.setText(post.getUsername());
+            tv_name.setText(post.getEmail());
             tv_time.setText(post.getDate());
             tv_likes.setText(post.getLikes());
             tv_status.setText(post.getStatus());
+            imgdelete.setVisibility(View.GONE);
+            imgedit.setVisibility(View.GONE);
+            Editview.setVisibility(View.GONE);
+            Deleteview.setVisibility(View.GONE);
+            Model.instance.getUserConnect(new ModelFireBase.connect() {
+                @Override
+                public void onComplete(Profile profile) {
+                    if(profile.getEmail().equals(tv_name.getText().toString())){
+                        imgdelete.setVisibility(View.VISIBLE);
+                        imgedit.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+
+
             if (post.getUrlImagePost() != null) {
                 Picasso.get()
                         .load(post.getUrlImagePost())

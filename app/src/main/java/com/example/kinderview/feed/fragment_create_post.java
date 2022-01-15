@@ -29,7 +29,9 @@ import android.widget.Toast;
 
 import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
+import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Post;
+import com.example.kinderview.model.Profile;
 import com.example.kinderview.viewModel.CreatePostViewModel;
 
 import java.io.InputStream;
@@ -43,6 +45,7 @@ public class fragment_create_post extends Fragment {
     private static final int REQUEST_IMAGE_PIC = 2;
 
     EditText date, text;
+
     ImageView imagePost;
     Button createPost, cancelBtn;
     ProgressBar progressBar;
@@ -51,7 +54,7 @@ public class fragment_create_post extends Fragment {
     ImageButton camBtn;
     ImageButton galleryBtn;
     Bitmap imageBitmap;
-    TextView name;
+    TextView name,Email;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -75,6 +78,15 @@ public class fragment_create_post extends Fragment {
         name = view.findViewById(R.id.fragment_create_name);
 
 
+
+        Model.instance.getUserConnect(new ModelFireBase.connect() {
+            @Override
+            public void onComplete(Profile profile) {
+                name.setText(profile.getEmail());
+
+
+            }
+        });
 
 
         progressBar = view.findViewById(R.id.fragment_create_progressbar);
