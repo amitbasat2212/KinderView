@@ -77,17 +77,12 @@ public class fragment_create_post extends Fragment {
         imagePost = view.findViewById(R.id.fragment_image_post);
         name = view.findViewById(R.id.fragment_create_name);
 
-
-
         Model.instance.getUserConnect(new ModelFireBase.connect() {
             @Override
             public void onComplete(Profile profile) {
                 name.setText(profile.getEmail());
-
-
             }
         });
-
 
         progressBar = view.findViewById(R.id.fragment_create_progressbar);
         progressBar.setVisibility(View.GONE);
@@ -170,11 +165,6 @@ public class fragment_create_post extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_createPost_to_home_page23);
             });
         }
-
-
-
-
-
 
     }
 }
