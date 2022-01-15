@@ -20,7 +20,7 @@ public class Model {
 
     //singleton in order to get a model functions in other classes
     public static final Model instance = new Model();
-    public Executor executor = Executors.newFixedThreadPool(1);
+    public Executor executor = Executors.newFixedThreadPool(2);
     public Handler mainThread = HandlerCompat.createAsync(Looper.getMainLooper());
     ModelFireBase modelFirebase = new ModelFireBase();
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -36,8 +36,6 @@ public class Model {
             }
         });
     }
-
-
 
 
     public interface SaveImagelistener{
@@ -216,7 +214,6 @@ public class Model {
        List<Profile> profiles=AppLocalDb.db.profileDAO().loadprofilewithemail(email);
        return profiles.get(0);
 
-
     }
 
     Profile profiles;
@@ -226,10 +223,6 @@ public class Model {
                 profiles=getprofilebyEmail(modelFirebase.currentUser.getEmail());
                 connect.onComplete(profiles);
             });
-
-
-
-
 
 
 

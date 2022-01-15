@@ -19,17 +19,19 @@
         <entry key="..\:/Users/amitb/AndroidStudioProjects/KinderView/app/src/main/res/menu/kinder_view_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/amitb/AndroidStudioProjects/KinderView/app/src/main/res/menu/login_menu.xml" value="0.4" />
         <entry key="..\:/Users/amitb/AndroidStudioProjects/KinderView/app/src/main/res/menu/main_menu.xml" value="0.4" />
+        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/font/montserrat.xml" value="0.19114583333333332" />
+        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/font/montserrat_bold.xml" value="0.19114583333333332" />
         <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/activity_intro.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/activity_login.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/activity_main.xml" value="0.1390625" />
-        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_create_post.xml" value="0.153125" />
-        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_edit_post.xml" value="0.2" />
+        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_create_post.xml" value="0.2" />
+        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_edit_post.xml" value="0.176" />
         <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_edit_user.xml" value="0.264" />
         <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_home_page.xml" value="0.1390625" />
         <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_login_fregment.xml" value="0.264" />
-        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_profile.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_sign_in.xml" value="0.264" />
-        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_sign_up.xml" value="0.1390625" />
+        <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/fragment_sign_up.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/liemm/AndroidStudioProjects/KinderView/app/src/main/res/layout/row_feed.xml" value="0.2" />
       </map>
     </option>

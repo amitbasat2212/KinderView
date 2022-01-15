@@ -11,5 +11,8 @@
     <string name="name">name</string>
     <string name="phone">phone</string>
     <string name="address">address</string>
+    <string name="long_text">long_text</string>
+    <string name="date">date</string>
+    <string name="status">status</string>
 
 </resources>

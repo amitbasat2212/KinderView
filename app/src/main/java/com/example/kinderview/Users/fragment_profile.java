@@ -33,7 +33,7 @@ public class fragment_profile extends Fragment {
                              Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_profile, container, false);
 
-        profile_image=view.findViewById(R.id.profile_image);
+       // profile_image=view.findViewById(R.id.profile_image);
         nameProfile=view.findViewById(R.id.fragment_profile_name);
         PhoneProfile=view.findViewById(R.id.fragment_profile_phone);
         EmailProfile=view.findViewById(R.id.fragment_profile_email);

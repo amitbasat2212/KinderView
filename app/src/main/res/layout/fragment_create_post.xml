@@ -7,6 +7,22 @@
     android:background="@drawable/back2kinder"
     tools:context=".feed.fragment_create_post">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="298dp"
+        android:layout_height="81dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Create post"
+        android:textColor="#fff"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024" />
+
     <Button
         android:id="@+id/fragment_create_editbutton"
         android:layout_width="144dp"
@@ -91,22 +107,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.355"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="301dp"
-        android:layout_height="74dp"
-        android:fontFamily="casual"
-        android:gravity="center_horizontal"
-        android:text="Create Post"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.041"
         tools:ignore="MissingConstraints" />
 
     <EditText

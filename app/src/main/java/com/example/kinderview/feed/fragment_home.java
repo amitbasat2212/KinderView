@@ -166,12 +166,21 @@ public class fragment_home extends Fragment {
             imgedit.setVisibility(View.GONE);
             Editview.setVisibility(View.GONE);
             Deleteview.setVisibility(View.GONE);
+
             Model.instance.getUserConnect(new ModelFireBase.connect() {
                 @Override
                 public void onComplete(Profile profile) {
                     if(profile.getEmail().equals(tv_name.getText().toString())){
-                        imgdelete.setVisibility(View.VISIBLE);
-                        imgedit.setVisibility(View.VISIBLE);
+                        Model.instance.mainThread.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                imgdelete.setVisibility(View.VISIBLE);
+                                imgedit.setVisibility(View.VISIBLE);
+                                Editview.setVisibility(View.VISIBLE);
+                                Deleteview.setVisibility(View.VISIBLE);
+                            }
+                        });
+
                     }
                 }
             });
