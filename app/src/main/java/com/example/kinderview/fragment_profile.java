@@ -1,4 +1,4 @@
-package com.example.kinderview.Users;
+package com.example.kinderview;
 
 import android.os.Bundle;
 
@@ -22,10 +22,10 @@ import org.w3c.dom.Text;
 
 public class fragment_profile extends Fragment {
 
-   View view;
-   ImageView profile_image;
-   TextView numberOfPosts,nameProfile,EmailProfile,PhoneProfile,AdressProfile;
-   CheckBox eductor,parent;
+    View view;
+    ImageView profile_image;
+    TextView numberOfPosts,nameProfile,EmailProfile,PhoneProfile,AdressProfile;
+    CheckBox eductor,parent;
 
 
     @Override
@@ -33,7 +33,7 @@ public class fragment_profile extends Fragment {
                              Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_profile, container, false);
 
-       // profile_image=view.findViewById(R.id.profile_image);
+        // profile_image=view.findViewById(R.id.profile_image);
         nameProfile=view.findViewById(R.id.fragment_profile_name);
         PhoneProfile=view.findViewById(R.id.fragment_profile_phone);
         EmailProfile=view.findViewById(R.id.fragment_profile_email);
@@ -42,7 +42,7 @@ public class fragment_profile extends Fragment {
         parent=view.findViewById(R.id.fragment_profile_parent);
 
 
-      Model.instance.getUserConnect(new ModelFireBase.connect() {
+        Model.instance.getUserConnect(new ModelFireBase.connect() {
             @Override
             public void onComplete(Profile profile) {
                 nameProfile.setText(profile.getName());

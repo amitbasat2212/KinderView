@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back2kinder"
-    tools:context=".Users.fragment_sign_up">
+    tools:context=".fragment_sign_up">
 
     <TextView
         android:id="@+id/textView2"

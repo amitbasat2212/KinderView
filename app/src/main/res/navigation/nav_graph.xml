@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_createPost"
-        android:name="com.example.kinderview.feed.fragment_create_post"
+        android:name="com.example.kinderview.fragment_create_post"
         android:label="fragment_create_post"
         tools:layout="@layout/fragment_create_post" >
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/edit_user"
-        android:name="com.example.kinderview.Users.fragment_edit_user"
+        android:name="com.example.kinderview.fragment_edit_user"
         android:label="fragment_edit_user"
         tools:layout="@layout/fragment_edit_user" />
     <fragment
@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_profile"
-        android:name="com.example.kinderview.Users.fragment_profile"
+        android:name="com.example.kinderview.fragment_profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <action android:id="@+id/action_global_home_page" app:destination="@id/home_page2" /><action android:id="@+id/action_global_fragment_profile" app:destination="@id/fragment_profile"/><action android:id="@+id/action_global_createPost" app:destination="@id/fragment_createPost"/>

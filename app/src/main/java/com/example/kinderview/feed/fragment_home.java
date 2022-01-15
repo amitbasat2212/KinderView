@@ -80,26 +80,26 @@ public class fragment_home extends Fragment {
         adapter.setListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view,int idview) {
-                    String stId = viewModel.getData().getValue().get(position).getId();
-                    String stUsername = viewModel.getData().getValue().get(position).getEmail();
-                    String status = viewModel.getData().getValue().get(position).getStatus();
-                    String likes = viewModel.getData().getValue().get(position).getLikes();
-                    String date = viewModel.getData().getValue().get(position).getDate();
-                    String url = viewModel.getData().getValue().get(position).getUrlImagePost();
-                    if(url==null){
-                        url="0";
-                    }
+                String stId = viewModel.getData().getValue().get(position).getId();
+                String stUsername = viewModel.getData().getValue().get(position).getEmail();
+                String status = viewModel.getData().getValue().get(position).getStatus();
+                String likes = viewModel.getData().getValue().get(position).getLikes();
+                String date = viewModel.getData().getValue().get(position).getDate();
+                String url = viewModel.getData().getValue().get(position).getUrlImagePost();
+                if(url==null){
+                    url="0";
+                }
 
-                    if(view.findViewById(R.id.row_feed_editpost).getId()==idview) {
-                        Navigation.findNavController(view).navigate(fragment_homeDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes, stId, url));
-                    }else
-                        if(view.findViewById(R.id.row_feed_deletepost).getId()==idview){
-                         viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {
-                             Model.instance.refreshPostList();
+                if(view.findViewById(R.id.row_feed_editpost).getId()==idview) {
+                    Navigation.findNavController(view).navigate(fragment_homeDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes, stId, url));
+                }else
+                if(view.findViewById(R.id.row_feed_deletepost).getId()==idview){
+                    viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {
+                        Model.instance.refreshPostList();
 
 
-                         });
-                    }
+                    });
+                }
 
             }
         });

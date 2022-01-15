@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_login"
-        android:name="com.example.kinderview.Users.fragment_login"
+        android:name="com.example.kinderview.fragment_login"
         android:label="fragment_login_fregment"
         tools:layout="@layout/fragment_login_fregment" >
         <action
@@ -20,7 +20,7 @@
     <include app:graph="@navigation/nav_graph" />
     <fragment
         android:id="@+id/fragment_sign_up"
-        android:name="com.example.kinderview.Users.fragment_sign_up"
+        android:name="com.example.kinderview.fragment_sign_up"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
 </navigation>

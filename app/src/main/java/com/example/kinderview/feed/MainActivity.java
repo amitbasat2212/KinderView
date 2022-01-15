@@ -2,7 +2,6 @@ package com.example.kinderview.feed;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.NavHost;
 
@@ -12,8 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.kinderview.R;
-import com.example.kinderview.Users.LoginActivity;
-import com.example.kinderview.Users.fragment_profile;
+import com.example.kinderview.LoginActivity;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.ModelFireBase;
 

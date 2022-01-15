@@ -1,4 +1,4 @@
-package com.example.kinderview.Users;
+package com.example.kinderview;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

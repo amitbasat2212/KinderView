@@ -1,4 +1,4 @@
-package com.example.kinderview.feed;
+package com.example.kinderview;
 
 import static android.app.Activity.RESULT_OK;
 

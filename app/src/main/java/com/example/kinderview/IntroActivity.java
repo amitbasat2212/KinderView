@@ -1,12 +1,10 @@
 package com.example.kinderview;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.kinderview.Users.LoginActivity;
 import com.example.kinderview.feed.MainActivity;
 import com.example.kinderview.model.Model;
 

@@ -1,4 +1,4 @@
-package com.example.kinderview.Users;
+package com.example.kinderview;
 
 import android.content.Intent;
 import android.os.Bundle;

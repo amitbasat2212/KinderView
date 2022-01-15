@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/kinderviewback"
-    tools:context=".Users.fragment_login"
+    tools:context=".fragment_login"
     tools:layout_editor_absoluteX="30dp"
     tools:layout_editor_absoluteY="-10dp">
 
