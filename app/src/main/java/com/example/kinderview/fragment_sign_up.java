@@ -152,17 +152,17 @@ public class fragment_sign_up extends Fragment {
                 Model.instance.sighin(profile, new ModelFireBase.sighup() {
                     @Override
                     public void onComplete(String email) {
-                        Navigation.findNavController(view).navigate(R.id.action_createPost_to_home_page23);
+                        toFeedActivity();
                     }
                 });
-
-            });
+         });
 
         }else{
             Model.instance.sighin(profile, new ModelFireBase.sighup() {
                 @Override
                 public void onComplete(String email) {
-                    Navigation.findNavController(view).navigate(R.id.action_createPost_to_home_page23);
+                    toFeedActivity();
+
                 }
             });
 
