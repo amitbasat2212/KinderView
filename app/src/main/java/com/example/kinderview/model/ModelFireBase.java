@@ -114,7 +114,7 @@ public class ModelFireBase {
 
     //storge part -images
     public void saveImagePost(Bitmap imagebitmap, String imagename, Model.SaveImagelistener listener) {
-        StorageReference imgRef = storageRef.child("users_posts/" + imagename);
+        StorageReference imgRef = storageRef.child("photos/" + imagename);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         imagebitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);

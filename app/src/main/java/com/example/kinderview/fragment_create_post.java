@@ -69,7 +69,7 @@ public class fragment_create_post extends Fragment {
         date = view.findViewById(R.id.fragment_create_date);
         text = view.findViewById(R.id.fragment_create_status);
 
-        createPost = view.findViewById(R.id.fragment_create_editbutton);
+        createPost = view.findViewById(R.id.fragment_create_createbutton);
         cancelBtn = view.findViewById(R.id.fragment_create_cancel);
 
         camBtn = view.findViewById(R.id.Fragment_create_camra);

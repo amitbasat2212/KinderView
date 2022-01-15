@@ -19,6 +19,15 @@ public class Profile {
     Boolean isParent=false;
     String phone;
     boolean coonect;
+    String urlImage;
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
 
     @NonNull
     public String getEmail() {

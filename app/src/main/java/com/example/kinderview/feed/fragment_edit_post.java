@@ -66,6 +66,7 @@ public class fragment_edit_post extends Fragment {
         edit_username = view.findViewById(R.id.fragment_edit_name);
         edit_date = view.findViewById(R.id.fragment_edit1_date);
         edit_status = view.findViewById(R.id.fragment_edit_status);
+        edit_username.setEnabled(false);
 
         editButton = view.findViewById(R.id.fragment_edit_editbutton);
         cancelButton = view.findViewById(R.id.fragment_edit_cancel);

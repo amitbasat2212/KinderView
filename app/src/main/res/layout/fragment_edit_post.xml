@@ -146,21 +146,27 @@
 
     <ImageButton
         android:id="@+id/fragment_edit_camra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="-3dp"
-        tools:layout_editor_absoluteY="457dp"
-        tools:src="@tools:sample/avatars"
-        tools:ignore="MissingConstraints" />
+        android:layout_width="94dp"
+        android:layout_height="72dp"
+        android:src="@android:drawable/ic_menu_camera"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.729" />
 
     <ImageButton
         android:id="@+id/fragment_edit_gallery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="303dp"
-        tools:layout_editor_absoluteY="500dp"
-        tools:src="@tools:sample/avatars"
-        tools:ignore="MissingConstraints" />
+        android:layout_width="88dp"
+        android:layout_height="78dp"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.725" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

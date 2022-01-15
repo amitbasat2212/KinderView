@@ -9,19 +9,55 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="260dp"
-        android:layout_height="72dp"
-        android:fontFamily="casual"
-        android:gravity="center_horizontal"
-        android:text="Sign in"
-        android:textSize="50dp"
+        android:layout_width="299dp"
+        android:layout_height="87dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Sign up"
+        android:textColor="#fff"
+        android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.973"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045" />
+        app:layout_constraintVertical_bias="0.024" />
+
+    <ImageView
+        android:id="@+id/fragment_sighup_profile"
+        android:layout_width="91dp"
+        android:layout_height="71dp"
+        android:src="@drawable/image2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.812" />
+
+    <ImageButton
+        android:id="@+id/fragment_sighup_camra"
+        android:layout_width="74dp"
+        android:layout_height="58dp"
+        android:src="@android:drawable/ic_menu_camera"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.808" />
+
+    <ImageButton
+        android:id="@+id/fragment_sighup_gallery"
+        android:layout_width="72dp"
+        android:layout_height="63dp"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.806" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutCompat2"
@@ -33,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.359">
+        app:layout_constraintVertical_bias="0.277">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -121,10 +157,10 @@
         android:text="Educator"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.092"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.831" />
+        app:layout_constraintVertical_bias="0.926" />
 
     <CheckBox
         android:id="@+id/signin_parent"
@@ -136,7 +172,7 @@
         app:layout_constraintHorizontal_bias="0.952"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.831" />
+        app:layout_constraintVertical_bias="0.926" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signin_login_btn"
@@ -149,7 +185,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.831" />
+        app:layout_constraintVertical_bias="0.926" />
 
     <ProgressBar
         android:id="@+id/fragment_sighup_progressbar"

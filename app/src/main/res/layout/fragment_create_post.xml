@@ -7,179 +7,169 @@
     android:background="@drawable/back2kinder"
     tools:context=".fragment_create_post">
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/fragment_create_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.811"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.938" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/fragment_create_createbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="Create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.242"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.938" />
+
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="298dp"
-        android:layout_height="81dp"
+        android:id="@+id/textView5"
+        android:layout_width="264dp"
+        android:layout_height="69dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Create post"
+        android:text="Create Post"
         android:textColor="#fff"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintHorizontal_bias="0.632"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.024" />
 
-    <Button
-        android:id="@+id/fragment_create_editbutton"
-        android:layout_width="144dp"
-        android:layout_height="43dp"
-        android:backgroundTint="#1F97ED"
-        android:text="Create"
+    <ImageView
+        android:id="@+id/fragment_image_post"
+        android:layout_width="112dp"
+        android:layout_height="108dp"
+        android:src="@drawable/image2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.941" />
+        app:layout_constraintVertical_bias="0.733" />
 
-    <Button
-        android:id="@+id/fragment_create_cancel"
-        android:layout_width="144dp"
-        android:layout_height="43dp"
-        android:backgroundTint="#1F97ED"
-        android:text="Cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.831"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.941" />
-
-    <TextView
-        android:id="@+id/fragment_create_name"
-        android:layout_width="143dp"
-        android:layout_height="45dp"
-        android:fontFamily="serif"
-        android:gravity="center_horizontal"
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView11"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.656"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="143dp"
-        android:layout_height="45dp"
-        android:fontFamily="serif"
-        android:gravity="center_horizontal"
-        android:text="Date:"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.271" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="143dp"
-        android:layout_height="45dp"
-        android:fontFamily="serif"
-        android:gravity="center_horizontal"
-        android:text="Profile:"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.183"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="143dp"
-        android:layout_height="45dp"
-        android:fontFamily="serif"
-        android:gravity="center_horizontal"
-        android:text="Text of Post"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.355"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/fragment_create_date"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="enter the date"
-        android:inputType="date"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView13"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/fragment_create_status"
-        android:layout_width="320dp"
-        android:layout_height="106dp"
-        android:ems="10"
-        android:gravity="center|center_horizontal|center_vertical"
-        android:hint="enter your text"
-        android:inputType="textPersonName"
-        android:textIsSelectable="false"
+        android:layout_margin="30dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
-        app:layout_constraintVertical_bias="0.068" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.242">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="@string/name"
+            android:paddingTop="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fragment_create_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:editable="false"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="@string/date"
+            android:paddingTop="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fragment_create_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="@string/status"
+            android:paddingTop="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fragment_create_status"
+                android:layout_width="match_parent"
+                android:layout_height="131dp"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <ProgressBar
         android:id="@+id/fragment_create_progressbar"
         style="?android:attr/progressBarStyle"
-        android:layout_width="163dp"
-        android:layout_height="148dp"
+        android:layout_width="157dp"
+        android:layout_height="132dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/Fragment_create_gallery"
-        android:layout_width="94dp"
-        android:layout_height="71dp"
-        android:src="@android:drawable/ic_menu_gallery"
+    <Button
+        android:id="@+id/fragment_edit_deletepicture"
+        android:layout_width="146dp"
+        android:layout_height="36dp"
+        android:text="Delete Image"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.751" />
+        app:layout_constraintVertical_bias="0.837" />
 
     <ImageButton
         android:id="@+id/Fragment_create_camra"
-        android:layout_width="94dp"
-        android:layout_height="71dp"
+        android:layout_width="79dp"
+        android:layout_height="64dp"
         android:src="@android:drawable/ic_menu_camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.754" />
+        app:layout_constraintVertical_bias="0.731" />
 
-    <ImageView
-        android:id="@+id/fragment_image_post"
-        android:layout_width="118dp"
-        android:layout_height="123dp"
-        android:layout_marginBottom="128dp"
-        android:src="@drawable/image2"
+    <ImageButton
+        android:id="@+id/Fragment_create_gallery"
+        android:layout_width="84dp"
+        android:layout_height="64dp"
+        android:src="@android:drawable/ic_menu_gallery"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.731" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
