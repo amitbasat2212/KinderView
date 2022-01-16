@@ -4,7 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FieldValue;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 public class Profile {
@@ -20,6 +25,7 @@ public class Profile {
     String phone;
     boolean coonect;
     String urlImage;
+    final public static String COLLECTION_NAME2 = "profiles";
 
     public String getUrlImage() {
         return urlImage;
@@ -113,5 +119,41 @@ public class Profile {
     public void setParent(Boolean parent) {
         isParent = parent;
     }
+
+    public Map<String,Object> tojson(){
+        Map<String,Object> json =new HashMap<>();
+        json.put("name",name);
+        json.put("email",email);
+        json.put("address",address);
+        json.put("passworsd",password);
+        json.put("isEducator",isEducator);
+        json.put("isParent",isParent);
+        json.put("phone",phone);
+        json.put("coonect",coonect);
+        json.put("urlImage",urlImage);
+
+        return json;
+
+    }
+
+    public static Profile create(Map<String, Object> json) {
+        String name1 = (String) json.get("name");
+        String email1 = (String) json.get("email");
+        String adress1 = (String) json.get("address");
+        String password1 = (String) json.get("passworsd");
+        String phone1 = (String) json.get("phone");
+        Boolean connect1 = (boolean) json.get("coonect");
+        String urlImagep = (String) json.get("urlImage");
+        Boolean isEducator1 = (boolean) json.get("isEducator");
+        Boolean isParent1 = (boolean) json.get("isParent");
+        Timestamp ts = (Timestamp)json.get("updateDate")    ;
+
+        Profile profile=new Profile(name1,adress1,email1,password1,isEducator1,isParent1,phone1);
+        profile.setUrlImage(urlImagep);
+        profile.setCoonect(connect1);
+
+        return profile;
+    }
+
 
 }

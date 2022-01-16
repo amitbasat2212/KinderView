@@ -239,5 +239,32 @@ public class ModelFireBase {
         }
     }
 
+    public void addProfile(Profile profile, Model.AddPostListener listener) {
+        Map<String, Object> json = profile.tojson();
+        db.collection(profile.COLLECTION_NAME2)
+                .document(profile.getEmail())
+                .set(json)
+                .addOnSuccessListener(unused -> listener.onComplete())
+                .addOnFailureListener(e -> listener.onComplete());
+    }
+
+    public void getProfileByemail(String ProfileEmail, Model.GetProfileById listener) {
+        db.collection(Profile.COLLECTION_NAME2)
+                .document(ProfileEmail)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        Profile profile = null;
+                        if (task.isSuccessful() & task.getResult()!= null){
+                            profile = Profile.create(task.getResult().getData());
+                        }
+                        listener.onComplete(profile);
+                    }
+                });
+
+    }
+
+
 
 }
