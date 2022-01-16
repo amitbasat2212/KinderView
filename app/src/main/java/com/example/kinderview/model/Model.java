@@ -27,7 +27,6 @@ public class Model {
     Profile profile1=new Profile("0","0","0","0",false,false,"0");
 
     public void deletePic(Post value, String picName, AddPostListener listener) {
-
         modelFirebase.deleteImagePost(value.UrlImagePost, picName, new AddPostListener() {
             @Override
             public void onComplete() {
@@ -141,7 +140,11 @@ public class Model {
     }
 
     public interface GetPostById{
-        void onComplete(Post student);
+        void onComplete(Post post);
+    }
+
+    public interface GetProfileById{
+        void onComplete(Profile profile);
     }
 
 
@@ -149,6 +152,8 @@ public class Model {
         modelFirebase.getPostById(studentId,listener);
         return null;
     }
+
+
 
     //Authentication
     public Boolean isSignIn (){
@@ -159,13 +164,18 @@ public class Model {
         modelFirebase.signUp(profile.email, profile.password, new ModelFireBase.sighup() {
             @Override
             public void onComplete(String email) {
-                executor.execute(new Runnable() {
+                modelFirebase.addProfile(profile, new AddPostListener() {
                     @Override
-                    public void run() {
-                        profile1 = profile;
-                        profile.setCoonect(true);
-                        AppLocalDb.db.profileDAO().insertAll(profile);
-                        sighup.onComplete(email);
+                    public void onComplete() {
+                        executor.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                profile1 = profile;
+                                profile.setCoonect(true);
+                                AppLocalDb.db.profileDAO().insertAll(profile);
+                                sighup.onComplete(email);
+                            }
+                        });
                     }
                 });
 
@@ -198,28 +208,42 @@ public class Model {
         modelFirebase.Login(email, password, new ModelFireBase.sighup() {
             @Override
             public void onComplete(String email) {
-                executor.execute(() -> {
-                    profile1 = getprofilebyEmail(email);
-                    profile1.setCoonect(true);
-                    AppLocalDb.db.profileDAO().insertAll(profile1);
-                    listener.onComplete(email);
-                });
+                    getprofilebyEmail(email, new GetProfileById() {
+                        @Override
+                        public void onComplete(Profile profile) {
+                            executor.execute(() -> {
+                                profile1.setCoonect(true);
+                                AppLocalDb.db.profileDAO().insertAll(profile1);
+                                listener.onComplete(email);
+                            });
+                        }
+                    });
+
             }
         });
     }
 
-    public Profile getprofilebyEmail(String email) {
-       List<Profile> profiles=AppLocalDb.db.profileDAO().loadprofilewithemail(email);
-       return profiles.get(0);
+    public void getprofilebyEmail(String email,GetProfileById getProfileById) {
+       modelFirebase.getProfileByemail(email, new GetProfileById() {
+           @Override
+           public void onComplete(Profile profile) {
+                getProfileById.onComplete(profile);
+           }
+       });
+
 
     }
 
     Profile profiles;
     public void getUserConnect(ModelFireBase.connect connect) {
         modelFirebase.connected();
-            executor.execute(() -> {
-                profiles=getprofilebyEmail(modelFirebase.currentUser.getEmail());
-                connect.onComplete(profiles);
+
+           getprofilebyEmail(modelFirebase.currentUser.getEmail(), new GetProfileById() {
+                    @Override
+                    public void onComplete(Profile profile) {
+                        connect.onComplete(profile);
+                    }
+
             });
 
     }
