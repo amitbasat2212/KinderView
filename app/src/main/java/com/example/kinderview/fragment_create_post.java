@@ -99,6 +99,8 @@ public class fragment_create_post extends Fragment {
         progressBar = view.findViewById(R.id.fragment_create_progressbar);
         progressBar.setVisibility(View.GONE);
 
+        name.setEnabled(false);
+
         createPost.setOnClickListener(v -> save());
 
         camBtn.setOnClickListener(v -> {

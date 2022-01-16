@@ -222,8 +222,7 @@ public class Model {
                 connect.onComplete(profiles);
             });
 
-
-
     }
+
 
 }

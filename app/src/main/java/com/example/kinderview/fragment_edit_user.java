@@ -96,9 +96,15 @@ public class fragment_edit_user extends Fragment {
 
         Profile profile = new Profile(name3, address3,email3,password3, educated3, parent3, phone3);
 
+        // action_edit_user_to_fragment_profile
 
-
-        Navigation.findNavController(view).navigate(R.id.action_edit_user_to_fragment_profile);
+        Model.instance.sighin(profile, new ModelFireBase.sighup() {
+            @Override
+            public void onComplete(String email) {
+                Navigation.findNavController(view).navigate(fragment_edit_userDirections.actionEditUserToFragmentProfile(profile.getName(),profile.getParent(),
+                        profile.getEducator(), profile.getPhone(),profile.getAddress(),profile.getEmail(),profile.getPassword()));
+            }
+        });
 
     }
 
