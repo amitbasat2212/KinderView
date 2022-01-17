@@ -56,6 +56,7 @@ public class fragment_create_post extends Fragment {
     ImageButton galleryBtn;
     Bitmap imageBitmap;
     TextView name,Email;
+    Profile profile1;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -87,7 +88,9 @@ public class fragment_create_post extends Fragment {
                     public void run() {
                         name.setText(profile.getEmail());
                         if (profile.getUrlImage() != null) {
-                            Picasso.get().load(profile.getUrlImage()).into(imageProfil);
+                            profile1 = profile;
+                            Picasso.get().load(profile.getUrlImage()).resize(50, 50)
+                                    .centerCrop().into(imageProfil);
                         }
                     }
                 });
@@ -162,7 +165,7 @@ public class fragment_create_post extends Fragment {
 
 
         Post post = new Post(id, status, username, date_post, likes);
-        post.setProfilePic(imageProfil.toString());
+        post.setProfilePic(profile1.getUrlImage());
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, id + ".jpg", url -> {
                post.setImagePostUrl(url);

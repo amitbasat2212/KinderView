@@ -207,15 +207,14 @@ public class Model {
 
         modelFirebase.Login(email, password, new ModelFireBase.sighup() {
             @Override
-            public void onComplete(String email) {
+            public void onComplete(String email1) {
                     getprofilebyEmail(email, new GetProfileById() {
                         @Override
                         public void onComplete(Profile profile) {
-                            executor.execute(() -> {
-                                profile1.setCoonect(true);
-                                AppLocalDb.db.profileDAO().insertAll(profile1);
-                                listener.onComplete(email);
-                            });
+
+                              modelFirebase.connected();
+                              listener.onComplete(profile.email);
+
                         }
                     });
 
@@ -234,19 +233,18 @@ public class Model {
 
     }
 
-    Profile profiles;
-    public void getUserConnect(ModelFireBase.connect connect) {
-        modelFirebase.connected();
 
-           getprofilebyEmail(modelFirebase.currentUser.getEmail(), new GetProfileById() {
-                    @Override
-                    public void onComplete(Profile profile) {
-                        connect.onComplete(profile);
-                    }
+    public void getUserConnect(ModelFireBase.connect connect) {
+
+        if(modelFirebase.isSignIn()) {
+            getprofilebyEmail(modelFirebase.currentUser.getEmail(), new GetProfileById() {
+                @Override
+                public void onComplete(Profile profile) {
+                    connect.onComplete(profile);
+                }
 
             });
-
-
+        }
 
     }
 

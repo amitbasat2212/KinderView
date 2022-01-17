@@ -163,7 +163,8 @@ public class fragment_home extends Fragment {
             tv_likes.setText(post.getLikes());
             tv_status.setText(post.getStatus());
             if (post.getProfilePic()!= null) {
-                Picasso.get().load(post.getProfilePic()).into(imgview_propic);
+                Picasso.get().load(post.getProfilePic()).resize(50, 50)
+                        .centerCrop().into(imgview_propic);
             }
 
             imgdelete.setVisibility(View.GONE);
@@ -192,7 +193,8 @@ public class fragment_home extends Fragment {
 
             if (post.getUrlImagePost() != null) {
                 Picasso.get()
-                        .load(post.getUrlImagePost())
+                        .load(post.getUrlImagePost()).resize(50, 50)
+                        .centerCrop()
                         .into(imgview_postpic);
             }
 
