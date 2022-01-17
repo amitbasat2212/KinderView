@@ -165,8 +165,6 @@ public class fragment_sign_up extends Fragment {
 
                 }
             });
-
-
         }
 
 
