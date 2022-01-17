@@ -69,6 +69,9 @@
         <action
             android:id="@+id/action_edit_user_to_fragment_profile"
             app:destination="@id/fragment_profile" />
+        <argument
+            android:name="urlImage"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/fragment_edit_post"
@@ -125,6 +128,9 @@
             app:argType="string" />
         <argument
             android:name="password"
+            app:argType="string" />
+        <argument
+            android:name="urlImage"
             app:argType="string" />
     </fragment>
     <action android:id="@+id/action_global_home_page" app:destination="@id/home_page2" /><action android:id="@+id/action_global_fragment_profile" app:destination="@id/fragment_profile"/><action android:id="@+id/action_global_createPost" app:destination="@id/fragment_createPost"/>

@@ -60,20 +60,25 @@ public class fragment_profile extends Fragment {
                 eductor.setChecked(profile.getEducator());
                 parent.setChecked(profile.getParent());
 
+
                 Model.instance.mainThread.post(new Runnable() {
                     @Override
                     public void run() {
-
                         edit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Navigation.findNavController(view).navigate(fragment_profileDirections.actionFragmentProfileToEditUser(profile.getName(),profile.getParent(),
-                                        profile.getEducator(), profile.getPhone(),profile.getAddress(),profile.getEmail(),profile.getPassword()));
-                            }
-                        });
 
+                                Navigation.findNavController(view).navigate(fragment_profileDirections.actionFragmentProfileToEditUser(profile.getName(),profile.getParent(),
+                                        profile.getEducator(), profile.getPhone(),profile.getAddress(),profile.getEmail(),profile.getPassword(), profile.getUrlImage()));
+                            }
+
+                        });
                         if (profile.getUrlImage() != null) {
+
                             Picasso.get().load(profile.getUrlImage()).into(profile_image);
+                        }
+                        else{
+                            profile.setUrlImage("0");
                         }
                     }
                 });
