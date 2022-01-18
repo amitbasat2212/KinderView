@@ -169,7 +169,7 @@ public class Model {
         return modelFirebase.isSignIn();
     }
 
-    public void sighin(Profile profile,ModelFireBase.sighup sighup) {
+    public void sighup(Profile profile,ModelFireBase.sighup sighup) {
         modelFirebase.signUp(profile.email, profile.password, new ModelFireBase.sighup() {
             @Override
             public void onComplete(String email) {

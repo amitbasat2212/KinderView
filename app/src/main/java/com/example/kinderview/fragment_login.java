@@ -1,9 +1,12 @@
 package com.example.kinderview;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -18,6 +21,9 @@ import com.example.kinderview.R;
 import com.example.kinderview.feed.MainActivity;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.ModelFireBase;
+import com.example.kinderview.model.Profile;
+import com.example.kinderview.viewModel.CreatePostViewModel;
+import com.example.kinderview.viewModel.LoginViewModel;
 
 
 public class fragment_login extends Fragment {
@@ -25,6 +31,14 @@ public class fragment_login extends Fragment {
     EditText email, password;
     ProgressBar progressBar;
     Button loginbutton,signinbutton;
+    LoginViewModel loginViewModel;
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,13 +76,15 @@ public class fragment_login extends Fragment {
         String password1 = password.getText().toString();
         String email1 = email.getText().toString();
 
+        Profile profile = new Profile("0","0",email1,password1,false,false,"0");
+
 
         if (!(password1.isEmpty() || email1.isEmpty() ))
         {
             progressBar.setVisibility(View.VISIBLE);
             loginbutton.setEnabled(false);
             signinbutton.setEnabled(false);
-            Model.instance.Login(email1,password1, email -> {
+            loginViewModel.Login(profile, email -> {
                 if (email != null ) {
                     toFeedActivity();
                 } else {

@@ -2,14 +2,17 @@ package com.example.kinderview;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
@@ -29,6 +32,8 @@ import com.example.kinderview.feed.MainActivity;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Profile;
+import com.example.kinderview.viewModel.LoginViewModel;
+import com.example.kinderview.viewModel.SignupViewModel;
 
 import java.io.InputStream;
 
@@ -44,6 +49,14 @@ public class fragment_sign_up extends Fragment {
     ImageView imageprofile;
     Bitmap imageBitmap;
     ImageButton CamrabUTTON,GallertButton;
+    SignupViewModel signupViewModel;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        signupViewModel = new ViewModelProvider(this).get(SignupViewModel.class);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -153,7 +166,7 @@ public class fragment_sign_up extends Fragment {
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, profile.getEmail() + ".jpg", url -> {
                 profile.setUrlImage(url);
-                Model.instance.sighin(profile, new ModelFireBase.sighup() {
+                signupViewModel.sighup(profile, new ModelFireBase.sighup() {
                     @Override
                     public void onComplete(String email) {
                         toFeedActivity();
@@ -162,7 +175,7 @@ public class fragment_sign_up extends Fragment {
          });
 
         }else{
-            Model.instance.sighin(profile, new ModelFireBase.sighup() {
+            signupViewModel.sighup(profile, new ModelFireBase.sighup() {
                 @Override
                 public void onComplete(String email) {
                     toFeedActivity();
