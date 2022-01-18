@@ -190,6 +190,8 @@ public class fragment_edit_user extends Fragment {
 
         Profile profile1 = new Profile(name3, address3, email3, password3, educated3, parent3, phone3);
 
+        Model.instance.updatePassword(profile1.getPassword());
+
         if (imageBitmap != null) {
             Model.instance.saveImage(imageBitmap, email3 + ".jpg", url -> {
                 profile1.setUrlImage(url);

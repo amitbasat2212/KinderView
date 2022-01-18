@@ -181,6 +181,20 @@ public class ModelFireBase {
 
     }
 
+    public void updatePassword(String newPassword){
+    //    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        currentUser.updatePassword(newPassword)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("TAG", "User password updated.");
+                        }
+                    }
+                });
+    }
+
     public void Login (String email, String password, sighup listener){
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {

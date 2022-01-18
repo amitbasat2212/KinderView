@@ -162,7 +162,9 @@ public class Model {
         return null;
     }
 
-
+    public void updatePassword(String newPassword){
+        modelFirebase.updatePassword(newPassword);
+    }
 
     //Authentication
     public Boolean isSignIn (){
