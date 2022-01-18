@@ -30,7 +30,6 @@ import android.widget.Toast;
 import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Post;
-import com.example.kinderview.viewModel.CreatePostViewModel;
 import com.example.kinderview.viewModel.EditViewModel;
 import com.squareup.picasso.Picasso;
 
@@ -118,7 +117,7 @@ public class fragment_edit_post extends Fragment {
         });
 
         cancelButton.setOnClickListener(v ->
-                Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page2));
+                Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page));
 
 
         return view;
@@ -180,7 +179,7 @@ public class fragment_edit_post extends Fragment {
                 post.setImagePostUrl(url);
                 editViewModel.editPost(post,()->
                 {
-                    Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page2);
+                    Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page);
 
                 });
             });
@@ -189,7 +188,7 @@ public class fragment_edit_post extends Fragment {
             post.setImagePostUrl(urlImage);
             editViewModel.editPost(post,()->
             {
-                Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page2);
+                Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page);
             });
         }
 

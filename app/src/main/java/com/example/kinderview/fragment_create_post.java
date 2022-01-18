@@ -114,7 +114,11 @@ public class fragment_create_post extends Fragment {
             openGallery();
         });
 
-    return view;
+        cancelBtn.setOnClickListener(v ->
+                Navigation.findNavController(view).navigate(R.id.action_createPost_to_home_page23));
+
+
+        return view;
 }
 
     public void openCam() {

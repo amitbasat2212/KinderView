@@ -217,16 +217,20 @@ public class Model {
         modelFirebase.Login(email, password, new ModelFireBase.sighup() {
             @Override
             public void onComplete(String email1) {
+                if (email1 != null) {
                     getprofilebyEmail(email, new GetProfileById() {
                         @Override
                         public void onComplete(Profile profile) {
 
-                              modelFirebase.connected();
-                              listener.onComplete(profile.email);
+                            modelFirebase.connected();
+                            listener.onComplete(profile.email);
 
                         }
                     });
 
+                }else{
+                    listener.onComplete(null);
+                }
             }
         });
     }

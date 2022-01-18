@@ -69,10 +69,14 @@ public class fragment_login extends Fragment {
             loginbutton.setEnabled(false);
             signinbutton.setEnabled(false);
             Model.instance.Login(email1,password1, email -> {
-                if (email != null) {
+                if (email != null ) {
                     toFeedActivity();
                 } else {
                     Toast.makeText(getContext(), "User not Existed", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    loginbutton.setEnabled(true);
+                    signinbutton.setEnabled(true);
+                    return;
                 }
             });
         }
