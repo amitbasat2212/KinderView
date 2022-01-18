@@ -8,17 +8,6 @@
     tools:context=".fragment_profile">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/fragment_profile_edituser2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="delete"
-        app:layout_constraintBaseline_toBaselineOf="@+id/fragment_profile_edituser"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.776"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
         android:id="@+id/fragment_profile_edituser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +15,6 @@
         android:text="edit "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.291"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.822" />

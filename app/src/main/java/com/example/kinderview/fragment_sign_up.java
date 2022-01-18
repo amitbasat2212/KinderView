@@ -37,7 +37,7 @@ public class fragment_sign_up extends Fragment {
     private static final int REQUEST_IMAGE_PIC = 2;
     EditText password, email, name, phone, address;
     CheckBox eductor,parent;
-    Button btnlogin;
+    Button btnlogin, btncanel;
     String emailPattern ="[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressBar progressBar;
     View view;
@@ -63,11 +63,15 @@ public class fragment_sign_up extends Fragment {
         btnlogin = view.findViewById(R.id.signin_login_btn);
         progressBar = view.findViewById(R.id.fragment_sighup_progressbar);
         progressBar.setVisibility(View.GONE);
-
-
+        btncanel = view.findViewById(R.id.signin_cancel_btn);
 
         btnlogin.setOnClickListener(v -> {
             perforAuth();
+        });
+
+        btncanel.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(R.id.action_fragment_sign_up_to_fragment_login);
+
         });
 
         CamrabUTTON.setOnClickListener(v -> {

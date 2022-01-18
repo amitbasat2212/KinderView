@@ -150,7 +150,22 @@ public class ModelFireBase {
 
     }
 
+    public void deleteProfilePic(String url, String picName, Model.AddPostListener listener) {
+        StorageReference desertRef = storageRef.child("photos/" + picName);
 
+        desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                listener.onComplete();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                listener.onComplete();
+            }
+        });
+
+    }
 
     //Authenticantion:
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();

@@ -117,6 +117,9 @@ public class fragment_edit_post extends Fragment {
             openGallery();
         });
 
+        cancelButton.setOnClickListener(v ->
+                Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page2));
+
 
         return view;
     }

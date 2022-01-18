@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.kinderview.R;
 import com.example.kinderview.feed.fragment_edit_postArgs;
+import com.example.kinderview.feed.fragment_edit_postDirections;
 import com.example.kinderview.feed.fragment_homeDirections;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.ModelFireBase;
@@ -39,7 +40,7 @@ public class fragment_edit_user extends Fragment {
 
     EditText email, password, name, phone, address;
     CheckBox isEducator, isParent;
-    Button edit;
+    Button edit, cancel, deletepic;
     ProgressBar progressBar;
     String email2, password2, name2, phone2, address2, urlImage;
     Boolean isEducator2, isPaernt2;
@@ -70,6 +71,8 @@ public class fragment_edit_user extends Fragment {
         progressBar = view.findViewById(R.id.fragment_edituser_progressbar);
         progressBar.setVisibility(View.GONE);
         picImage = view.findViewById(R.id.edituser_profilepic);
+        cancel = view.findViewById(R.id.edituser_cancel);
+        deletepic = view.findViewById(R.id.edituser_deletepic);
 
         email2 = fragment_edit_userArgs.fromBundle(getArguments()).getEmail();
         name2 = fragment_edit_userArgs.fromBundle(getArguments()).getName();
@@ -91,6 +94,17 @@ public class fragment_edit_user extends Fragment {
         isEducator.setChecked(isEducator2);
         isParent.setChecked(isPaernt2);
         password.setText(password2);
+
+        cancel.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(R.id.action_edit_user_to_fragment_profile);
+        });
+
+        deletepic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete();
+            }
+        });
 
 
         edit.setOnClickListener(new View.OnClickListener() {
@@ -198,4 +212,30 @@ public class fragment_edit_user extends Fragment {
             });
         }
     }
+
+    private void delete() {
+        progressBar.setVisibility(View.VISIBLE);
+        cancel.setEnabled(false);
+        edit.setEnabled(false);
+        deletepic.setEnabled(false);
+
+
+        Profile profile2 = new Profile(name2, address2, email2, password2, isEducator2, isPaernt2, phone2);
+
+        if(profile2.getUrlImage()!="0") {
+            Model.instance.deleteProfilePic(profile2, email2 + ".jpg", () ->{
+                urlImage="0";
+                profile2.setUrlImage(urlImage);
+                Navigation.findNavController(view).navigate(fragment_edit_userDirections.actionGlobalEditUser(profile2.getName(), profile2.getParent(), profile2.getEducator(), profile2.getPhone(),
+                        profile2.getAddress(), profile2.getEmail(), profile2.getPassword(), profile2.getUrlImage())); } );
+        }
+        else
+        {
+            Toast.makeText(getContext(), "No picture exist", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+
+
 }

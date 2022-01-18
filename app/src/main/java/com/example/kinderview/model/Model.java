@@ -36,6 +36,15 @@ public class Model {
         });
     }
 
+    public void deleteProfilePic(Profile value, String picName, AddPostListener listener) {
+        modelFirebase.deleteProfilePic(value.urlImage, picName, new AddPostListener() {
+            @Override
+            public void onComplete() {
+                listener.onComplete();
+            }
+        });
+    }
+
 
     public interface SaveImagelistener{
         void onComplete(String url);

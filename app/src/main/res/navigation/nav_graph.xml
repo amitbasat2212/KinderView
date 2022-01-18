@@ -135,4 +135,5 @@
     </fragment>
     <action android:id="@+id/action_global_home_page" app:destination="@id/home_page2" /><action android:id="@+id/action_global_fragment_profile" app:destination="@id/fragment_profile"/><action android:id="@+id/action_global_createPost" app:destination="@id/fragment_createPost"/>
     <action android:id="@+id/action_global_fragment_edit_post" app:destination="@id/fragment_edit_post"/>
+    <action android:id="@+id/action_global_edit_user" app:destination="@id/edit_user" />
 </navigation>
