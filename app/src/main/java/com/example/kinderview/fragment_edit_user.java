@@ -237,7 +237,7 @@ public class fragment_edit_user extends Fragment {
 
         if(profile2.getUrlImage()!="0") {
             Model.instance.deleteProfilePic(profile2, email2 + ".jpg", () ->{
-                urlImage="0";
+                urlImage="https://firebasestorage.googleapis.com/v0/b/kinderview-9d217.appspot.com/o/photos%2Fprofile.jpg?alt=media&token=4e25a1f2-fba2-4fb3-898b-2a9616861188";
                 profile2.setUrlImage(urlImage);
                 Navigation.findNavController(view).navigate(fragment_edit_userDirections.actionGlobalEditUser(profile2.getName(), profile2.getParent(), profile2.getEducator(), profile2.getPhone(),
                         profile2.getAddress(), profile2.getEmail(), profile2.getPassword(), profile2.getUrlImage())); } );
