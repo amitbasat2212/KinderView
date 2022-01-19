@@ -166,6 +166,10 @@ public class Model {
         modelFirebase.updatePassword(newPassword);
     }
 
+    public void updateEmail(String newEmail){
+        modelFirebase.updateEmail(newEmail);
+    }
+
     //Authentication
     public Boolean isSignIn (){
         return modelFirebase.isSignIn();

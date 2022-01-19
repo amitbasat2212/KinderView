@@ -195,6 +195,19 @@ public class ModelFireBase {
                 });
     }
 
+    public void updateEmail(String newEmail)
+    {
+        currentUser.updateEmail("user@example.com")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("TAG", "User email address updated.");
+                        }
+                    }
+                });
+    }
+
     public void Login (String email, String password, sighup listener){
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
