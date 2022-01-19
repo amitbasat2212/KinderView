@@ -47,7 +47,7 @@ public class fragment_edit_post extends Fragment {
     EditViewModel editViewModel;
     Button editButton, cancelButton, deletepic;
     ImageButton camrabtn,gallerybtn;
-    String id, status,username,date_post,likes,urlImage;
+    String id, status,username,date_post,urlImage;
     ImageView postImage;
     Bitmap imageBitmap;
 
@@ -82,7 +82,6 @@ public class fragment_edit_post extends Fragment {
         status = fragment_edit_postArgs.fromBundle(getArguments()).getStatus();
         username = fragment_edit_postArgs.fromBundle(getArguments()).getUsername();
         date_post = fragment_edit_postArgs.fromBundle(getArguments()).getDate();
-        likes = fragment_edit_postArgs.fromBundle(getArguments()).getLikes();
         urlImage = fragment_edit_postArgs.fromBundle(getArguments()).getUrlpostedit();
 
 
@@ -170,9 +169,8 @@ public class fragment_edit_post extends Fragment {
         String status1 = edit_status.getText().toString();
         String username1 = username;
         String date_post1 = edit_date.getText().toString();
-        String likes1 = likes;
 
-        Post post = new Post(id1, status1, username1, date_post1, likes1);
+        Post post = new Post(id1, status1, username1, date_post1);
 
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, id + ".jpg", url -> {
@@ -200,13 +198,13 @@ public class fragment_edit_post extends Fragment {
         cancelButton.setEnabled(false);
         deletepic.setEnabled(false);
 
-        Post post = new Post(id, status, username, date_post, likes);
+        Post post = new Post(id, status, username, date_post);
         post.setUrlImagePost(urlImage);
 
         if(post.getUrlImagePost()!="0") {
             editViewModel.deletePic(post, id + ".jpg", () -> {
                 urlImage="0";
-                Navigation.findNavController(view).navigate(fragment_edit_postDirections.actionGlobalFragmentEditPost(username, date_post, status, likes, id, urlImage));
+                Navigation.findNavController(view).navigate(fragment_edit_postDirections.actionGlobalFragmentEditPost(username, date_post, status, id, urlImage));
             });
 
         }
