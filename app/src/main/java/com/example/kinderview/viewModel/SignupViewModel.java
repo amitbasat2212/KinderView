@@ -20,4 +20,9 @@ public class SignupViewModel extends ViewModel {
         return data;
     }
 
+    public MutableLiveData<Profile> editProfile(Profile profile, Model.AddPostListener listener) {
+        data.setValue(profile);
+        Model.instance.editprofile(profile,listener);
+        return data;
+    }
 }

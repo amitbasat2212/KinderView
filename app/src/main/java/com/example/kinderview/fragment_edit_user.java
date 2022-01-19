@@ -190,15 +190,12 @@ public class fragment_edit_user extends Fragment {
 
         Profile profile1 = new Profile(name3, address3, email3, password3, educated3, parent3, phone3);
 
-        Model.instance.updatePassword(profile1.getPassword());
-        Model.instance.updateEmail(profile1.getEmail());
-
         if (imageBitmap != null) {
             Model.instance.saveImage(imageBitmap, email3 + ".jpg", url -> {
                 profile1.setUrlImage(url);
-                signupViewModel.sighup(profile1, new ModelFireBase.sighup() {
+                signupViewModel.editProfile(profile1, new Model.AddPostListener() {
                     @Override
-                    public void onComplete(String email) {
+                    public void onComplete() {
                         Model.instance.mainThread.post(new Runnable() {
                             @Override
                             public void run() {
@@ -208,18 +205,17 @@ public class fragment_edit_user extends Fragment {
                         });
                     }
                 });
-
             });
-
         } else {
             profile1.setUrlImage(urlImage);
-            signupViewModel.sighup(profile1, new ModelFireBase.sighup() {
+            signupViewModel.editProfile(profile1, new Model.AddPostListener() {
                 @Override
-                public void onComplete(String email) {
+                public void onComplete() {
                     Model.instance.mainThread.post(new Runnable() {
                         @Override
                         public void run() {
                             Navigation.findNavController(view).navigate(R.id.action_edit_user_to_fragment_profile);
+
                         }
                     });
                 }
@@ -227,18 +223,19 @@ public class fragment_edit_user extends Fragment {
         }
     }
 
+    String defaultImage = "https://firebasestorage.googleapis.com/v0/b/kinderview-9d217.appspot.com/o/photos%2Fprofile.jpg?alt=media&token=4e25a1f2-fba2-4fb3-898b-2a9616861188";
+
     private void delete() {
         progressBar.setVisibility(View.VISIBLE);
         cancel.setEnabled(false);
         edit.setEnabled(false);
         deletepic.setEnabled(false);
 
-
         Profile profile2 = new Profile(name2, address2, email2, password2, isEducator2, isPaernt2, phone2);
 
-        if(profile2.getUrlImage()!="0") {
+        if(profile2.getUrlImage()!=defaultImage) {
             Model.instance.deleteProfilePic(profile2, email2 + ".jpg", () ->{
-                urlImage="https://firebasestorage.googleapis.com/v0/b/kinderview-9d217.appspot.com/o/photos%2Fprofile.jpg?alt=media&token=4e25a1f2-fba2-4fb3-898b-2a9616861188";
+                urlImage=defaultImage;
                 profile2.setUrlImage(urlImage);
                 Navigation.findNavController(view).navigate(fragment_edit_userDirections.actionGlobalEditUser(profile2.getName(), profile2.getParent(), profile2.getEducator(), profile2.getPhone(),
                         profile2.getAddress(), profile2.getEmail(), profile2.getPassword(), profile2.getUrlImage())); } );

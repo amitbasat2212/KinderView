@@ -60,7 +60,6 @@ public class fragment_profile extends Fragment {
                 eductor.setChecked(profile.getEducator());
                 parent.setChecked(profile.getParent());
 
-
                 Model.instance.mainThread.post(new Runnable() {
                     @Override
                     public void run() {

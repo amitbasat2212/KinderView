@@ -120,6 +120,10 @@ public class Model {
         void onComplete();
     }
 
+    public interface editUserListener{
+        void onComplete();
+    }
+
     public void addPost(Post post, AddPostListener listener){
         modelFirebase.addPost(post, () -> {
             refreshPostList();
@@ -159,6 +163,7 @@ public class Model {
 
     public Post getPostById(String studentId, GetPostById listener) {
         modelFirebase.getPostById(studentId,listener);
+
         return null;
     }
 
@@ -197,13 +202,18 @@ public class Model {
                 }else{
                     sighup.onComplete(null);
                 }
-
             }
         });
-
-
-
     }
+
+
+    public void editprofile(Profile profile,AddPostListener addPostListener){
+        modelFirebase.addProfile(profile,addPostListener);
+        updatePassword(profile.getPassword());
+        updateEmail(profile.getEmail());
+    }
+
+
     public void sighout(ModelFireBase.sighout sighout) {
         profile1.setCoonect(false);
         modelFirebase.sighout(new ModelFireBase.sighout() {
