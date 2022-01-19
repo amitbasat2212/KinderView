@@ -174,7 +174,7 @@ public class fragment_edit_post extends Fragment {
         Post post = new Post(id1, status1, username1, date_post1);
 
         if(status1.isEmpty() &&imageBitmap==null){
-            Toast.makeText(getContext(), "the status or pictere is empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "the status or picture is empty", Toast.LENGTH_LONG).show();
             progressBar.setVisibility(View.GONE);
             editButton.setEnabled(true);
             cancelButton.setEnabled(true);

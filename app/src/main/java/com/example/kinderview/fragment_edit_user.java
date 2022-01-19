@@ -55,6 +55,7 @@ public class fragment_edit_user extends Fragment {
     ImageView picImage;
     Bitmap imageBitmap;
     SignupViewModel signupViewModel;
+    String defaultImage = "https://firebasestorage.googleapis.com/v0/b/kinderview-9d217.appspot.com/o/photos%2Fprofile.jpg?alt=media&token=90ca0472-34fc-42b4-9dc3-4d6d15d85fad";
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -96,6 +97,10 @@ public class fragment_edit_user extends Fragment {
 
         if (urlImage != null) {
             Picasso.get().load(urlImage).into(picImage);
+        }
+
+        if (urlImage == null){
+            Picasso.get().load(defaultImage).into(picImage);
         }
 
         email.setText(email2);
@@ -224,8 +229,6 @@ public class fragment_edit_user extends Fragment {
             });
         }
     }
-
-    String defaultImage = "https://firebasestorage.googleapis.com/v0/b/kinderview-9d217.appspot.com/o/photos%2Fprofile.jpg?alt=media&token=4e25a1f2-fba2-4fb3-898b-2a9616861188";
 
     private void delete() {
         progressBar.setVisibility(View.VISIBLE);
