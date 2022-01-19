@@ -117,6 +117,8 @@ public class fragment_edit_user extends Fragment {
             }
         });
 
+        password.setEnabled(false);
+        email.setEnabled(false);
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override

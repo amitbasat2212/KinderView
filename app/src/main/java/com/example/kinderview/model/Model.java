@@ -167,13 +167,6 @@ public class Model {
         return null;
     }
 
-    public void updatePassword(String newPassword){
-        modelFirebase.updatePassword(newPassword);
-    }
-
-    public void updateEmail(String newEmail){
-        modelFirebase.updateEmail(newEmail);
-    }
 
     //Authentication
     public Boolean isSignIn (){
@@ -209,8 +202,6 @@ public class Model {
 
     public void editprofile(Profile profile,AddPostListener addPostListener){
         modelFirebase.addProfile(profile,addPostListener);
-        updatePassword(profile.getPassword());
-        updateEmail(profile.getEmail());
     }
 
 
