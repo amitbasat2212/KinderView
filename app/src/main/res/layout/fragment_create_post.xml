@@ -134,19 +134,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/fragment_edit_deletepicture"
-        android:layout_width="146dp"
-        android:layout_height="36dp"
-        android:text="Delete Image"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.837" />
-
     <ImageButton
         android:id="@+id/Fragment_create_camra"
         android:layout_width="79dp"

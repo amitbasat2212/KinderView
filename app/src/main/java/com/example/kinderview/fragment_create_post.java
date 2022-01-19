@@ -175,6 +175,13 @@ public class fragment_create_post extends Fragment {
         }else{
             post.setProfilePic("0");
         }
+        if(status.isEmpty() &&imageBitmap==null){
+            Toast.makeText(getContext(), "the status or pictere is empty", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.GONE);
+            createPost.setEnabled(true);
+            cancelBtn.setEnabled(true);
+            return;
+        }
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, id + ".jpg", url -> {
                post.setImagePostUrl(url);
