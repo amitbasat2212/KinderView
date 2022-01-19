@@ -133,8 +133,6 @@ public class fragment_edit_user extends Fragment {
             openGallery();
         });
 
-        email.setEnabled(false);
-
         // Inflate the layout for this fragment
         return view;
     }
@@ -179,6 +177,8 @@ public class fragment_edit_user extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
 
         edit.setEnabled(false);
+        cancel.setEnabled(false);
+        deletepic.setEnabled(false);
 
         String address3 = address.getText().toString();
         String email3 = email.getText().toString();
@@ -191,6 +191,7 @@ public class fragment_edit_user extends Fragment {
         Profile profile1 = new Profile(name3, address3, email3, password3, educated3, parent3, phone3);
 
         Model.instance.updatePassword(profile1.getPassword());
+        Model.instance.updateEmail(profile1.getEmail());
 
         if (imageBitmap != null) {
             Model.instance.saveImage(imageBitmap, email3 + ".jpg", url -> {
