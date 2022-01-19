@@ -165,12 +165,21 @@ public class fragment_edit_post extends Fragment {
 
         editButton.setEnabled(false);
         cancelButton.setEnabled(false);
+        deletepic.setEnabled(false);
         String id1 =id;
         String status1 = edit_status.getText().toString();
         String username1 = username;
         String date_post1 = edit_date.getText().toString();
 
         Post post = new Post(id1, status1, username1, date_post1);
+
+        if(status1.isEmpty() &&imageBitmap==null){
+            Toast.makeText(getContext(), "the status or pictere is empty", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.GONE);
+            editButton.setEnabled(true);
+            cancelButton.setEnabled(true);
+            return;
+        }
 
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, id + ".jpg", url -> {
@@ -201,7 +210,7 @@ public class fragment_edit_post extends Fragment {
         Post post = new Post(id, status, username, date_post);
         post.setUrlImagePost(urlImage);
 
-        if(post.getUrlImagePost()!="0") {
+        if(!post.getUrlImagePost().equals("0")) {
             editViewModel.deletePic(post, id + ".jpg", () -> {
                 urlImage="0";
                 Navigation.findNavController(view).navigate(fragment_edit_postDirections.actionGlobalFragmentEditPost(username, date_post, status, id, urlImage));
@@ -211,6 +220,10 @@ public class fragment_edit_post extends Fragment {
         else
         {
             Toast.makeText(getContext(), "No picture exist", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.GONE);
+            editButton.setEnabled(true);
+            cancelButton.setEnabled(true);
+            deletepic.setEnabled(true);
 
         }
 

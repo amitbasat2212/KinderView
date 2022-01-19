@@ -134,7 +134,7 @@ public class ModelFireBase {
     }
 
     public void deleteImagePost(String urlImagePost, String picName, Model.AddPostListener listener) {
-        StorageReference desertRef = storageRef.child("users_posts/" + picName);
+        StorageReference desertRef = storageRef.child("photos/" + picName);
 
         desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -151,7 +151,7 @@ public class ModelFireBase {
     }
 
     public void deleteProfilePic(String url, String picName, Model.AddPostListener listener) {
-        StorageReference desertRef = storageRef.child("photos/" + picName);
+        StorageReference desertRef = storageRef.child("photos/"+picName);
 
         desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
