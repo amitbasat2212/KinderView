@@ -167,10 +167,9 @@ public class fragment_create_post extends Fragment {
         String status = text.getText().toString();
         String username = name.getText().toString();
         String date_post = date.getText().toString();
-        String likes = "0";
 
 
-        Post post = new Post(id, status, username, date_post, likes);
+        Post post = new Post(id, status, username, date_post);
         post.setProfilePic(profile1.getUrlImage());
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, id + ".jpg", url -> {

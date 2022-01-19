@@ -21,7 +21,6 @@ public class Post {
     String status;
     String email;
     String date;
-    String likes;
     String UrlImagePost;
     String ProfilePic;
     boolean delete=false;
@@ -36,16 +35,6 @@ public class Post {
         ProfilePic = profilePic;
     }
 
-
-
-    public String getLikes() {
-        return likes;
-    }
-
-    public void setLikes(String likes) {
-        this.likes = likes;
-    }
-
     public String getId() {
         return id;
     }
@@ -55,13 +44,11 @@ public class Post {
     }
 
 
-
-    public Post(@NonNull String id, String status, String email, String date, String likes) {
+    public Post(@NonNull String id, String status, String email, String date) {
         this.id = id;
         this.status = status;
         this.email = email;
         this.date = date;
-        this.likes = likes;
     }
 
     public boolean isDelete() {
@@ -87,7 +74,6 @@ public class Post {
         json.put("status",status);
         json.put("date",date);
         json.put("UrlImagePost",UrlImagePost);
-        json.put("likes",likes);
         json.put("delete",delete);
         json.put("profil",ProfilePic);
         json.put("updateDate", FieldValue.serverTimestamp());
@@ -101,14 +87,13 @@ public class Post {
         String username = (String) json.get("email");
         String status = (String) json.get("status");
         String date = (String) json.get("date");
-        String likes = (String) json.get("likes");
         String urlImage = (String) json.get("UrlImagePost");
         String urlImagepro = (String) json.get("profil");
         Boolean delete = (boolean) json.get("delete");
         Timestamp ts = (Timestamp)json.get("updateDate")    ;
         Long updateDate = ts.getSeconds();
 
-        Post post = new Post(id,status,username,date,likes);
+        Post post = new Post(id,status,username,date);
         post.setDelete(delete);
         post.setUpdateDate(updateDate);
         post.setProfilePic(urlImagepro);

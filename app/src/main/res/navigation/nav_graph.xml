@@ -22,9 +22,6 @@
             android:name="status"
             app:argType="string" />
         <argument
-            android:name="likes"
-            app:argType="string" />
-        <argument
             android:name="id"
             app:argType="string" />
         <argument
@@ -86,9 +83,6 @@
             app:argType="string" />
         <argument
             android:name="status"
-            app:argType="string" />
-        <argument
-            android:name="likes"
             app:argType="string" />
         <argument
             android:name="id"

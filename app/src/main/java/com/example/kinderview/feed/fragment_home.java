@@ -83,7 +83,6 @@ public class fragment_home extends Fragment {
                 String stId = viewModel.getData().getValue().get(position).getId();
                 String stUsername = viewModel.getData().getValue().get(position).getEmail();
                 String status = viewModel.getData().getValue().get(position).getStatus();
-                String likes = viewModel.getData().getValue().get(position).getLikes();
                 String date = viewModel.getData().getValue().get(position).getDate();
                 String url = viewModel.getData().getValue().get(position).getUrlImagePost();
                 if(url==null){
@@ -91,7 +90,7 @@ public class fragment_home extends Fragment {
                 }
 
                 if(view.findViewById(R.id.row_feed_editpost).getId()==idview) {
-                    Navigation.findNavController(view).navigate(fragment_homeDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, likes, stId, url));
+                    Navigation.findNavController(view).navigate(fragment_homeDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, stId, url));
                 }else
                 if(view.findViewById(R.id.row_feed_deletepost).getId()==idview){
                     viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {
@@ -126,7 +125,6 @@ public class fragment_home extends Fragment {
             imgview_postpic=(ImageView)itemView.findViewById(R.id.row_feed_postimage);
             tv_name=(TextView)itemView.findViewById(R.id.row_feed_authname);
             tv_time=(TextView)itemView.findViewById(R.id.row_feed_time);
-            tv_likes=(TextView)itemView.findViewById(R.id.row_feed_likesnumber);
             tv_status=(TextView)itemView.findViewById(R.id.row_feed_statustext);
             imgedit =(ImageView)itemView.findViewById(R.id.row_feed_editpost);
             imgdelete =(ImageView)itemView.findViewById(R.id.row_feed_deletepost);
@@ -160,7 +158,6 @@ public class fragment_home extends Fragment {
         public void bind(Post post){
             tv_name.setText(post.getEmail());
             tv_time.setText(post.getDate());
-            tv_likes.setText(post.getLikes());
             tv_status.setText(post.getStatus());
             if (post.getProfilePic()!= null) {
                 Picasso.get().load(post.getProfilePic()).resize(50, 50)
