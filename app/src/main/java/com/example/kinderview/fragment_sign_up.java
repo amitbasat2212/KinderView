@@ -36,6 +36,7 @@ import com.example.kinderview.viewModel.LoginViewModel;
 import com.example.kinderview.viewModel.SignupViewModel;
 
 import java.io.InputStream;
+import java.util.UUID;
 
 public class fragment_sign_up extends Fragment {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -141,7 +142,9 @@ public class fragment_sign_up extends Fragment {
         getActivity().finish();
     }
 
+
     private void perforAuth() {
+
         String password1 = password.getText().toString();
         String email1 = email.getText().toString();
         String phone1 = phone.getText().toString();

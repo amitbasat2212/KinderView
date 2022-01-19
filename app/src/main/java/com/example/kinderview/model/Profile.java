@@ -23,7 +23,6 @@ public class Profile {
     Boolean isEducator=false;
     Boolean isParent=false;
     String phone;
-    boolean coonect;
     String urlImage;
     final public static String COLLECTION_NAME2 = "profiles";
 
@@ -43,16 +42,6 @@ public class Profile {
     public void setEmail(@NonNull String email) {
         this.email = email;
     }
-
-    public boolean isCoonect() {
-        return coonect;
-    }
-
-    public void setCoonect(boolean coonect) {
-        this.coonect = coonect;
-    }
-
-
 
     public Profile() {
 
@@ -129,7 +118,6 @@ public class Profile {
         json.put("isEducator",isEducator);
         json.put("isParent",isParent);
         json.put("phone",phone);
-        json.put("coonect",coonect);
         json.put("urlImage",urlImage);
 
         return json;
@@ -142,7 +130,6 @@ public class Profile {
         String adress1 = (String) json.get("address");
         String password1 = (String) json.get("passworsd");
         String phone1 = (String) json.get("phone");
-        Boolean connect1 = (boolean) json.get("coonect");
         String urlImagep = (String) json.get("urlImage");
         Boolean isEducator1 = (boolean) json.get("isEducator");
         Boolean isParent1 = (boolean) json.get("isParent");
@@ -150,7 +137,6 @@ public class Profile {
 
         Profile profile=new Profile(name1,adress1,email1,password1,isEducator1,isParent1,phone1);
         profile.setUrlImage(urlImagep);
-        profile.setCoonect(connect1);
 
         return profile;
     }

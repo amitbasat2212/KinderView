@@ -185,7 +185,6 @@ public class Model {
                                 @Override
                                 public void run() {
                                     profile1 = profile;
-                                    profile.setCoonect(true);
                                     AppLocalDb.db.profileDAO().insertAll(profile);
                                     sighup.onComplete(email);
                                 }
@@ -206,7 +205,6 @@ public class Model {
 
 
     public void sighout(ModelFireBase.sighout sighout) {
-        profile1.setCoonect(false);
         modelFirebase.sighout(new ModelFireBase.sighout() {
             @Override
             public void onComplete() {
