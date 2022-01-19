@@ -151,6 +151,7 @@ public class fragment_sign_up extends Fragment {
         boolean parent1 = parent.isChecked();
         progressBar.setVisibility(View.VISIBLE);
         btnlogin.setEnabled(false);
+        btncanel.setEnabled(false);
 
         Profile profile=new Profile(name1,address1,email1,password1,educator1,parent1,phone1);
 
@@ -163,13 +164,22 @@ public class fragment_sign_up extends Fragment {
         }
 
 
+
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, profile.getEmail() + ".jpg", url -> {
                 profile.setUrlImage(url);
                 signupViewModel.sighup(profile, new ModelFireBase.sighup() {
                     @Override
                     public void onComplete(String email) {
-                        toFeedActivity();
+                        if(email!=null) {
+                            toFeedActivity();
+                        }else{
+                            Toast.makeText(getContext(), "User not Existed", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                            btnlogin.setEnabled(true);
+                            btncanel.setEnabled(true);
+                            return;
+                        }
                     }
                 });
          });
@@ -178,7 +188,15 @@ public class fragment_sign_up extends Fragment {
             signupViewModel.sighup(profile, new ModelFireBase.sighup() {
                 @Override
                 public void onComplete(String email) {
-                    toFeedActivity();
+                    if(email!=null) {
+                        toFeedActivity();
+                    }else{
+                            Toast.makeText(getContext(), "dont have password oe email correct", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                            btnlogin.setEnabled(true);
+                            btncanel.setEnabled(true);
+                            return;
+                        }
 
                 }
             });

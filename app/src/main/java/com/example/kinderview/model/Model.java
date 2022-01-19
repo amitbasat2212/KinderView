@@ -175,20 +175,24 @@ public class Model {
         modelFirebase.signUp(profile.email, profile.password, new ModelFireBase.sighup() {
             @Override
             public void onComplete(String email) {
-                modelFirebase.addProfile(profile, new AddPostListener() {
-                    @Override
-                    public void onComplete() {
-                        executor.execute(new Runnable() {
-                            @Override
-                            public void run() {
-                                profile1 = profile;
-                                profile.setCoonect(true);
-                                AppLocalDb.db.profileDAO().insertAll(profile);
-                                sighup.onComplete(email);
-                            }
-                        });
-                    }
-                });
+                if(email!=null) {
+                    modelFirebase.addProfile(profile, new AddPostListener() {
+                        @Override
+                        public void onComplete() {
+                            executor.execute(new Runnable() {
+                                @Override
+                                public void run() {
+                                    profile1 = profile;
+                                    profile.setCoonect(true);
+                                    AppLocalDb.db.profileDAO().insertAll(profile);
+                                    sighup.onComplete(email);
+                                }
+                            });
+                        }
+                    });
+                }else{
+                    sighup.onComplete(null);
+                }
 
             }
         });

@@ -240,25 +240,29 @@ public class ModelFireBase {
 
 
     public void signUp(String email, String password,sighup listener){
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("TAG", "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                            listener.onComplete(user.getEmail());
+        if(!email.isEmpty() && !password.isEmpty()) {
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d("TAG", "createUserWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUI(user);
+                                listener.onComplete(user.getEmail());
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("TAG", "createUserWithEmail:failure", task.getException());
-                            listener.onComplete(null);
-                           // updateUI(null);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w("TAG", "createUserWithEmail:failure", task.getException());
+                                listener.onComplete(null);
+                                // updateUI(null);
+                            }
                         }
-                    }
-                });
+                    });
+        }else{
+            listener.onComplete(null);
+        }
     }
 
     public void updateUI(FirebaseUser account) {
