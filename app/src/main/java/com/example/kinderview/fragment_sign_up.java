@@ -158,9 +158,18 @@ public class fragment_sign_up extends Fragment {
         if(!email1.matches(emailPattern))
         {
             Toast.makeText(getContext(), "Email is not correct", Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.GONE);
+            btnlogin.setEnabled(true);
+            btncanel.setEnabled(true);
+            return;
+
         }
         else if(password1.isEmpty() || password1.length()<6){
             Toast.makeText(getContext(), "You can write only 6 char in password", Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.GONE);
+            btnlogin.setEnabled(true);
+            btncanel.setEnabled(true);
+            return;
         }
 
 

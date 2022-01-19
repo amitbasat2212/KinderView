@@ -170,7 +170,11 @@ public class fragment_create_post extends Fragment {
 
 
         Post post = new Post(id, status, username, date_post);
-        post.setProfilePic(profile1.getUrlImage());
+        if(profile1.getUrlImage()!=null) {
+            post.setProfilePic(profile1.getUrlImage());
+        }else{
+            post.setProfilePic("0");
+        }
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, id + ".jpg", url -> {
                post.setImagePostUrl(url);
