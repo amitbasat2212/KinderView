@@ -91,6 +91,9 @@ public class fragment_create_post extends Fragment {
                             profile1 = profile;
                             Picasso.get().load(profile.getUrlImage()).resize(50, 50)
                                     .centerCrop().into(imageProfil);
+                        }else{
+                            profile1=profile;
+
                         }
 
                     }
@@ -171,13 +174,11 @@ public class fragment_create_post extends Fragment {
 
 
         Post post = new Post(id, status, username, date_post);
-        /*
-        if(profile1.getUrlImage()!="drawable-v24/profile.jpg") {
+
+        if(profile1.getUrlImage()!=null) {
             post.setProfilePic(profile1.getUrlImage());
-        }else{
-            profile1.setUrlImage("drawable-v24/profile.jpg");
         }
-         */
+
 
         if(status.isEmpty() &&imageBitmap==null){
             Toast.makeText(getContext(), "the status or picture is empty", Toast.LENGTH_LONG).show();
