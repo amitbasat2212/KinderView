@@ -72,7 +72,7 @@
     <ImageView
         android:id="@+id/row_feed_postimage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="800px"
         android:layout_below="@id/row_feed_statustext"
         android:layout_marginTop="5dp"
         android:adjustViewBounds="true"

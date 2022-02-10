@@ -190,8 +190,7 @@ public class fragment_home extends Fragment {
 
             if (post.getUrlImagePost() != null) {
                 Picasso.get()
-                        .load(post.getUrlImagePost()).resize(50, 50)
-                        .centerCrop()
+                        .load(post.getUrlImagePost()).fit()
                         .into(imgview_postpic);
             }
 
