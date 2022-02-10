@@ -41,6 +41,7 @@ public class fragment_home extends Fragment {
     MyAdapter adapter;
     SwipeRefreshLayout swipeRefresh;
     OnItemClickListener listener;
+    ImageView imagePostFrame;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -131,6 +132,7 @@ public class fragment_home extends Fragment {
 
             Editview = itemView.findViewById(R.id.rowfweed_edit_view);
             Deleteview = itemView.findViewById(R.id.rowfweed_delete_view);
+            imagePostFrame = itemView.findViewById(R.id.row_feed_postimage);
 
 
             imgedit.setOnClickListener(new View.OnClickListener() {
@@ -164,6 +166,10 @@ public class fragment_home extends Fragment {
                         .centerCrop().into(imgview_propic);
             }
 
+            if (post.getUrlImagePost() == null) {
+                imagePostFrame.setVisibility(View.GONE);
+            }
+
             imgdelete.setVisibility(View.GONE);
             imgedit.setVisibility(View.GONE);
             Editview.setVisibility(View.GONE);
@@ -191,7 +197,11 @@ public class fragment_home extends Fragment {
             if (post.getUrlImagePost() != null) {
                 Picasso.get()
                         .load(post.getUrlImagePost()).fit()
+                        .centerCrop()
                         .into(imgview_postpic);
+            }
+            else{
+
             }
 
         }

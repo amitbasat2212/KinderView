@@ -203,7 +203,7 @@ public class fragment_sign_up extends Fragment {
                     if(email!=null) {
                         toFeedActivity();
                     }else{
-                            Toast.makeText(getContext(), "dont have password oe email correct", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "don't have password or email correct", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                             btnlogin.setEnabled(true);
                             btncanel.setEnabled(true);

@@ -92,6 +92,7 @@ public class fragment_create_post extends Fragment {
                             Picasso.get().load(profile.getUrlImage()).resize(50, 50)
                                     .centerCrop().into(imageProfil);
                         }
+
                     }
                 });
 
@@ -119,7 +120,7 @@ public class fragment_create_post extends Fragment {
 
 
         return view;
-}
+    }
 
     public void openCam() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -170,13 +171,16 @@ public class fragment_create_post extends Fragment {
 
 
         Post post = new Post(id, status, username, date_post);
-        if(profile1.getUrlImage()!=null) {
+        /*
+        if(profile1.getUrlImage()!="drawable-v24/profile.jpg") {
             post.setProfilePic(profile1.getUrlImage());
         }else{
-            post.setProfilePic("0");
+            profile1.setUrlImage("drawable-v24/profile.jpg");
         }
+         */
+
         if(status.isEmpty() &&imageBitmap==null){
-            Toast.makeText(getContext(), "the status or pictere is empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "the status or picture is empty", Toast.LENGTH_LONG).show();
             progressBar.setVisibility(View.GONE);
             createPost.setEnabled(true);
             cancelBtn.setEnabled(true);
@@ -184,7 +188,7 @@ public class fragment_create_post extends Fragment {
         }
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, id + ".jpg", url -> {
-               post.setImagePostUrl(url);
+                post.setImagePostUrl(url);
                 createPostViewModel.addPost(post,()->
                 {
                     Navigation.findNavController(view).navigate(R.id.action_createPost_to_home_page23);
@@ -196,6 +200,7 @@ public class fragment_create_post extends Fragment {
             {
                 Navigation.findNavController(view).navigate(R.id.action_createPost_to_home_page23);
             });
+
         }
 
 

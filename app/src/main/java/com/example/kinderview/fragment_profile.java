@@ -77,7 +77,7 @@ public class fragment_profile extends Fragment {
                             Picasso.get().load(profile.getUrlImage()).into(profile_image);
                         }
                         else{
-                            profile.setUrlImage( "https://firebasestorage.googleapis.com/v0/b/kinderview-9d217.appspot.com/o/photos%2Fprofile.jpg?alt=media&token=4e25a1f2-fba2-4fb3-898b-2a9616861188");
+                            profile.setUrlImage("drawable-v24/profile.jpg");
 
                         }
                     }

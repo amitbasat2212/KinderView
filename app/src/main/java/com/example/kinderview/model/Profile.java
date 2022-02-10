@@ -114,7 +114,7 @@ public class Profile {
         json.put("name",name);
         json.put("email",email);
         json.put("address",address);
-        json.put("passworsd",password);
+        json.put("password",password);
         json.put("isEducator",isEducator);
         json.put("isParent",isParent);
         json.put("phone",phone);
@@ -128,7 +128,7 @@ public class Profile {
         String name1 = (String) json.get("name");
         String email1 = (String) json.get("email");
         String adress1 = (String) json.get("address");
-        String password1 = (String) json.get("passworsd");
+        String password1 = (String) json.get("password");
         String phone1 = (String) json.get("phone");
         String urlImagep = (String) json.get("urlImage");
         Boolean isEducator1 = (boolean) json.get("isEducator");
