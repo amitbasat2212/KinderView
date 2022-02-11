@@ -166,7 +166,7 @@ public class fragment_home extends Fragment {
                         .centerCrop().into(imgview_propic);
             }
 
-            if (post.getUrlImagePost() == null) {
+            if (post.getUrlImagePost() == null || post.getUrlImagePost().equals("0") ) {
                 imagePostFrame.setVisibility(View.GONE);
             }
 
