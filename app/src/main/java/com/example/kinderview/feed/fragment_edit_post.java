@@ -29,7 +29,9 @@ import android.widget.Toast;
 
 import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
+import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Post;
+import com.example.kinderview.model.Profile;
 import com.example.kinderview.viewModel.EditViewModel;
 import com.squareup.picasso.Picasso;
 
@@ -50,6 +52,7 @@ public class fragment_edit_post extends Fragment {
     String id, status,username,date_post,urlImage;
     ImageView postImage;
     Bitmap imageBitmap;
+    Profile profile1;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -84,6 +87,23 @@ public class fragment_edit_post extends Fragment {
         date_post = fragment_edit_postArgs.fromBundle(getArguments()).getDate();
         urlImage = fragment_edit_postArgs.fromBundle(getArguments()).getUrlpostedit();
 
+        Model.instance.getUserConnect(new ModelFireBase.connect() {
+            @Override
+            public void onComplete(Profile profile) {
+                Model.instance.mainThread.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (profile.getUrlImage() != null) {
+                            profile1 = profile;
+
+                        }
+
+                    }
+                });
+
+            }
+        });
 
         edit_username.setText(username);
         edit_date.setText(date_post);
@@ -172,6 +192,7 @@ public class fragment_edit_post extends Fragment {
         String date_post1 = edit_date.getText().toString();
 
         Post post = new Post(id1, status1, username1, date_post1);
+        post.setProfilePic(profile1.getUrlImage());
 
         if(status1.isEmpty() &&imageBitmap==null){
             Toast.makeText(getContext(), "the status or picture is empty", Toast.LENGTH_LONG).show();
