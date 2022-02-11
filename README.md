@@ -41,6 +41,9 @@ daily routine in their kindergarten.
  - Jonathan wants to sign out from the application so he can tap on the log out item in the main menu.
  
  # Demo :movie_camera:
- <img src="demo.gif">
+ https://www.youtube.com/watch?v=NWliAOg1Ka8
  
+ recommended to watch in HD.
+ 
+ <img src="hr.png" width=100px, height=100px >
  
