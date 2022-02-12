@@ -1,14 +1,12 @@
-package com.example.kinderview;
+package com.example.kinderview.Users;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.example.kinderview.R;
 import com.example.kinderview.feed.MainActivity;
-import com.example.kinderview.model.Model;
-import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Profile;
-import com.example.kinderview.viewModel.CreatePostViewModel;
 import com.example.kinderview.viewModel.LoginViewModel;
 
 

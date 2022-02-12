@@ -3,12 +3,7 @@ package com.example.kinderview.model;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.FieldValue;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -133,7 +128,7 @@ public class Profile {
         String urlImagep = (String) json.get("urlImage");
         Boolean isEducator1 = (boolean) json.get("isEducator");
         Boolean isParent1 = (boolean) json.get("isParent");
-        Timestamp ts = (Timestamp)json.get("updateDate")    ;
+
 
         Profile profile=new Profile(name1,adress1,email1,password1,isEducator1,isParent1,phone1);
         profile.setUrlImage(urlImagep);

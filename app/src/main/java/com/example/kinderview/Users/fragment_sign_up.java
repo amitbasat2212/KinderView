@@ -1,4 +1,4 @@
-package com.example.kinderview;
+package com.example.kinderview.Users;
 
 import static android.app.Activity.RESULT_OK;
 

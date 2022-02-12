@@ -208,18 +208,16 @@ public class ModelFireBase {
         void onComplete(String email);
     }
 
-    public interface connect{
-        void onComplete(Profile profile);
-    }
-    public interface sighout{
-        void onComplete();
-    }
+
+
 
     public interface getProfileByEMail{
         void onComplete();
     }
 
-
+    public interface sighout{
+        void onComplete();
+    }
     public void sighout(sighout listner){
         FirebaseAuth.getInstance().signOut();
         listner.onComplete();

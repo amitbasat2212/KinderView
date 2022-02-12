@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/kinderviewback"
     android:textDirection="firstStrong"
-    tools:context=".IntroActivity">
+    tools:context=".Users.IntroActivity">
 
     <TextView
         android:id="@+id/textView"

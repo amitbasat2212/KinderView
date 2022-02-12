@@ -49,6 +49,10 @@ public class Model {
     public interface SaveImagelistener{
         void onComplete(String url);
     }
+    public interface connect{
+        void onComplete(Profile profile);
+    }
+
     public void saveImage(Bitmap imagebitmap,String imagename,SaveImagelistener listener) {
         modelFirebase.saveImagePost(imagebitmap,imagename,listener);
 
@@ -256,7 +260,7 @@ public class Model {
     }
 
 
-    public void getUserConnect(ModelFireBase.connect connect) {
+    public void getUserConnect(connect connect) {
 
         if(modelFirebase.isSignIn()) {
             getprofilebyEmail(modelFirebase.currentUser.getEmail(), new GetProfileById() {

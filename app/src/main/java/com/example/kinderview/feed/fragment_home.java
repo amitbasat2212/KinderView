@@ -3,38 +3,28 @@ package com.example.kinderview.feed;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
-import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Post;
 import com.example.kinderview.model.Profile;
 import com.example.kinderview.viewModel.PostViewModel;
+import com.example.kinderview.viewModel.ProfileViewModel;
 import com.squareup.picasso.Picasso;
 
 
-import java.util.List;
+
 
 public class fragment_home extends Fragment {
     PostViewModel viewModel;
@@ -42,11 +32,13 @@ public class fragment_home extends Fragment {
     SwipeRefreshLayout swipeRefresh;
     OnItemClickListener listener;
     ImageView imagePostFrame;
+    ProfileViewModel profileViewModel;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         viewModel = new ViewModelProvider(this).get(PostViewModel.class);
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
     }
 
     @Nullable
@@ -175,33 +167,23 @@ public class fragment_home extends Fragment {
             Editview.setVisibility(View.GONE);
             Deleteview.setVisibility(View.GONE);
 
-            Model.instance.getUserConnect(new ModelFireBase.connect() {
+            profileViewModel.GetUserconnect(new Model.connect() {
                 @Override
                 public void onComplete(Profile profile) {
                     if(profile.getEmail().equals(tv_name.getText().toString())){
-                        Model.instance.mainThread.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                imgdelete.setVisibility(View.VISIBLE);
-                                imgedit.setVisibility(View.VISIBLE);
-                                Editview.setVisibility(View.VISIBLE);
-                                Deleteview.setVisibility(View.VISIBLE);
-                            }
-                        });
-
+                        imgdelete.setVisibility(View.VISIBLE);
+                        imgedit.setVisibility(View.VISIBLE);
+                        Editview.setVisibility(View.VISIBLE);
+                        Deleteview.setVisibility(View.VISIBLE);
                     }
                 }
             });
-
 
             if (post.getUrlImagePost() != null) {
                 Picasso.get()
                         .load(post.getUrlImagePost()).fit()
                         .centerCrop()
                         .into(imgview_postpic);
-            }
-            else{
-
             }
 
         }

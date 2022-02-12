@@ -1,29 +1,25 @@
-package com.example.kinderview;
+package com.example.kinderview.Users;
 
-import android.net.Uri;
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Checkable;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.kinderview.R;
-import com.example.kinderview.feed.fragment_homeDirections;
 import com.example.kinderview.model.Model;
-import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Profile;
+import com.example.kinderview.viewModel.CreatePostViewModel;
+import com.example.kinderview.viewModel.ProfileViewModel;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
-
 
 public class fragment_profile extends Fragment {
 
@@ -31,15 +27,20 @@ public class fragment_profile extends Fragment {
     ImageView profile_image;
     TextView nameProfile,EmailProfile,PhoneProfile,AdressProfile;
     CheckBox eductor,parent;
+    ProfileViewModel profileViewModel;
     Button edit;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_profile, container, false);
-
-        // profile_image=view.findViewById(R.id.profile_image);
         nameProfile=view.findViewById(R.id.fragment_profile_name);
         PhoneProfile=view.findViewById(R.id.fragment_profile_phone);
         EmailProfile=view.findViewById(R.id.fragment_profile_email);
@@ -50,7 +51,7 @@ public class fragment_profile extends Fragment {
         edit = view.findViewById(R.id.fragment_profile_edituser);
 
 
-        Model.instance.getUserConnect(new ModelFireBase.connect() {
+        profileViewModel.GetUserconnect(new Model.connect() {
             @Override
             public void onComplete(Profile profile) {
                 nameProfile.setText(profile.getName());
@@ -60,29 +61,23 @@ public class fragment_profile extends Fragment {
                 eductor.setChecked(profile.getEducator());
                 parent.setChecked(profile.getParent());
 
-                Model.instance.mainThread.post(new Runnable() {
+                edit.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void run() {
-                        edit.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
+                    public void onClick(View v) {
 
-                                Navigation.findNavController(view).navigate(fragment_profileDirections.actionFragmentProfileToEditUser(profile.getName(),profile.getParent(),
-                                        profile.getEducator(), profile.getPhone(),profile.getAddress(),profile.getEmail(),profile.getPassword(), profile.getUrlImage()));
-                            }
-
-                        });
-                        if (profile.getUrlImage() != null) {
-
-                            Picasso.get().load(profile.getUrlImage()).into(profile_image);
-                        }
-                        else{
-                            profile.setUrlImage("drawable-v24/profile.jpg");
-
-                        }
+                        Navigation.findNavController(view).navigate(fragment_profileDirections.actionFragmentProfileToEditUser(profile.getName(),profile.getParent(),
+                                profile.getEducator(), profile.getPhone(),profile.getAddress(),profile.getEmail(),profile.getPassword(), profile.getUrlImage()));
                     }
-                });
 
+                });
+                if (profile.getUrlImage() != null) {
+
+                    Picasso.get().load(profile.getUrlImage()).into(profile_image);
+                }
+                else{
+                    profile.setUrlImage("drawable-v24/profile.jpg");
+
+                }
 
             }
         });

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back2kinder"
-    tools:context=".fragment_create_post">
+    tools:context=".feed.fragment_create_post">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragment_create_cancel"

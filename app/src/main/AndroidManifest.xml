@@ -14,10 +14,10 @@
 
         >
         <activity
-            android:name=".LoginActivity"
+            android:name=".Users.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".IntroActivity"
+            android:name=".Users.IntroActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <intent-filter>

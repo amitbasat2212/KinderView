@@ -1,20 +1,17 @@
-package com.example.kinderview;
+package com.example.kinderview.Users;
 
 import static android.app.Activity.RESULT_OK;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,18 +23,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.example.kinderview.R;
-import com.example.kinderview.feed.fragment_edit_postArgs;
-import com.example.kinderview.feed.fragment_edit_postDirections;
-import com.example.kinderview.feed.fragment_homeDirections;
 import com.example.kinderview.model.Model;
-import com.example.kinderview.model.ModelFireBase;
-import com.example.kinderview.model.Post;
 import com.example.kinderview.model.Profile;
 import com.example.kinderview.viewModel.SignupViewModel;
 import com.squareup.picasso.Picasso;
-
 import java.io.InputStream;
 
 public class fragment_edit_user extends Fragment {
@@ -99,9 +89,12 @@ public class fragment_edit_user extends Fragment {
             Picasso.get().load(urlImage).into(picImage);
         }
 
+
         if (urlImage == null){
             Picasso.get().load(defaultImage).into(picImage);
         }
+
+
 
         email.setText(email2);
         name.setText(name2);
@@ -182,7 +175,6 @@ public class fragment_edit_user extends Fragment {
 
     private void edit() {
         progressBar.setVisibility(View.VISIBLE);
-
         edit.setEnabled(false);
         cancel.setEnabled(false);
         deletepic.setEnabled(false);
@@ -194,7 +186,6 @@ public class fragment_edit_user extends Fragment {
         Boolean educated3 = isEducator.isChecked();
         Boolean parent3 = isParent.isChecked();
         String password3 = password.getText().toString();
-
         Profile profile1 = new Profile(name3, address3, email3, password3, educated3, parent3, phone3);
 
         if (imageBitmap != null) {
@@ -222,7 +213,6 @@ public class fragment_edit_user extends Fragment {
                         @Override
                         public void run() {
                             Navigation.findNavController(view).navigate(R.id.action_edit_user_to_fragment_profile);
-
                         }
                     });
                 }
@@ -235,9 +225,7 @@ public class fragment_edit_user extends Fragment {
         cancel.setEnabled(false);
         edit.setEnabled(false);
         deletepic.setEnabled(false);
-
         Profile profile2 = new Profile(name2, address2, email2, password2, isEducator2, isPaernt2, phone2);
-
         if(profile2.getUrlImage()!=defaultImage) {
             Model.instance.deleteProfilePic(profile2, email2 + ".jpg", () ->{
                 urlImage=defaultImage;

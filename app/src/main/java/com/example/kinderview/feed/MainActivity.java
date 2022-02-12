@@ -11,7 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.kinderview.R;
-import com.example.kinderview.LoginActivity;
+import com.example.kinderview.Users.LoginActivity;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.ModelFireBase;
 

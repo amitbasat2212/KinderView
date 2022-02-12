@@ -1,4 +1,4 @@
-package com.example.kinderview;
+package com.example.kinderview.feed;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -29,16 +29,16 @@ import android.widget.Toast;
 
 import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
-import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Post;
 import com.example.kinderview.model.Profile;
 import com.example.kinderview.viewModel.CreatePostViewModel;
+import com.example.kinderview.viewModel.ProfileViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.util.UUID;
 
-import javax.xml.transform.Result;
+
 
 
 public class fragment_create_post extends Fragment {
@@ -52,16 +52,18 @@ public class fragment_create_post extends Fragment {
     ProgressBar progressBar;
     View view;
     CreatePostViewModel createPostViewModel;
+    ProfileViewModel profileViewModel;
     ImageButton camBtn;
     ImageButton galleryBtn;
     Bitmap imageBitmap;
-    TextView name,Email;
+    TextView name;
     Profile profile1;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         createPostViewModel = new ViewModelProvider(this).get(CreatePostViewModel.class);
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
     }
 
     @Override
@@ -80,27 +82,20 @@ public class fragment_create_post extends Fragment {
         imageProfil =view.findViewById(R.id.fragment_create_profile);
         name = view.findViewById(R.id.fragment_create_name);
 
-        Model.instance.getUserConnect(new ModelFireBase.connect() {
-            @Override
-            public void onComplete(Profile profile) {
-                Model.instance.mainThread.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        name.setText(profile.getEmail());
-                        if (profile.getUrlImage() != null) {
-                            profile1 = profile;
-                            Picasso.get().load(profile.getUrlImage()).resize(50, 50)
-                                    .centerCrop().into(imageProfil);
-                        }else{
-                            profile1=profile;
+       profileViewModel.GetUserconnect(new Model.connect() {
+           @Override
+           public void onComplete(Profile profile) {
+               name.setText(profile.getEmail());
+               if (profile.getUrlImage() != null) {
+                   profile1 = profile;
+                   Picasso.get().load(profile.getUrlImage()).resize(50, 50)
+                           .centerCrop().into(imageProfil);
+               }else{
+                   profile1=profile;
 
-                        }
-
-                    }
-                });
-
-            }
-        });
+               }
+           }
+       });
 
 
         progressBar = view.findViewById(R.id.fragment_create_progressbar);

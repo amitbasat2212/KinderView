@@ -29,10 +29,10 @@ import android.widget.Toast;
 
 import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
-import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Post;
 import com.example.kinderview.model.Profile;
 import com.example.kinderview.viewModel.EditViewModel;
+import com.example.kinderview.viewModel.ProfileViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
@@ -50,6 +50,7 @@ public class fragment_edit_post extends Fragment {
     Button editButton, cancelButton, deletepic;
     ImageButton camrabtn,gallerybtn;
     String id, status,username,date_post,urlImage;
+    ProfileViewModel profileViewModel;
     ImageView postImage;
     Bitmap imageBitmap;
     Profile profile1;
@@ -58,6 +59,7 @@ public class fragment_edit_post extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         editViewModel = new ViewModelProvider(this).get(EditViewModel.class);
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
     }
 
     @Override
@@ -87,20 +89,12 @@ public class fragment_edit_post extends Fragment {
         date_post = fragment_edit_postArgs.fromBundle(getArguments()).getDate();
         urlImage = fragment_edit_postArgs.fromBundle(getArguments()).getUrlpostedit();
 
-        Model.instance.getUserConnect(new ModelFireBase.connect() {
+        profileViewModel.GetUserconnect(new Model.connect() {
             @Override
             public void onComplete(Profile profile) {
-                Model.instance.mainThread.post(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        if (profile.getUrlImage() != null) {
-                            profile1 = profile;
-
-                        }
-
-                    }
-                });
+               if (profile.getUrlImage() != null) {
+                   profile1 = profile;
+               }
 
             }
         });
