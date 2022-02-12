@@ -2,7 +2,6 @@ package com.example.kinderview.Users;
 
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Profile;
-import com.example.kinderview.viewModel.CreatePostViewModel;
 import com.example.kinderview.viewModel.ProfileViewModel;
 import com.squareup.picasso.Picasso;
 
@@ -60,7 +58,6 @@ public class fragment_profile extends Fragment {
                 EmailProfile.setText(profile.getEmail());
                 eductor.setChecked(profile.getEducator());
                 parent.setChecked(profile.getParent());
-
                 edit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

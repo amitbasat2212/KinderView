@@ -1,20 +1,17 @@
 package com.example.kinderview.Users;
 
 import static android.app.Activity.RESULT_OK;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,17 +23,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.example.kinderview.R;
 import com.example.kinderview.feed.MainActivity;
 import com.example.kinderview.model.Model;
-import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Profile;
-import com.example.kinderview.viewModel.LoginViewModel;
 import com.example.kinderview.viewModel.SignupViewModel;
-
 import java.io.InputStream;
-import java.util.UUID;
+
 
 public class fragment_sign_up extends Fragment {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -144,7 +137,6 @@ public class fragment_sign_up extends Fragment {
 
 
     private void perforAuth() {
-
         String password1 = password.getText().toString();
         String email1 = email.getText().toString();
         String phone1 = phone.getText().toString();
@@ -155,7 +147,6 @@ public class fragment_sign_up extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         btnlogin.setEnabled(false);
         btncanel.setEnabled(false);
-
         Profile profile=new Profile(name1,address1,email1,password1,educator1,parent1,phone1);
 
         if(!email1.matches(emailPattern))
@@ -167,6 +158,7 @@ public class fragment_sign_up extends Fragment {
             return;
 
         }
+
         else if(password1.isEmpty() || password1.length()<6){
             Toast.makeText(getContext(), "You can write only 6 char in password", Toast.LENGTH_SHORT).show();
             progressBar.setVisibility(View.GONE);
@@ -175,12 +167,10 @@ public class fragment_sign_up extends Fragment {
             return;
         }
 
-
-
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, profile.getEmail() + ".jpg", url -> {
                 profile.setUrlImage(url);
-                signupViewModel.sighup(profile, new ModelFireBase.sighup() {
+                signupViewModel.sighup(profile, new Model.sighup() {
                     @Override
                     public void onComplete(String email) {
                         if(email!=null) {
@@ -197,7 +187,7 @@ public class fragment_sign_up extends Fragment {
          });
 
         }else{
-            signupViewModel.sighup(profile, new ModelFireBase.sighup() {
+            signupViewModel.sighup(profile, new Model.sighup() {
                 @Override
                 public void onComplete(String email) {
                     if(email!=null) {

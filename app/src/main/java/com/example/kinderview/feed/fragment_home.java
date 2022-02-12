@@ -23,9 +23,6 @@ import com.example.kinderview.viewModel.PostViewModel;
 import com.example.kinderview.viewModel.ProfileViewModel;
 import com.squareup.picasso.Picasso;
 
-
-
-
 public class fragment_home extends Fragment {
     PostViewModel viewModel;
     MyAdapter adapter;

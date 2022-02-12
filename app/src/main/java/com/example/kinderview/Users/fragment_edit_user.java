@@ -32,6 +32,8 @@ import java.io.InputStream;
 
 public class fragment_edit_user extends Fragment {
 
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_IMAGE_PIC = 2;
     EditText email, password, name, phone, address;
     CheckBox isEducator, isParent;
     Button edit, cancel, deletepic;
@@ -39,8 +41,6 @@ public class fragment_edit_user extends Fragment {
     String email2, password2, name2, phone2, address2, urlImage;
     Boolean isEducator2, isPaernt2;
     View view;
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
-    private static final int REQUEST_IMAGE_PIC = 2;
     ImageButton btn_gallery, btn_camera;
     ImageView picImage;
     Bitmap imageBitmap;
@@ -191,7 +191,7 @@ public class fragment_edit_user extends Fragment {
         if (imageBitmap != null) {
             Model.instance.saveImage(imageBitmap, email3 + ".jpg", url -> {
                 profile1.setUrlImage(url);
-                signupViewModel.editProfile(profile1, new Model.AddPostListener() {
+                signupViewModel.editProfile(profile1, new Model.AddEditDeleteProfileAndPost() {
                     @Override
                     public void onComplete() {
                         Model.instance.mainThread.post(new Runnable() {
@@ -206,7 +206,7 @@ public class fragment_edit_user extends Fragment {
             });
         } else {
             profile1.setUrlImage(urlImage);
-            signupViewModel.editProfile(profile1, new Model.AddPostListener() {
+            signupViewModel.editProfile(profile1, new Model.AddEditDeleteProfileAndPost() {
                 @Override
                 public void onComplete() {
                     Model.instance.mainThread.post(new Runnable() {

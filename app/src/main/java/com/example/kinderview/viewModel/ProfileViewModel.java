@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Profile;
 
-
 public class ProfileViewModel extends ViewModel {
 
    MutableLiveData<Profile> data;

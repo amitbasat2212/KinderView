@@ -4,30 +4,70 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
-
 import androidx.core.os.HandlerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
-import com.google.firebase.storage.FirebaseStorage;
-
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class Model {
-
     //singleton in order to get a model functions in other classes
+    /**
+     * the variables section
+     */
     public static final Model instance = new Model();
     public Executor executor = Executors.newFixedThreadPool(2);
     public Handler mainThread = HandlerCompat.createAsync(Looper.getMainLooper());
     ModelFireBase modelFirebase = new ModelFireBase();
-    FirebaseStorage storage = FirebaseStorage.getInstance();
     Profile profile1=new Profile("0","0","0","0",false,false,"0");
+    MutableLiveData<PostsListLoadingState> postsListLoadingState = new MutableLiveData<PostsListLoadingState>();
+    MutableLiveData<List<Post>> postsList = new MutableLiveData<List<Post>>();
 
-    public void deletePic(Post value, String picName, AddPostListener listener) {
-        modelFirebase.deleteImagePost(value.UrlImagePost, picName, new AddPostListener() {
+
+    /**
+     * the interface for post and profiles
+     */
+    public interface SaveImagelistener{
+        void onComplete(String url);
+    }
+    public interface connect{
+        void onComplete(Profile profile);
+    }
+    public interface sighup{
+        void onComplete(String email);
+    }
+    public enum PostsListLoadingState{
+        loading,
+        loaded
+    }
+
+    public interface AddEditDeleteProfileAndPost{
+        void onComplete();
+    }
+
+    public interface GetPostById{
+        void onComplete(Post post);
+    }
+
+    public interface GetProfileById{
+        void onComplete(Profile profile);
+    }
+
+
+    /**
+     * the constructor
+     */
+    private Model(){
+        postsListLoadingState.setValue(PostsListLoadingState.loaded);
+    }
+
+
+    /**
+     * the photos -edit and delete and save
+     */
+    public void deletePic(Post value, String picName, AddEditDeleteProfileAndPost listener) {
+        modelFirebase.deleteImagePost(value.UrlImagePost, picName, new AddEditDeleteProfileAndPost() {
             @Override
             public void onComplete() {
                 refreshPostList();
@@ -36,21 +76,13 @@ public class Model {
         });
     }
 
-    public void deleteProfilePic(Profile value, String picName, AddPostListener listener) {
-        modelFirebase.deleteProfilePic(value.urlImage, picName, new AddPostListener() {
+    public void deleteProfilePic(Profile value, String picName, AddEditDeleteProfileAndPost listener) {
+        modelFirebase.deleteProfilePic(value.urlImage, picName, new AddEditDeleteProfileAndPost() {
             @Override
             public void onComplete() {
                 listener.onComplete();
             }
         });
-    }
-
-
-    public interface SaveImagelistener{
-        void onComplete(String url);
-    }
-    public interface connect{
-        void onComplete(Profile profile);
     }
 
     public void saveImage(Bitmap imagebitmap,String imagename,SaveImagelistener listener) {
@@ -59,21 +91,13 @@ public class Model {
     }
 
 
-    public enum PostsListLoadingState{
-        loading,
-        loaded
-    }
-
-    MutableLiveData<PostsListLoadingState> postsListLoadingState = new MutableLiveData<PostsListLoadingState>();
+    /**
+     * the posts -the home page list ,the edit ,delete and create
+     */
     public LiveData<PostsListLoadingState> getPostsListLoadingState() {
         return postsListLoadingState;
     }
 
-    private Model(){
-        postsListLoadingState.setValue(PostsListLoadingState.loaded);
-    }
-
-    MutableLiveData<List<Post>> postsList = new MutableLiveData<List<Post>>();
     public LiveData<List<Post>> getAll(){
         if (postsList.getValue() == null) { refreshPostList(); };
         return  postsList;
@@ -120,15 +144,9 @@ public class Model {
             }
         });
     }
-    public interface AddPostListener{
-        void onComplete();
-    }
 
-    public interface editUserListener{
-        void onComplete();
-    }
 
-    public void addPost(Post post, AddPostListener listener){
+    public void addPost(Post post, AddEditDeleteProfileAndPost listener){
         modelFirebase.addPost(post, () -> {
             refreshPostList();
             listener.onComplete();
@@ -137,7 +155,7 @@ public class Model {
 
     }
 
-    public void editPost(Post post, AddPostListener listener)
+    public void editPost(Post post, AddEditDeleteProfileAndPost listener)
     {
         modelFirebase.addPost(post, () -> {
             refreshPostList();
@@ -146,7 +164,7 @@ public class Model {
 
     }
 
-    public void deletePost(Post post, AddPostListener listener)
+    public void deletePost(Post post, AddEditDeleteProfileAndPost listener)
     {
 
         modelFirebase.deletePost(post, () -> {
@@ -156,33 +174,19 @@ public class Model {
 
     }
 
-    public interface GetPostById{
-        void onComplete(Post post);
-    }
-
-    public interface GetProfileById{
-        void onComplete(Profile profile);
-    }
-
-
-    public Post getPostById(String studentId, GetPostById listener) {
-        modelFirebase.getPostById(studentId,listener);
-
-        return null;
-    }
-
-
-    //Authentication
+    /**
+     * the user Autntication-sighup and login also the edit user
+     */
     public Boolean isSignIn (){
         return modelFirebase.isSignIn();
     }
 
-    public void sighup(Profile profile,ModelFireBase.sighup sighup) {
-        modelFirebase.signUp(profile.email, profile.password, new ModelFireBase.sighup() {
+    public void sighup(Profile profile,Model.sighup sighup) {
+        modelFirebase.signUp(profile.email, profile.password, new Model.sighup() {
             @Override
             public void onComplete(String email) {
                 if(email!=null) {
-                    modelFirebase.addProfile(profile, new AddPostListener() {
+                    modelFirebase.addProfile(profile, new AddEditDeleteProfileAndPost() {
                         @Override
                         public void onComplete() {
                             executor.execute(new Runnable() {
@@ -203,7 +207,7 @@ public class Model {
     }
 
 
-    public void editprofile(Profile profile,AddPostListener addPostListener){
+    public void editprofile(Profile profile,AddEditDeleteProfileAndPost addPostListener){
         modelFirebase.addProfile(profile,addPostListener);
     }
 
@@ -225,9 +229,9 @@ public class Model {
 
     }
 
-    public void Login (String email,String password, ModelFireBase.sighup listener){
+    public void Login (String email,String password, Model.sighup listener){
 
-        modelFirebase.Login(email, password, new ModelFireBase.sighup() {
+        modelFirebase.Login(email, password, new  Model.sighup() {
             @Override
             public void onComplete(String email1) {
                 if (email1 != null) {
@@ -258,7 +262,6 @@ public class Model {
 
 
     }
-
 
     public void getUserConnect(connect connect) {
 

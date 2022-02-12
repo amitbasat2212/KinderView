@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.example.kinderview.R;
 import com.example.kinderview.feed.MainActivity;
 import com.example.kinderview.model.Model;

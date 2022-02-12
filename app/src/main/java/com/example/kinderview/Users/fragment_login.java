@@ -19,7 +19,6 @@ import com.example.kinderview.feed.MainActivity;
 import com.example.kinderview.model.Profile;
 import com.example.kinderview.viewModel.LoginViewModel;
 
-
 public class fragment_login extends Fragment {
 
     EditText email, password;

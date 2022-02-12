@@ -89,7 +89,6 @@ public class Post {
         Boolean delete = (boolean) json.get("delete");
         Timestamp ts = (Timestamp)json.get("updateDate")    ;
         Long updateDate = ts.getSeconds();
-
         Post post = new Post(id,status,username,date);
         post.setDelete(delete);
         post.setUpdateDate(updateDate);
