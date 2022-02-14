@@ -150,6 +150,21 @@ public class fragment_home extends Fragment {
             tv_name.setText(post.getEmail());
             tv_time.setText(post.getDate());
             tv_status.setText(post.getStatus());
+            profileViewModel.GetUserconnect(new Model.connect() {
+                @Override
+                public void onComplete(Profile profile) {
+                    if(profile.getEmail().equals(tv_name.getText().toString())){
+                        imgdelete.setVisibility(View.VISIBLE);
+                        imgedit.setVisibility(View.VISIBLE);
+                        Editview.setVisibility(View.VISIBLE);
+                        Deleteview.setVisibility(View.VISIBLE);
+                        post.setProfilePic(profile.getUrlImage());
+                        refresh();
+
+                    }
+
+                }
+            });
             if (post.getProfilePic()!= null) {
                 Picasso.get().load(post.getProfilePic()).resize(50, 50)
                         .centerCrop().into(imgview_propic);
@@ -164,18 +179,7 @@ public class fragment_home extends Fragment {
             Editview.setVisibility(View.GONE);
             Deleteview.setVisibility(View.GONE);
 
-            profileViewModel.GetUserconnect(new Model.connect() {
-                @Override
-                public void onComplete(Profile profile) {
-                    if(profile.getEmail().equals(tv_name.getText().toString())){
-                        imgdelete.setVisibility(View.VISIBLE);
-                        imgedit.setVisibility(View.VISIBLE);
-                        Editview.setVisibility(View.VISIBLE);
-                        Deleteview.setVisibility(View.VISIBLE);
-                    }
 
-                }
-            });
 
 
             if (post.getUrlImagePost() != null) {
