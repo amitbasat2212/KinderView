@@ -4,7 +4,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Post.class,Profile.class}, version = 45)
+@Database(entities = {Post.class,Profile.class}, version = 46)
 abstract class AppLocalDbRepository extends RoomDatabase {
     public abstract PostDAO PostDao();
     public abstract ProfileDAO profileDAO();
