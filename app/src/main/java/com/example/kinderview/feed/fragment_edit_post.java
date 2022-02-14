@@ -180,7 +180,11 @@ public class fragment_edit_post extends Fragment {
         String date_post1 = edit_date.getText().toString();
 
         Post post = new Post(id1, status1, username1, date_post1);
-        post.setProfilePic(profile1.getUrlImage());
+
+ //       post.setProfilePic(profile1.getUrlImage());
+        if(profile1.getUrlImage()!=null) {
+            post.setProfilePic(profile1.getUrlImage());
+        }
 
         if(status1.isEmpty() &&imageBitmap==null){
             Toast.makeText(getContext(), "the status or picture is empty", Toast.LENGTH_LONG).show();

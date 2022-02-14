@@ -198,7 +198,6 @@ public class fragment_edit_user extends Fragment {
                             @Override
                             public void run() {
                                 Navigation.findNavController(view).navigate(R.id.action_edit_user_to_fragment_profile);
-
                             }
                         });
                     }

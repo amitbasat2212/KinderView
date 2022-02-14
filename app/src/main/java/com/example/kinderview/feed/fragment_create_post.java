@@ -166,7 +166,6 @@ public class fragment_create_post extends Fragment {
             post.setProfilePic(profile1.getUrlImage());
         }
 
-
         if(status.isEmpty() &&imageBitmap==null){
             Toast.makeText(getContext(), "the status or picture is empty", Toast.LENGTH_LONG).show();
             progressBar.setVisibility(View.GONE);

@@ -173,8 +173,12 @@ public class fragment_home extends Fragment {
                         Editview.setVisibility(View.VISIBLE);
                         Deleteview.setVisibility(View.VISIBLE);
                     }
+                    if(profile.getUrlImage()!=null) {
+                        post.setProfilePic(profile.getUrlImage());
+                    }
                 }
             });
+
 
             if (post.getUrlImagePost() != null) {
                 Picasso.get()
