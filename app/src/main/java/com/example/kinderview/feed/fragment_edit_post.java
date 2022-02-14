@@ -31,10 +31,11 @@ import com.example.kinderview.viewModel.EditViewModel;
 import com.example.kinderview.viewModel.ProfileViewModel;
 import com.squareup.picasso.Picasso;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class fragment_edit_post extends Fragment {
     private static final int REQUEST_IMAGE_PIC = 2;
-
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     View view;
     TextView edit_username;
@@ -170,7 +171,6 @@ public class fragment_edit_post extends Fragment {
 
     private void edit() {
         progressBar.setVisibility(View.VISIBLE);
-
         editButton.setEnabled(false);
         cancelButton.setEnabled(false);
         deletepic.setEnabled(false);
@@ -179,12 +179,22 @@ public class fragment_edit_post extends Fragment {
         String username1 = username;
         String date_post1 = edit_date.getText().toString();
 
-        Post post = new Post(id1, status1, username1, date_post1);
 
- //       post.setProfilePic(profile1.getUrlImage());
+        Post post = new Post(id1, status1, username1, date_post1);
         if(profile1.getUrlImage()!=null) {
             post.setProfilePic(profile1.getUrlImage());
         }
+
+
+        if(!isValidDate(date_post1)){
+            Toast.makeText(getContext(), "the date need to be: dd-MM-yyyy", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.GONE);
+            editButton.setEnabled(true);
+            cancelButton.setEnabled(true);
+            deletepic.setEnabled(true);
+            return;
+        }
+
 
         if(status1.isEmpty() &&imageBitmap==null){
             Toast.makeText(getContext(), "the status or picture is empty", Toast.LENGTH_LONG).show();
@@ -240,6 +250,16 @@ public class fragment_edit_post extends Fragment {
 
         }
 
+    }
+    public static boolean isValidDate(String inDate) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(inDate.trim());
+        } catch (ParseException pe) {
+            return false;
+        }
+        return true;
     }
 
 }

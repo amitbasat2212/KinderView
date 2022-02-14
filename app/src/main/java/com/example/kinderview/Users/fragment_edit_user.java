@@ -29,11 +29,19 @@ import com.example.kinderview.model.Profile;
 import com.example.kinderview.viewModel.SignupViewModel;
 import com.squareup.picasso.Picasso;
 import java.io.InputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class fragment_edit_user extends Fragment {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_IMAGE_PIC = 2;
+    String patterns
+            = "^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$"
+            + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$"
+            + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$";
+    Pattern pattern = Pattern.compile(patterns);
+    String regexName ="[a-zA-Z]+\\.?";
     EditText email, password, name, phone, address;
     CheckBox isEducator, isParent;
     Button edit, cancel, deletepic;
@@ -65,17 +73,14 @@ public class fragment_edit_user extends Fragment {
         address = view.findViewById(R.id.edituser_address);
         isEducator = view.findViewById(R.id.edituser_isEducator);
         isParent = view.findViewById(R.id.edituser_isParent);
-
         edit = view.findViewById(R.id.edituser_edit);
         btn_gallery = view.findViewById(R.id.fragment_editUser_gallery);
         btn_camera = view.findViewById(R.id.fragment_editUser_camra);
-
         progressBar = view.findViewById(R.id.fragment_edituser_progressbar);
         progressBar.setVisibility(View.GONE);
         picImage = view.findViewById(R.id.edituser_profilepic);
         cancel = view.findViewById(R.id.edituser_cancel);
         deletepic = view.findViewById(R.id.edituser_deletepic);
-
         email2 = fragment_edit_userArgs.fromBundle(getArguments()).getEmail();
         name2 = fragment_edit_userArgs.fromBundle(getArguments()).getName();
         phone2 = fragment_edit_userArgs.fromBundle(getArguments()).getPhone();
@@ -93,9 +98,6 @@ public class fragment_edit_user extends Fragment {
         if (urlImage == null){
             Picasso.get().load(defaultImage).into(picImage);
         }
-
-
-
         email.setText(email2);
         name.setText(name2);
         phone.setText(phone2);
@@ -178,7 +180,6 @@ public class fragment_edit_user extends Fragment {
         edit.setEnabled(false);
         cancel.setEnabled(false);
         deletepic.setEnabled(false);
-
         String address3 = address.getText().toString();
         String email3 = email.getText().toString();
         String name3 = name.getText().toString();
@@ -186,6 +187,25 @@ public class fragment_edit_user extends Fragment {
         Boolean educated3 = isEducator.isChecked();
         Boolean parent3 = isParent.isChecked();
         String password3 = password.getText().toString();
+        Pattern pattern = Pattern.compile(patterns);
+        Matcher matcher = pattern.matcher(phone3);
+        if(!matcher.matches()){
+            Toast.makeText(getContext(), "the phone format is not correct", Toast.LENGTH_LONG).show();
+             progressBar.setVisibility(View.GONE);
+             edit.setEnabled(true);
+             cancel.setEnabled(true);
+             deletepic.setEnabled(true);
+            return;
+       }
+
+       if(!name3.matches(regexName)){
+           Toast.makeText(getContext(), "the name format is not correct", Toast.LENGTH_LONG).show();
+           progressBar.setVisibility(View.GONE);
+           edit.setEnabled(true);
+           cancel.setEnabled(true);
+           deletepic.setEnabled(true);
+           return;
+       }
         Profile profile1 = new Profile(name3, address3, email3, password3, educated3, parent3, phone3);
 
         if (imageBitmap != null) {
@@ -235,10 +255,10 @@ public class fragment_edit_user extends Fragment {
         else
         {
             Toast.makeText(getContext(), "No picture exist", Toast.LENGTH_LONG).show();
+            return;
         }
 
     }
-
 
 
 }

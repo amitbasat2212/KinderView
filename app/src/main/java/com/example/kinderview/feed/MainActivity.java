@@ -20,12 +20,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         getSupportActionBar().setTitle("");
-
-
         NavHost navHost = (NavHost) getSupportFragmentManager().findFragmentById(R.id.Fragment_nav_host);
         controller = navHost.getNavController();
+
 
     }
 
@@ -44,8 +42,24 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()){
                 case R.id.fragments_home:
-                    controller.navigate(R.id.action_global_home_page);
+                    Model.instance.executor.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(2000);
+                                Model.instance.mainThread.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        controller.navigate(R.id.action_global_home_page);
 
+                                    }
+                                });
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
                     break;
 
                 case R.id.menu_create:

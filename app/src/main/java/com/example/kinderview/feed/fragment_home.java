@@ -159,7 +159,6 @@ public class fragment_home extends Fragment {
                         Editview.setVisibility(View.VISIBLE);
                         Deleteview.setVisibility(View.VISIBLE);
                         post.setProfilePic(profile.getUrlImage());
-                        refresh();
 
                     }
 

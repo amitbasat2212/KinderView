@@ -31,6 +31,8 @@ import com.example.kinderview.viewModel.CreatePostViewModel;
 import com.example.kinderview.viewModel.ProfileViewModel;
 import com.squareup.picasso.Picasso;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 public class fragment_create_post extends Fragment {
@@ -159,6 +161,13 @@ public class fragment_create_post extends Fragment {
         String username = name.getText().toString();
         String date_post = date.getText().toString();
 
+        if(!isValidDate(date_post)){
+            Toast.makeText(getContext(), "the date need to be: dd-MM-yyyy", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.GONE);
+            createPost.setEnabled(true);
+            cancelBtn.setEnabled(true);
+            return;
+        }
 
         Post post = new Post(id, status, username, date_post);
 
@@ -190,10 +199,18 @@ public class fragment_create_post extends Fragment {
 
         }
 
-
-
-
-
-
     }
+
+    public static boolean isValidDate(String inDate) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(inDate.trim());
+        } catch (ParseException pe) {
+            return false;
+        }
+        return true;
+    }
+
+
 }
