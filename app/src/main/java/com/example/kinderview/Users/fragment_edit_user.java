@@ -53,7 +53,7 @@ public class fragment_edit_user extends Fragment {
     ImageView picImage;
     Bitmap imageBitmap;
     SignupViewModel signupViewModel;
-    String defaultImage = "https://firebasestorage.googleapis.com/v0/b/kinderview-9d217.appspot.com/o/photos%2Fprofile.jpg?alt=media&token=90ca0472-34fc-42b4-9dc3-4d6d15d85fad";
+    int defaultImage = R.drawable.profile;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -90,14 +90,14 @@ public class fragment_edit_user extends Fragment {
         password2 = fragment_edit_userArgs.fromBundle(getArguments()).getPassword();
         urlImage = fragment_edit_userArgs.fromBundle(getArguments()).getUrlImage();
 
-        if (urlImage != null) {
+
+        if(urlImage.equals("0")){
+            Picasso.get().load(R.drawable.profile).into(picImage);
+        }else {
             Picasso.get().load(urlImage).into(picImage);
         }
 
 
-        if (urlImage == null){
-            Picasso.get().load(defaultImage).into(picImage);
-        }
         email.setText(email2);
         name.setText(name2);
         phone.setText(phone2);
@@ -245,15 +245,20 @@ public class fragment_edit_user extends Fragment {
         edit.setEnabled(false);
         deletepic.setEnabled(false);
         Profile profile2 = new Profile(name2, address2, email2, password2, isEducator2, isPaernt2, phone2);
-        if(profile2.getUrlImage()!=defaultImage) {
+        profile2.setUrlImage(urlImage);
+        if(profile2.getUrlImage()!=null) {
+            Picasso.get().load(R.drawable.profile).into(picImage);
             Model.instance.deleteProfilePic(profile2, email2 + ".jpg", () ->{
-                urlImage=defaultImage;
-                profile2.setUrlImage(urlImage);
+                profile2.setUrlImage("0");
                 Navigation.findNavController(view).navigate(fragment_edit_userDirections.actionGlobalEditUser(profile2.getName(), profile2.getParent(), profile2.getEducator(), profile2.getPhone(),
                         profile2.getAddress(), profile2.getEmail(), profile2.getPassword(), profile2.getUrlImage())); } );
         }
         else
         {
+            progressBar.setVisibility(View.GONE);
+            cancel.setEnabled(true);
+            edit.setEnabled(true);
+            deletepic.setEnabled(true);
             Toast.makeText(getContext(), "No picture exist", Toast.LENGTH_LONG).show();
             return;
         }

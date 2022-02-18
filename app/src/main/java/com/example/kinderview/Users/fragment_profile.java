@@ -61,20 +61,18 @@ public class fragment_profile extends Fragment {
                 edit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         Navigation.findNavController(view).navigate(fragment_profileDirections.actionFragmentProfileToEditUser(profile.getName(),profile.getParent(),
                                 profile.getEducator(), profile.getPhone(),profile.getAddress(),profile.getEmail(),profile.getPassword(), profile.getUrlImage()));
                     }
 
                 });
-                if (profile.getUrlImage() != null) {
+                if (!profile.getUrlImage().equals("0") ) {
 
                     Picasso.get().load(profile.getUrlImage()).into(profile_image);
                 }
                 else{
-                    String defaultImage = "https://firebasestorage.googleapis.com/v0/b/kinderview-9d217.appspot.com/o/photos%2Fprofile.jpg?alt=media&token=90ca0472-34fc-42b4-9dc3-4d6d15d85fad";
-                    profile.setUrlImage(defaultImage);
 
+                    Picasso.get().load(R.drawable.profile).into(profile_image);
                 }
 
             }
