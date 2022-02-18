@@ -189,7 +189,9 @@ public class fragment_edit_post extends Fragment {
         if(profile1.getUrlImage()!=null) {
             post.setProfilePic(profile1.getUrlImage());
         }
-
+        else{
+            post.setProfilePic("0");
+        }
 
         if(!isValidDate(date_post1)){
             Toast.makeText(getContext(), "the date need to be: dd-MM-yyyy", Toast.LENGTH_LONG).show();

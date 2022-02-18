@@ -159,6 +159,10 @@ public class fragment_home extends Fragment {
                         Editview.setVisibility(View.VISIBLE);
                         Deleteview.setVisibility(View.VISIBLE);
                         post.setProfilePic(profile.getUrlImage());
+                        if (post.getProfilePic() == null)
+                        {
+                            post.setProfilePic("0");
+                        }
                         if (!post.getProfilePic().equals("0")) {
                             Picasso.get().load(post.getProfilePic()).resize(50, 50)
                                     .centerCrop().into(imgview_propic);
