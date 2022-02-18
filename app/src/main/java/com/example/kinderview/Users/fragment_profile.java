@@ -72,7 +72,8 @@ public class fragment_profile extends Fragment {
                     Picasso.get().load(profile.getUrlImage()).into(profile_image);
                 }
                 else{
-                    profile.setUrlImage("drawable-v24/profile.jpg");
+                    String defaultImage = "https://firebasestorage.googleapis.com/v0/b/kinderview-9d217.appspot.com/o/photos%2Fprofile.jpg?alt=media&token=90ca0472-34fc-42b4-9dc3-4d6d15d85fad";
+                    profile.setUrlImage(defaultImage);
 
                 }
 

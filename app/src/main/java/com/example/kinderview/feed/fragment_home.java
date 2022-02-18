@@ -159,9 +159,7 @@ public class fragment_home extends Fragment {
                         Editview.setVisibility(View.VISIBLE);
                         Deleteview.setVisibility(View.VISIBLE);
                         post.setProfilePic(profile.getUrlImage());
-
                     }
-
                 }
             });
             if (post.getProfilePic()!= null) {
@@ -177,9 +175,6 @@ public class fragment_home extends Fragment {
             imgedit.setVisibility(View.GONE);
             Editview.setVisibility(View.GONE);
             Deleteview.setVisibility(View.GONE);
-
-
-
 
             if (post.getUrlImagePost() != null) {
                 Picasso.get()
