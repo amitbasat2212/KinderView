@@ -29,6 +29,8 @@ import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Profile;
 import com.example.kinderview.viewModel.SignupViewModel;
 import java.io.InputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class fragment_sign_up extends Fragment {
@@ -44,6 +46,12 @@ public class fragment_sign_up extends Fragment {
     Bitmap imageBitmap;
     ImageButton CamrabUTTON,GallertButton;
     SignupViewModel signupViewModel;
+    String patterns
+            = "^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$"
+            + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$"
+            + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$";
+    Pattern pattern = Pattern.compile(patterns);
+    String regexName ="[a-zA-Z]+\\.?";
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -147,6 +155,11 @@ public class fragment_sign_up extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         btnlogin.setEnabled(false);
         btncanel.setEnabled(false);
+        GallertButton.setEnabled(false);
+        CamrabUTTON.setEnabled(false);
+
+        Pattern pattern = Pattern.compile(patterns);
+        Matcher matcher = pattern.matcher(phone1);
         Profile profile=new Profile(name1,address1,email1,password1,educator1,parent1,phone1);
 
         if(!email1.matches(emailPattern))
@@ -155,6 +168,8 @@ public class fragment_sign_up extends Fragment {
             progressBar.setVisibility(View.GONE);
             btnlogin.setEnabled(true);
             btncanel.setEnabled(true);
+            GallertButton.setEnabled(true);
+            CamrabUTTON.setEnabled(true);
             return;
 
         }
@@ -164,8 +179,31 @@ public class fragment_sign_up extends Fragment {
             progressBar.setVisibility(View.GONE);
             btnlogin.setEnabled(true);
             btncanel.setEnabled(true);
+            GallertButton.setEnabled(true);
+            CamrabUTTON.setEnabled(true);
             return;
         }
+        if(!name1.matches(regexName)){
+            Toast.makeText(getContext(), "the name format is not correct", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.GONE);
+            btnlogin.setEnabled(true);
+            btncanel.setEnabled(true);
+            GallertButton.setEnabled(true);
+            CamrabUTTON.setEnabled(true);
+            return;
+        }
+
+        if(!matcher.matches()){
+            Toast.makeText(getContext(), "the phone format is not correct", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.GONE);
+            btnlogin.setEnabled(true);
+            btncanel.setEnabled(true);
+            GallertButton.setEnabled(true);
+            CamrabUTTON.setEnabled(true);
+            return;
+        }
+
+
 
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, profile.getEmail() + ".jpg", url -> {
@@ -180,6 +218,8 @@ public class fragment_sign_up extends Fragment {
                             progressBar.setVisibility(View.GONE);
                             btnlogin.setEnabled(true);
                             btncanel.setEnabled(true);
+                            GallertButton.setEnabled(true);
+                            CamrabUTTON.setEnabled(true);
                             return;
                         }
                     }
@@ -198,6 +238,8 @@ public class fragment_sign_up extends Fragment {
                             progressBar.setVisibility(View.GONE);
                             btnlogin.setEnabled(true);
                             btncanel.setEnabled(true);
+                            GallertButton.setEnabled(true);
+                            CamrabUTTON.setEnabled(true);
                             return;
                         }
 
