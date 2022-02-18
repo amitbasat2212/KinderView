@@ -19,6 +19,7 @@ import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
 import com.example.kinderview.model.Post;
 import com.example.kinderview.model.Profile;
+import com.example.kinderview.viewModel.CreatePostViewModel;
 import com.example.kinderview.viewModel.PostViewModel;
 import com.example.kinderview.viewModel.ProfileViewModel;
 import com.squareup.picasso.Picasso;
@@ -30,12 +31,14 @@ public class fragment_home extends Fragment {
     OnItemClickListener listener;
     ImageView imagePostFrame;
     ProfileViewModel profileViewModel;
+    CreatePostViewModel createPostViewModel;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         viewModel = new ViewModelProvider(this).get(PostViewModel.class);
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        createPostViewModel=new ViewModelProvider(this).get(CreatePostViewModel.class);
     }
 
     @Nullable
@@ -82,11 +85,15 @@ public class fragment_home extends Fragment {
                     Navigation.findNavController(view).navigate(fragment_homeDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, stId, url));
                 }else
                 if(view.findViewById(R.id.row_feed_deletepost).getId()==idview){
-                    viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {
-                        Model.instance.refreshPostList();
-
-
+                    Model.instance.mainThread.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {
+                                Model.instance.refreshPostList();
+                            });
+                        }
                     });
+
                 }
 
             }
@@ -145,11 +152,49 @@ public class fragment_home extends Fragment {
 
 
         }
-        public void bind(Post post){
+        public void bind(Post post,int position){
             tv_name.setText(post.getEmail());
             tv_time.setText(post.getDate());
             tv_status.setText(post.getStatus());
-//            Model.instance.refreshPostList();
+
+            Model.instance.getprofilebyEmail(post.getEmail(), new Model.GetProfileById() {
+                @Override
+                public void onComplete(Profile profile) {
+                    if(profile.getUrlImage()==null){
+                        profile.setUrlImage("0");
+                    }
+                    if(post.getEmail().equals(profile.getEmail())){
+                        if(profile.getUrlImage().equals("0")){
+                            Picasso.get().load(R.drawable.profile).resize(50, 50)
+                                    .centerCrop().into(imgview_propic);
+                        }else {
+                            Picasso.get().load(profile.getUrlImage()).resize(50, 50)
+                                    .centerCrop().into(imgview_propic);
+                        }
+                    }
+                    else{
+                        Picasso.get().load(R.drawable.profile).resize(50, 50)
+                                .centerCrop().into(imgview_propic);
+                    }
+
+                    if (post.getUrlImagePost() == null || post.getUrlImagePost().equals("0") ) {
+                        imagePostFrame.setVisibility(View.GONE);
+                    }
+
+                    imgdelete.setVisibility(View.GONE);
+                    imgedit.setVisibility(View.GONE);
+                    Editview.setVisibility(View.GONE);
+                    Deleteview.setVisibility(View.GONE);
+                    if (post.getUrlImagePost() != null) {
+                        Picasso.get()
+                                .load(post.getUrlImagePost()).fit()
+                                .centerCrop()
+                                .into(imgview_postpic);
+                    }
+
+                }
+            });
+
             profileViewModel.GetUserconnect(new Model.connect() {
                 @Override
                 public void onComplete(Profile profile) {
@@ -158,44 +203,10 @@ public class fragment_home extends Fragment {
                         imgedit.setVisibility(View.VISIBLE);
                         Editview.setVisibility(View.VISIBLE);
                         Deleteview.setVisibility(View.VISIBLE);
-                        post.setProfilePic(profile.getUrlImage());
-                        if (post.getProfilePic() == null)
-                        {
-                            post.setProfilePic("0");
-                        }
-                        if (!post.getProfilePic().equals("0")) {
-                            Picasso.get().load(post.getProfilePic()).resize(50, 50)
-                                    .centerCrop().into(imgview_propic);
-                        }
-                        else{
-                            Picasso.get().load(R.drawable.profile).resize(50, 50)
-                                    .centerCrop().into(imgview_propic);
-                        }
+
                     }
                 }
             });
-            if (!post.getProfilePic().equals("0")) {
-                Picasso.get().load(post.getProfilePic()).resize(50, 50)
-                        .centerCrop().into(imgview_propic);
-            }else{
-                Picasso.get().load(R.drawable.profile).resize(50, 50)
-                        .centerCrop().into(imgview_propic);
-            }
-            if (post.getUrlImagePost() == null || post.getUrlImagePost().equals("0") ) {
-                imagePostFrame.setVisibility(View.GONE);
-            }
-
-            imgdelete.setVisibility(View.GONE);
-            imgedit.setVisibility(View.GONE);
-            Editview.setVisibility(View.GONE);
-            Deleteview.setVisibility(View.GONE);
-
-            if (post.getUrlImagePost() != null) {
-                Picasso.get()
-                        .load(post.getUrlImagePost()).fit()
-                        .centerCrop()
-                        .into(imgview_postpic);
-            }
 
         }
     }
@@ -223,7 +234,7 @@ public class fragment_home extends Fragment {
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
             Post post = viewModel.getData().getValue().get(position);
-            holder.bind(post);
+            holder.bind(post,position);
 
         }
 

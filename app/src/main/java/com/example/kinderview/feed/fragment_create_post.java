@@ -80,7 +80,6 @@ public class fragment_create_post extends Fragment {
            @Override
            public void onComplete(Profile profile) {
                name.setText(profile.getEmail());
-
                if (profile.getUrlImage() == null)
                {
                    profile.setUrlImage("0");
@@ -163,9 +162,9 @@ public class fragment_create_post extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         createPost.setEnabled(false);
         cancelBtn.setEnabled(false);
-        camBtn.setEnabled(false);
-        galleryBtn.setEnabled(false);
-        name.setEnabled(false);
+        //camBtn.setEnabled(false);
+        //galleryBtn.setEnabled(false);
+       // name.setEnabled(false);
         cancelBtn.setEnabled(false);
 
         String id = String.valueOf(uniqueKey);
@@ -180,7 +179,7 @@ public class fragment_create_post extends Fragment {
             cancelBtn.setEnabled(true);
             camBtn.setEnabled(true);
             galleryBtn.setEnabled(true);
-            name.setEnabled(true);
+
             cancelBtn.setEnabled(true);
             return;
         }
@@ -198,7 +197,7 @@ public class fragment_create_post extends Fragment {
             cancelBtn.setEnabled(true);
             camBtn.setEnabled(true);
             galleryBtn.setEnabled(true);
-            name.setEnabled(true);
+
             cancelBtn.setEnabled(true);
             return;
         }
@@ -212,9 +211,14 @@ public class fragment_create_post extends Fragment {
             });
 
         }else{
-            createPostViewModel.addPost(post,()->
-            {
-                Navigation.findNavController(view).navigate(R.id.action_createPost_to_home_page23);
+            progressBar.setVisibility(View.VISIBLE);
+            Model.instance.mainThread.post(new Runnable() {
+                @Override
+                public void run() {
+                    createPostViewModel.addPost(post,()->
+                            Navigation.findNavController(view).navigate(R.id.action_createPost_to_home_page23));
+
+                }
             });
 
         }

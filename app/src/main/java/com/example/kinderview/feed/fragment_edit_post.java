@@ -238,10 +238,16 @@ public class fragment_edit_post extends Fragment {
 
         }else{
             post.setImagePostUrl(urlImage);
-            editViewModel.editPost(post,()->
-            {
-                Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page);
+            Model.instance.mainThread.post(new Runnable() {
+                @Override
+                public void run() {
+                    editViewModel.editPost(post,()->
+                    {
+                        Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page);
+                    });
+                }
             });
+
         }
 
     }
