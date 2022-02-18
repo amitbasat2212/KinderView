@@ -87,9 +87,15 @@ public class fragment_edit_post extends Fragment {
         profileViewModel.GetUserconnect(new Model.connect() {
             @Override
             public void onComplete(Profile profile) {
-               if (profile.getUrlImage() != null) {
-                   profile1 = profile;
-               }
+             if(profile.getUrlImage() == null)
+                {
+                    profile.setUrlImage("0");
+                    profile1=profile;
+                }
+                else{
+                    profile1=profile;
+
+                }
 
             }
         });
