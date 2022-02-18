@@ -66,7 +66,6 @@ public class fragment_home extends Fragment {
 
         });
 
-
         adapter.setListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view,int idview) {
@@ -150,6 +149,7 @@ public class fragment_home extends Fragment {
             tv_name.setText(post.getEmail());
             tv_time.setText(post.getDate());
             tv_status.setText(post.getStatus());
+//            Model.instance.refreshPostList();
             profileViewModel.GetUserconnect(new Model.connect() {
                 @Override
                 public void onComplete(Profile profile) {
@@ -159,6 +159,14 @@ public class fragment_home extends Fragment {
                         Editview.setVisibility(View.VISIBLE);
                         Deleteview.setVisibility(View.VISIBLE);
                         post.setProfilePic(profile.getUrlImage());
+                        if (!post.getProfilePic().equals("0")) {
+                            Picasso.get().load(post.getProfilePic()).resize(50, 50)
+                                    .centerCrop().into(imgview_propic);
+                        }
+                        else{
+                            Picasso.get().load(R.drawable.profile).resize(50, 50)
+                                    .centerCrop().into(imgview_propic);
+                        }
                     }
                 }
             });
@@ -169,7 +177,6 @@ public class fragment_home extends Fragment {
                 Picasso.get().load(R.drawable.profile).resize(50, 50)
                         .centerCrop().into(imgview_propic);
             }
-
             if (post.getUrlImagePost() == null || post.getUrlImagePost().equals("0") ) {
                 imagePostFrame.setVisibility(View.GONE);
             }
@@ -210,6 +217,7 @@ public class fragment_home extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
             Post post = viewModel.getData().getValue().get(position);
             holder.bind(post);
 

@@ -42,24 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()){
                 case R.id.fragments_home:
-                    Model.instance.executor.execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(2000);
-                                Model.instance.mainThread.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        controller.navigate(R.id.action_global_home_page);
+                  controller.navigate(R.id.action_global_home_page);
 
-                                    }
-                                });
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    });
                     break;
 
                 case R.id.menu_create:
