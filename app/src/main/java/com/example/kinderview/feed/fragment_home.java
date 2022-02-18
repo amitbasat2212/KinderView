@@ -162,8 +162,11 @@ public class fragment_home extends Fragment {
                     }
                 }
             });
-            if (post.getProfilePic()!= null) {
+            if (!post.getProfilePic().equals("0")) {
                 Picasso.get().load(post.getProfilePic()).resize(50, 50)
+                        .centerCrop().into(imgview_propic);
+            }else{
+                Picasso.get().load(R.drawable.profile).resize(50, 50)
                         .centerCrop().into(imgview_propic);
             }
 

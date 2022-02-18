@@ -61,17 +61,18 @@ public class fragment_profile extends Fragment {
                 edit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if(profile.getUrlImage()==null){
+                            profile.setUrlImage("0");
+                        }
                         Navigation.findNavController(view).navigate(fragment_profileDirections.actionFragmentProfileToEditUser(profile.getName(),profile.getParent(),
                                 profile.getEducator(), profile.getPhone(),profile.getAddress(),profile.getEmail(),profile.getPassword(), profile.getUrlImage()));
                     }
 
                 });
-                if (!profile.getUrlImage().equals("0") ) {
-
+                if (profile.getUrlImage()!=null) {
                     Picasso.get().load(profile.getUrlImage()).into(profile_image);
                 }
                 else{
-
                     Picasso.get().load(R.drawable.profile).into(profile_image);
                 }
 

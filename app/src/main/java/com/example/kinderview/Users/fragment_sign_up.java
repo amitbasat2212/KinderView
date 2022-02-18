@@ -190,6 +190,7 @@ public class fragment_sign_up extends Fragment {
             signupViewModel.sighup(profile, new Model.sighup() {
                 @Override
                 public void onComplete(String email) {
+                    profile.setUrlImage("0");
                     if(email!=null) {
                         toFeedActivity();
                     }else{
