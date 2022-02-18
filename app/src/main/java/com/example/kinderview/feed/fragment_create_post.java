@@ -157,6 +157,10 @@ public class fragment_create_post extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         createPost.setEnabled(false);
         cancelBtn.setEnabled(false);
+        camBtn.setEnabled(false);
+        galleryBtn.setEnabled(false);
+        name.setEnabled(false);
+        cancelBtn.setEnabled(false);
 
         String id = String.valueOf(uniqueKey);
         String status = text.getText().toString();
@@ -167,6 +171,10 @@ public class fragment_create_post extends Fragment {
             Toast.makeText(getContext(), "the date need to be: dd-MM-yyyy", Toast.LENGTH_LONG).show();
             progressBar.setVisibility(View.GONE);
             createPost.setEnabled(true);
+            cancelBtn.setEnabled(true);
+            camBtn.setEnabled(true);
+            galleryBtn.setEnabled(true);
+            name.setEnabled(true);
             cancelBtn.setEnabled(true);
             return;
         }
@@ -181,6 +189,10 @@ public class fragment_create_post extends Fragment {
             Toast.makeText(getContext(), "the status or picture is empty", Toast.LENGTH_LONG).show();
             progressBar.setVisibility(View.GONE);
             createPost.setEnabled(true);
+            cancelBtn.setEnabled(true);
+            camBtn.setEnabled(true);
+            galleryBtn.setEnabled(true);
+            name.setEnabled(true);
             cancelBtn.setEnabled(true);
             return;
         }

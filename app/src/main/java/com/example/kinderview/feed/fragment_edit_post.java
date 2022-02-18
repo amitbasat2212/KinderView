@@ -170,10 +170,15 @@ public class fragment_edit_post extends Fragment {
 
 
     private void edit() {
+
         progressBar.setVisibility(View.VISIBLE);
         editButton.setEnabled(false);
         cancelButton.setEnabled(false);
         deletepic.setEnabled(false);
+        edit_status.setEnabled(false);
+        edit_date.setEnabled(false);
+        camrabtn.setEnabled(false);
+        gallerybtn.setEnabled(false);
         String id1 =id;
         String status1 = edit_status.getText().toString();
         String username1 = username;
@@ -192,6 +197,10 @@ public class fragment_edit_post extends Fragment {
             editButton.setEnabled(true);
             cancelButton.setEnabled(true);
             deletepic.setEnabled(true);
+            edit_status.setEnabled(true);
+            edit_date.setEnabled(true);
+            camrabtn.setEnabled(true);
+            gallerybtn.setEnabled(true);
             return;
         }
 
@@ -201,6 +210,11 @@ public class fragment_edit_post extends Fragment {
             progressBar.setVisibility(View.GONE);
             editButton.setEnabled(true);
             cancelButton.setEnabled(true);
+            deletepic.setEnabled(true);
+            edit_status.setEnabled(true);
+            edit_date.setEnabled(true);
+            camrabtn.setEnabled(true);
+            gallerybtn.setEnabled(true);
             return;
         }
 
@@ -229,6 +243,10 @@ public class fragment_edit_post extends Fragment {
         editButton.setEnabled(false);
         cancelButton.setEnabled(false);
         deletepic.setEnabled(false);
+        edit_status.setEnabled(false);
+        edit_date.setEnabled(false);
+        camrabtn.setEnabled(false);
+        gallerybtn.setEnabled(false);
 
         Post post = new Post(id, status, username, date_post);
         post.setUrlImagePost(urlImage);
@@ -247,6 +265,10 @@ public class fragment_edit_post extends Fragment {
             editButton.setEnabled(true);
             cancelButton.setEnabled(true);
             deletepic.setEnabled(true);
+            edit_status.setEnabled(true);
+            edit_date.setEnabled(true);
+            camrabtn.setEnabled(true);
+            gallerybtn.setEnabled(true);
 
         }
 
