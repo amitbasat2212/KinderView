@@ -61,7 +61,7 @@ public class fragment_profile extends Fragment {
                 edit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(profile.getUrlImage()==null){
+                        if(profile.getUrlImage().equals("0")){
                             profile.setUrlImage("0");
                         }
                         Navigation.findNavController(view).navigate(fragment_profileDirections.actionFragmentProfileToEditUser(profile.getName(),profile.getParent(),
@@ -69,7 +69,7 @@ public class fragment_profile extends Fragment {
                     }
 
                 });
-                if (profile.getUrlImage()!=null) {
+                if (!profile.getUrlImage().equals("0")) {
                     Picasso.get().load(profile.getUrlImage()).into(profile_image);
                 }
                 else{
