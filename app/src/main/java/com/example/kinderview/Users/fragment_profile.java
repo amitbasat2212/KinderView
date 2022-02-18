@@ -69,6 +69,9 @@ public class fragment_profile extends Fragment {
                     }
 
                 });
+                if(profile.getUrlImage()==null){
+                    profile.setUrlImage("0");
+                }
                 if (!profile.getUrlImage().equals("0")) {
                     Picasso.get().load(profile.getUrlImage()).into(profile_image);
                 }

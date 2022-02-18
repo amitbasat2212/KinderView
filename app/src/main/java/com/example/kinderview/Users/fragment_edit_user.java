@@ -53,7 +53,7 @@ public class fragment_edit_user extends Fragment {
     ImageView picImage;
     Bitmap imageBitmap;
     SignupViewModel signupViewModel;
-    int defaultImage = R.drawable.profile;
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -182,6 +182,14 @@ public class fragment_edit_user extends Fragment {
         deletepic.setEnabled(false);
         btn_camera.setEnabled(false);
         btn_gallery.setEnabled(false);
+
+        name.setEnabled(false);
+        phone.setEnabled(false);
+        address.setEnabled(false);
+        isEducator.setEnabled(false);
+        isParent.setEnabled(false);
+
+
         String address3 = address.getText().toString();
         String email3 = email.getText().toString();
         String name3 = name.getText().toString();
@@ -194,11 +202,17 @@ public class fragment_edit_user extends Fragment {
         if(!matcher.matches()){
             Toast.makeText(getContext(), "the phone format is not correct", Toast.LENGTH_LONG).show();
              progressBar.setVisibility(View.GONE);
-             edit.setEnabled(true);
-             cancel.setEnabled(true);
-             deletepic.setEnabled(true);
+            edit.setEnabled(true);
+            cancel.setEnabled(true);
+            deletepic.setEnabled(true);
             btn_camera.setEnabled(true);
             btn_gallery.setEnabled(true);
+
+            name.setEnabled(true);
+            phone.setEnabled(true);
+            address.setEnabled(true);
+            isEducator.setEnabled(true);
+            isParent.setEnabled(true);
             return;
        }
 
@@ -210,6 +224,12 @@ public class fragment_edit_user extends Fragment {
            deletepic.setEnabled(true);
            btn_camera.setEnabled(true);
            btn_gallery.setEnabled(true);
+
+           name.setEnabled(true);
+           phone.setEnabled(true);
+           address.setEnabled(true);
+           isEducator.setEnabled(true);
+           isParent.setEnabled(true);
            return;
        }
         Profile profile1 = new Profile(name3, address3, email3, password3, educated3, parent3, phone3);
@@ -252,6 +272,13 @@ public class fragment_edit_user extends Fragment {
         deletepic.setEnabled(false);
         btn_camera.setEnabled(false);
         btn_gallery.setEnabled(false);
+
+        name.setEnabled(false);
+        phone.setEnabled(false);
+        address.setEnabled(false);
+        isEducator.setEnabled(false);
+        isParent.setEnabled(false);
+
         Profile profile2 = new Profile(name2, address2, email2, password2, isEducator2, isPaernt2, phone2);
         profile2.setUrlImage(urlImage);
         if(profile2.getUrlImage()!=null) {
@@ -269,6 +296,12 @@ public class fragment_edit_user extends Fragment {
             deletepic.setEnabled(true);
             btn_camera.setEnabled(true);
             btn_gallery.setEnabled(true);
+
+            name.setEnabled(true);
+            phone.setEnabled(true);
+            address.setEnabled(true);
+            isEducator.setEnabled(true);
+            isParent.setEnabled(true);
 
             Toast.makeText(getContext(), "No picture exist", Toast.LENGTH_LONG).show();
             return;
