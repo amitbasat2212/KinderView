@@ -80,6 +80,7 @@ public class fragment_create_post extends Fragment {
            @Override
            public void onComplete(Profile profile) {
                name.setText(profile.getEmail());
+
                if (!(profile.getUrlImage().equals("0"))) {
                    profile1 = profile;
                    Picasso.get().load(profile.getUrlImage()).resize(50, 50)

@@ -36,7 +36,7 @@ import java.util.regex.Pattern;
 public class fragment_sign_up extends Fragment {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_IMAGE_PIC = 2;
-    EditText password, email, name, phone, address;
+    EditText password, email1, name, phone, address;
     CheckBox eductor,parent;
     Button btnlogin, btncanel;
     String emailPattern ="[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -65,7 +65,7 @@ public class fragment_sign_up extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_sign_up, container, false);
-        email = view.findViewById(R.id.signin_email_et);
+        email1 = view.findViewById(R.id.signin_email_et);
         password = view.findViewById(R.id.signin_password_et);
         name = view.findViewById(R.id.signin_name);
         phone = view.findViewById(R.id.signin_phone);
@@ -146,7 +146,7 @@ public class fragment_sign_up extends Fragment {
 
     private void perforAuth() {
         String password1 = password.getText().toString();
-        String email1 = email.getText().toString();
+        String email2 = email1.getText().toString();
         String phone1 = phone.getText().toString();
         String address1 = address.getText().toString();
         String name1 = name.getText().toString();
@@ -157,12 +157,19 @@ public class fragment_sign_up extends Fragment {
         btncanel.setEnabled(false);
         GallertButton.setEnabled(false);
         CamrabUTTON.setEnabled(false);
+        email1.setEnabled(false);
+        password.setEnabled(false);
+        name.setEnabled(false);
+        phone.setEnabled(false);
+        address.setEnabled(false);
+        eductor.setEnabled(false);
+        parent.setEnabled(false);
 
         Pattern pattern = Pattern.compile(patterns);
         Matcher matcher = pattern.matcher(phone1);
-        Profile profile=new Profile(name1,address1,email1,password1,educator1,parent1,phone1);
+        Profile profile=new Profile(name1,address1,email2,password1,educator1,parent1,phone1);
 
-        if(!email1.matches(emailPattern))
+        if(!email2.matches(emailPattern))
         {
             Toast.makeText(getContext(), "Email is not correct", Toast.LENGTH_SHORT).show();
             progressBar.setVisibility(View.GONE);
@@ -170,6 +177,13 @@ public class fragment_sign_up extends Fragment {
             btncanel.setEnabled(true);
             GallertButton.setEnabled(true);
             CamrabUTTON.setEnabled(true);
+            email1.setEnabled(true);
+            password.setEnabled(true);
+            name.setEnabled(true);
+            phone.setEnabled(true);
+            address.setEnabled(true);
+            eductor.setEnabled(true);
+            parent.setEnabled(true);
             return;
 
         }
@@ -181,6 +195,13 @@ public class fragment_sign_up extends Fragment {
             btncanel.setEnabled(true);
             GallertButton.setEnabled(true);
             CamrabUTTON.setEnabled(true);
+            email1.setEnabled(true);
+            password.setEnabled(true);
+            name.setEnabled(true);
+            phone.setEnabled(true);
+            address.setEnabled(true);
+            eductor.setEnabled(true);
+            parent.setEnabled(true);
             return;
         }
         if(!name1.matches(regexName)){
@@ -190,6 +211,13 @@ public class fragment_sign_up extends Fragment {
             btncanel.setEnabled(true);
             GallertButton.setEnabled(true);
             CamrabUTTON.setEnabled(true);
+            email1.setEnabled(true);
+            password.setEnabled(true);
+            name.setEnabled(true);
+            phone.setEnabled(true);
+            address.setEnabled(true);
+            eductor.setEnabled(true);
+            parent.setEnabled(true);
             return;
         }
 
@@ -200,6 +228,13 @@ public class fragment_sign_up extends Fragment {
             btncanel.setEnabled(true);
             GallertButton.setEnabled(true);
             CamrabUTTON.setEnabled(true);
+            email1.setEnabled(true);
+            password.setEnabled(true);
+            name.setEnabled(true);
+            phone.setEnabled(true);
+            address.setEnabled(true);
+            eductor.setEnabled(true);
+            parent.setEnabled(true);
             return;
         }
 
@@ -211,7 +246,7 @@ public class fragment_sign_up extends Fragment {
                 signupViewModel.sighup(profile, new Model.sighup() {
                     @Override
                     public void onComplete(String email) {
-                        if(email!=null) {
+                        if(email1!=null) {
                             toFeedActivity();
                         }else{
                             Toast.makeText(getContext(), "User not Existed", Toast.LENGTH_SHORT).show();
@@ -220,6 +255,13 @@ public class fragment_sign_up extends Fragment {
                             btncanel.setEnabled(true);
                             GallertButton.setEnabled(true);
                             CamrabUTTON.setEnabled(true);
+                            email1.setEnabled(true);
+                            password.setEnabled(true);
+                            name.setEnabled(true);
+                            phone.setEnabled(true);
+                            address.setEnabled(true);
+                            eductor.setEnabled(true);
+                            parent.setEnabled(true);
                             return;
                         }
                     }
@@ -240,6 +282,13 @@ public class fragment_sign_up extends Fragment {
                             btncanel.setEnabled(true);
                             GallertButton.setEnabled(true);
                             CamrabUTTON.setEnabled(true);
+                            email1.setEnabled(true);
+                            password.setEnabled(true);
+                            name.setEnabled(true);
+                            phone.setEnabled(true);
+                            address.setEnabled(true);
+                            eductor.setEnabled(true);
+                            parent.setEnabled(true);
                             return;
                         }
 
