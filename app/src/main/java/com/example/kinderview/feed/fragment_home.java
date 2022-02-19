@@ -172,14 +172,6 @@ public class fragment_home extends Fragment {
                 }
             });
 
-
-            /*
-            if (post.getUrlImagePost() == null || post.getUrlImagePost().equals("0") ) {
-                imagePostFrame.setVisibility(View.GONE);
-            }
-
-             */
-
             imgdelete.setVisibility(View.GONE);
             imgedit.setVisibility(View.GONE);
             Editview.setVisibility(View.GONE);
