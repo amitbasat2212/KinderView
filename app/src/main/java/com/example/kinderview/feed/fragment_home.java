@@ -162,7 +162,6 @@ public class fragment_home extends Fragment {
             tv_time.setText(post.getDate());
             tv_status.setText(post.getStatus());
 
-
             Model.instance.getprofilebyEmail(post.getEmail(), new Model.GetProfileById() {
                 @Override
                 public void onComplete(Profile profile) {
@@ -209,7 +208,7 @@ public class fragment_home extends Fragment {
 
             if (post.getUrlImagePost() != null) {
                 Picasso.get()
-                        .load(post.getUrlImagePost()).fit()
+                        .load(post.getUrlImagePost()).resize(50, 50)
                         .centerCrop()
                         .into(imgview_postpic);
             }
