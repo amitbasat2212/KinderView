@@ -166,8 +166,20 @@ public class fragment_home extends Fragment {
                 @Override
                 public void onComplete(Profile profile) {
                     if (post.getEmail().equals(profile.getEmail())) {
+
+                        if(profile.getUrlImage()==null){
+                            profile.setUrlImage("0");
+                        }
+
                         Picasso.get().load(profile.getUrlImage()).resize(50, 50)
                                 .centerCrop().into(imgview_propic);
+
+                        if (!profile.getUrlImage().equals("0")) {
+                            Picasso.get().load(profile.getUrlImage()).into(imgview_propic);
+                        }
+                        else{
+                            Picasso.get().load(R.drawable.profile).into(imgview_propic);
+                        }
                     }
                 }
             });
@@ -176,7 +188,6 @@ public class fragment_home extends Fragment {
             imgedit.setVisibility(View.GONE);
             Editview.setVisibility(View.GONE);
             Deleteview.setVisibility(View.GONE);
-
 
             Model.instance.getUserConnect(new Model.connect() {
                 @Override
@@ -197,15 +208,11 @@ public class fragment_home extends Fragment {
                 }
             });
 
-
             if (post.getUrlImagePost() != null) {
                 Picasso.get()
-                        .load(post.getUrlImagePost()).resize(50, 50)
+                        .load(post.getUrlImagePost()).resize(250, 180)
                         .centerCrop()
                         .into(imgview_postpic);
-            }
-            else{
-
             }
 
         }
