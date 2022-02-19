@@ -3,26 +3,38 @@ package com.example.kinderview.feed;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.example.kinderview.R;
 import com.example.kinderview.model.Model;
+import com.example.kinderview.model.ModelFireBase;
 import com.example.kinderview.model.Post;
 import com.example.kinderview.model.Profile;
-import com.example.kinderview.viewModel.CreatePostViewModel;
 import com.example.kinderview.viewModel.PostViewModel;
-import com.example.kinderview.viewModel.ProfileViewModel;
 import com.squareup.picasso.Picasso;
+
+
+import java.util.List;
 
 public class fragment_home extends Fragment {
     PostViewModel viewModel;
@@ -30,15 +42,11 @@ public class fragment_home extends Fragment {
     SwipeRefreshLayout swipeRefresh;
     OnItemClickListener listener;
     ImageView imagePostFrame;
-    ProfileViewModel profileViewModel;
-    CreatePostViewModel createPostViewModel;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         viewModel = new ViewModelProvider(this).get(PostViewModel.class);
-        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
-        createPostViewModel=new ViewModelProvider(this).get(CreatePostViewModel.class);
     }
 
     @Nullable
@@ -60,14 +68,15 @@ public class fragment_home extends Fragment {
         setHasOptionsMenu(true);
         viewModel.getData().observe(getViewLifecycleOwner(), list1 -> refresh());
         swipeRefresh.setRefreshing(Model.instance.getPostsListLoadingState().getValue() == Model.PostsListLoadingState.loading);
-        Model.instance.getPostsListLoadingState().observe(getViewLifecycleOwner(), studentListLoadingState -> {
-            if (studentListLoadingState == Model.PostsListLoadingState.loading){
+        Model.instance.getPostsListLoadingState().observe(getViewLifecycleOwner(), PostsListLoadingState -> {
+            if (PostsListLoadingState == Model.PostsListLoadingState.loading){
                 swipeRefresh.setRefreshing(true);
             }else{
                 swipeRefresh.setRefreshing(false);
             }
 
         });
+
 
         adapter.setListener(new OnItemClickListener() {
             @Override
@@ -85,15 +94,11 @@ public class fragment_home extends Fragment {
                     Navigation.findNavController(view).navigate(fragment_homeDirections.actionHomePage2ToFragmentEditPost(stUsername, date, status, stId, url));
                 }else
                 if(view.findViewById(R.id.row_feed_deletepost).getId()==idview){
-                    Model.instance.mainThread.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {
-                                Model.instance.refreshPostList();
-                            });
-                        }
-                    });
+                    viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {
+                        Model.instance.refreshPostList();
 
+
+                    });
                 }
 
             }
@@ -152,61 +157,65 @@ public class fragment_home extends Fragment {
 
 
         }
-        public void bind(Post post,int position){
+        public void bind(Post post){
             tv_name.setText(post.getEmail());
             tv_time.setText(post.getDate());
             tv_status.setText(post.getStatus());
 
+
             Model.instance.getprofilebyEmail(post.getEmail(), new Model.GetProfileById() {
                 @Override
                 public void onComplete(Profile profile) {
-                    if(profile.getUrlImage()==null){
-                        profile.setUrlImage("0");
-                    }
-                    if(post.getEmail().equals(profile.getEmail())){
-                        if(profile.getUrlImage().equals("0")){
-                            Picasso.get().load(R.drawable.profile).resize(50, 50)
-                                    .centerCrop().into(imgview_propic);
-                        }else {
-                            Picasso.get().load(profile.getUrlImage()).resize(50, 50)
-                                    .centerCrop().into(imgview_propic);
-                        }
-                    }
-                    else{
-                        Picasso.get().load(R.drawable.profile).resize(50, 50)
+                    if (post.getEmail().equals(profile.getEmail())) {
+                        Picasso.get().load(profile.getUrlImage()).resize(50, 50)
                                 .centerCrop().into(imgview_propic);
                     }
-
-                    if (post.getUrlImagePost() == null || post.getUrlImagePost().equals("0") ) {
-                        imagePostFrame.setVisibility(View.GONE);
-                    }
-
-                    imgdelete.setVisibility(View.GONE);
-                    imgedit.setVisibility(View.GONE);
-                    Editview.setVisibility(View.GONE);
-                    Deleteview.setVisibility(View.GONE);
-                    if (post.getUrlImagePost() != null) {
-                        Picasso.get()
-                                .load(post.getUrlImagePost()).fit()
-                                .centerCrop()
-                                .into(imgview_postpic);
-                    }
-
                 }
             });
 
-            profileViewModel.GetUserconnect(new Model.connect() {
+
+            /*
+            if (post.getUrlImagePost() == null || post.getUrlImagePost().equals("0") ) {
+                imagePostFrame.setVisibility(View.GONE);
+            }
+
+             */
+
+            imgdelete.setVisibility(View.GONE);
+            imgedit.setVisibility(View.GONE);
+            Editview.setVisibility(View.GONE);
+            Deleteview.setVisibility(View.GONE);
+
+
+            Model.instance.getUserConnect(new Model.connect() {
                 @Override
                 public void onComplete(Profile profile) {
                     if(profile.getEmail().equals(tv_name.getText().toString())){
-                        imgdelete.setVisibility(View.VISIBLE);
-                        imgedit.setVisibility(View.VISIBLE);
-                        Editview.setVisibility(View.VISIBLE);
-                        Deleteview.setVisibility(View.VISIBLE);
+                        Model.instance.mainThread.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                imgdelete.setVisibility(View.VISIBLE);
+                                imgedit.setVisibility(View.VISIBLE);
+                                Editview.setVisibility(View.VISIBLE);
+                                Deleteview.setVisibility(View.VISIBLE);
+
+                            }
+                        });
 
                     }
                 }
             });
+
+
+            if (post.getUrlImagePost() != null) {
+                Picasso.get()
+                        .load(post.getUrlImagePost()).fit()
+                        .centerCrop()
+                        .into(imgview_postpic);
+            }
+            else{
+
+            }
 
         }
     }
@@ -232,9 +241,8 @@ public class fragment_home extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
             Post post = viewModel.getData().getValue().get(position);
-            holder.bind(post,position);
+            holder.bind(post);
 
         }
 

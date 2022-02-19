@@ -131,7 +131,7 @@ public class fragment_edit_post extends Fragment {
         });
 
         cancelButton.setOnClickListener(v ->
-                Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page));
+                Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page2));
 
 
         return view;
@@ -229,24 +229,25 @@ public class fragment_edit_post extends Fragment {
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, id + ".jpg", url -> {
                 post.setImagePostUrl(url);
-                editViewModel.editPost(post,()->
-                {
-                    Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page);
 
-                });
+
+                        editViewModel.editPost(post,()->
+                        {
+                            Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page2);
+                        });
+
+
             });
 
         }else{
             post.setImagePostUrl(urlImage);
-            Model.instance.mainThread.post(new Runnable() {
-                @Override
-                public void run() {
+
                     editViewModel.editPost(post,()->
                     {
-                        Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page);
+                        Navigation.findNavController(view).navigate(R.id.action_fragment_edit_post_to_home_page2);
                     });
-                }
-            });
+
+
 
         }
 

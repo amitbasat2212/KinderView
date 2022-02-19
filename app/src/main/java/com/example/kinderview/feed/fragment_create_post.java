@@ -204,10 +204,16 @@ public class fragment_create_post extends Fragment {
         if(imageBitmap!=null){
             Model.instance.saveImage(imageBitmap, id + ".jpg", url -> {
                 post.setImagePostUrl(url);
-                createPostViewModel.addPost(post,()->
-                {
-                    Navigation.findNavController(view).navigate(R.id.action_createPost_to_home_page23);
+                Model.instance.mainThread.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        createPostViewModel.addPost(post,()->
+                        {
+                            Navigation.findNavController(view).navigate(R.id.action_createPost_to_home_page23);
+                        });
+                    }
                 });
+
             });
 
         }else{
