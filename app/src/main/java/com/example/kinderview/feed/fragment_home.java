@@ -95,6 +95,7 @@ public class fragment_home extends Fragment {
                 }else
                 if(view.findViewById(R.id.row_feed_deletepost).getId()==idview){
                     viewModel.deletePost(viewModel.getData().getValue().get(position), () -> {
+                        viewModel.getData().getValue().get(position).setImagePostUrl("0");
                         Model.instance.refreshPostList();
 
 
@@ -208,7 +209,15 @@ public class fragment_home extends Fragment {
                 }
             });
 
-            if (post.getUrlImagePost() != null) {
+            if(post.getUrlImagePost()==null){
+                post.setImagePostUrl("0");
+            }
+            if (post.getUrlImagePost().equals("0")) {
+                Picasso.get()
+                        .load(R.drawable.defaultim).resize(250, 180)
+                        .centerCrop()
+                        .into(imgview_postpic);
+            }else{
                 Picasso.get()
                         .load(post.getUrlImagePost()).resize(250, 180)
                         .centerCrop()
