@@ -162,9 +162,9 @@ public class fragment_create_post extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         createPost.setEnabled(false);
         cancelBtn.setEnabled(false);
-        //camBtn.setEnabled(false);
-        //galleryBtn.setEnabled(false);
-       // name.setEnabled(false);
+        camBtn.setEnabled(false);
+        galleryBtn.setEnabled(false);
+        name.setEnabled(false);
         cancelBtn.setEnabled(false);
 
         String id = String.valueOf(uniqueKey);
