@@ -29,7 +29,6 @@ public class ModelFireBase {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
     FirebaseUser currentUser;
-
     /**
      * the Constructor section
      */

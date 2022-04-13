@@ -17,6 +17,7 @@ public class LoginViewModel extends ViewModel {
 
         data.setValue(profile);
         Model.instance.Login(data.getValue().getEmail(),data.getValue().getPassword(),listener);
+        
         return data;
     }
 
