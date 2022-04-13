@@ -30,7 +30,7 @@ public class ModelFireBase {
     StorageReference storageRef = storage.getReference();
     FirebaseUser currentUser;
     /**
-     * the Constructor section
+     * the Constructor section .
      */
     public ModelFireBase(){
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
